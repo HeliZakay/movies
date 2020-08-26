@@ -1,0 +1,28 @@
+yarn run v1.22.4
+warning package.json: No license field
+$ webpack
+(node:17232) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
+C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Chunk.js:866
+		throw new Error(
+		^
+
+Error: Chunk.entrypoints: Use Chunks.groupsIterable and filter by instanceof Entrypoint instead
+    at Chunk.get (C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Chunk.js:866:9)
+    at C:\Users\User\Desktop\react-course-projects\movies\node_modules\extract-text-webpack-plugin\dist\index.js:176:48
+    at Array.forEach (<anonymous>)
+    at C:\Users\User\Desktop\react-course-projects\movies\node_modules\extract-text-webpack-plugin\dist\index.js:171:18
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\User\Desktop\react-course-projects\movies\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:5:1)
+    at AsyncSeriesHook.lazyCompileHook (C:\Users\User\Desktop\react-course-projects\movies\node_modules\tapable\lib\Hook.js:154:20)
+    at Compilation.seal (C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Compilation.js:1342:27)
+    at C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Compiler.js:675:18
+    at C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Compilation.js:1261:4
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\Users\User\Desktop\react-course-projects\movies\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:22:1)
+    at AsyncSeriesHook.lazyCompileHook (C:\Users\User\Desktop\react-course-projects\movies\node_modules\tapable\lib\Hook.js:154:20)
+    at Compilation.finish (C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Compilation.js:1253:28)
+    at C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Compiler.js:672:17
+    at eval (eval at create (C:\Users\User\Desktop\react-course-projects\movies\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Compilation.js:1185:12
+    at C:\Users\User\Desktop\react-course-projects\movies\node_modules\webpack\lib\Compilation.js:1097:9
+    at processTicksAndRejections (internal/process/task_queues.js:79:11)
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
