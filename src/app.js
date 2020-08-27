@@ -8,6 +8,7 @@ import configureStore from './store/configureStore';
 import {addMovie} from "./actions/movies";
 import {setTextFilter, setPersonFilter, sortByScore} from "./actions/filters";
 import getVisibleMovies from "./selectors/movies";
+import "./firebase/firebase";
 
 const store = configureStore();
 
