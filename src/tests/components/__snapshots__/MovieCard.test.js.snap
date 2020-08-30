@@ -19,8 +19,9 @@ exports[`should renders MovieCard with movie 1`] = `
     8
   </p>
   <p>
-    Content: 
+    Content: "
     Cute
+    "
   </p>
   <p>
     Created At: 
