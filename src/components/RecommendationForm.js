@@ -32,7 +32,7 @@ export default class RecommendationForm extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
         if (!this.state.movieName || !this.state.score) {
-            this.setState( () => ({error: "Please fill in both movie name and a movie rating" }));
+            this.setState( () => ({error: "Please fill in movie name and a movie rating" }));
         } else {
             this.setState( () => ({error: ""}));
             this.props.onSubmit({
