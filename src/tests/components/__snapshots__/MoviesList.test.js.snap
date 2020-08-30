@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should not render MoviesList if there are no movies 1`] = `
+<div>
+  <p>
+    No movies yet- Add a recommendation
+  </p>
+</div>
+`;
+
+exports[`should render MoviesList with movies 1`] = `
+<div>
+  <MovieCard
+    content="Cute"
+    createdAt={"1970-01-01T00:00:04.000Z"}
+    id="1"
+    key="1"
+    movieName="Tarazan got something"
+    personName="Dorit"
+    score={8}
+  />
+  <MovieCard
+    content="the movie is OK"
+    createdAt={"1970-01-01T00:00:01.000Z"}
+    id="2"
+    key="2"
+    movieName="You've got mail"
+    personName="Michal"
+    score={10}
+  />
+  <MovieCard
+    content="Very unique"
+    createdAt={"1970-01-01T00:00:02.000Z"}
+    id="3"
+    key="3"
+    movieName="Persian Prince"
+    personName="Heli"
+    score={7}
+  />
+</div>
+`;

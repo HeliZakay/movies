@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render MoviesListFilters correctly 1`] = `
+<div>
+  <input
+    onChange={[Function]}
+    placeholder="filter by movie name"
+    type="text"
+    value=""
+  />
+  <input
+    onChange={[Function]}
+    placeholder="filter by recommender"
+    type="text"
+    value=""
+  />
+  <select
+    onChange={[Function]}
+    value="date"
+  >
+    <option
+      value="date"
+    >
+      Latest
+    </option>
+    <option
+      value="score"
+    >
+      Top Rated
+    </option>
+  </select>
+</div>
+`;
+
+exports[`should render MoviesListFilters with alt data correctly 1`] = `
+<div>
+  <input
+    onChange={[Function]}
+    placeholder="filter by movie name"
+    type="text"
+    value="tarazan"
+  />
+  <input
+    onChange={[Function]}
+    placeholder="filter by recommender"
+    type="text"
+    value="heli"
+  />
+  <select
+    onChange={[Function]}
+    value="score"
+  >
+    <option
+      value="date"
+    >
+      Latest
+    </option>
+    <option
+      value="score"
+    >
+      Top Rated
+    </option>
+  </select>
+</div>
+`;

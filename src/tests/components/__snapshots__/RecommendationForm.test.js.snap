@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RecommendationForm correctly 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Movie Name"
+      type="text"
+      value=""
+    />
+    <label>
+       Movie Rating: 
+    </label>
+    <input
+      max="10"
+      min="1"
+      onChange={[Function]}
+      type="number"
+      value={7}
+    />
+    <br />
+    <br />
+    <textarea
+      onChange={[Function]}
+      placeholder="Write your review for the movie (optional)"
+      value=""
+    />
+    <br />
+    <br />
+    <input
+      onChange={[Function]}
+      placeholder="Your name (optional)"
+      type="text"
+      value=""
+    />
+    <br />
+    <br />
+    <button>
+      Recommend!
+    </button>
+  </form>
+</div>
+`;
+
+exports[`should render RecommendationForm correctly with expense data 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Movie Name"
+      type="text"
+      value="You've got mail"
+    />
+    <label>
+       Movie Rating: 
+    </label>
+    <input
+      max="10"
+      min="1"
+      onChange={[Function]}
+      type="number"
+      value={10}
+    />
+    <br />
+    <br />
+    <textarea
+      onChange={[Function]}
+      placeholder="Write your review for the movie (optional)"
+      value="the movie is OK"
+    />
+    <br />
+    <br />
+    <input
+      onChange={[Function]}
+      placeholder="Your name (optional)"
+      type="text"
+      value="Michal"
+    />
+    <br />
+    <br />
+    <button>
+      Recommend!
+    </button>
+  </form>
+</div>
+`;
+
+exports[`should render error for invalid form submission 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Movie Name"
+      type="text"
+      value=""
+    />
+    <label>
+       Movie Rating: 
+    </label>
+    <input
+      max="10"
+      min="1"
+      onChange={[Function]}
+      type="number"
+      value={7}
+    />
+    <br />
+    <br />
+    <textarea
+      onChange={[Function]}
+      placeholder="Write your review for the movie (optional)"
+      value=""
+    />
+    <br />
+    <br />
+    <input
+      onChange={[Function]}
+      placeholder="Your name (optional)"
+      type="text"
+      value=""
+    />
+    <br />
+    <br />
+    <button>
+      Recommend!
+    </button>
+  </form>
+</div>
+`;
+
+exports[`should render error for invalid form submission 2`] = `
+<div>
+  <p>
+    <em>
+      Please fill in both movie name and a movie rating
+    </em>
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="Movie Name"
+      type="text"
+      value=""
+    />
+    <label>
+       Movie Rating: 
+    </label>
+    <input
+      max="10"
+      min="1"
+      onChange={[Function]}
+      type="number"
+      value={7}
+    />
+    <br />
+    <br />
+    <textarea
+      onChange={[Function]}
+      placeholder="Write your review for the movie (optional)"
+      value=""
+    />
+    <br />
+    <br />
+    <input
+      onChange={[Function]}
+      placeholder="Your name (optional)"
+      type="text"
+      value=""
+    />
+    <br />
+    <br />
+    <button>
+      Recommend!
+    </button>
+  </form>
+</div>
+`;

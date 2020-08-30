@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should renders MovieCard with movie 1`] = `
+<div>
+  <[object Object]
+    to="/edit/1"
+  >
+    <h3>
+      Movie: 
+      Tarazan got something
+    </h3>
+  </[object Object]>
+  <p>
+    Recommender: 
+    Dorit
+  </p>
+  <p>
+    Score: 
+    8
+  </p>
+  <p>
+    Content: 
+    Cute
+  </p>
+  <p>
+    Created At: 
+    January 1, 1970
+  </p>
+</div>
+`;

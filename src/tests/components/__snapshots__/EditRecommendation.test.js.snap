@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EditRecommendation correctly 1`] = `
+<div>
+  <RecommendationForm
+    movie={
+      Object {
+        "content": "Very unique",
+        "createdAt": "1970-01-01T00:00:02.000Z",
+        "id": "3",
+        "movieName": "Persian Prince",
+        "personName": "Heli",
+        "score": 7,
+      }
+    }
+    onSubmit={[Function]}
+  />
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</div>
+`;

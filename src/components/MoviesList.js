@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import MovieCard from "./MovieCard";
 import getVisibleMovies from "../selectors/movies";
 
-const MoviesList = (props) => {
+export const MoviesList = (props) => {
     return (
         <div>
-            <h1>Movies List</h1>
-            {props.movies.map((movie) => 
+            {props.movies.length ===0 ? <p>No movies yet- Add a recommendation</p>
+            : props.movies.map((movie) => 
             <MovieCard key={movie.id} {...movie}
             />)}
         </div>

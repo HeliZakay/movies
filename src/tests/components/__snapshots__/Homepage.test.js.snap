@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Homepage correctly 1`] = `
+<div>
+  <h1>
+    Movies recommended by friends
+  </h1>
+  <p>
+    Take a look at your friends' recommendations!
+  </p>
+  <hr />
+  <[object Object] />
+  <[object Object] />
+</div>
+`;

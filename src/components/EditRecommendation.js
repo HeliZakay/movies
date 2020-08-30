@@ -3,30 +3,73 @@ import {connect} from "react-redux";
 import RecommendationForm from "./RecommendationForm";
 import {editMovie, removeMovie} from "../actions/movies";
 
-const EditRecommendation = (props) => {
-return (
-    <div>
-        <RecommendationForm
-         movie={props.movie}
-         onSubmit = { (movie) => {
-             props.dispatch(editMovie(props.movie.id, movie));
-             props.history.push("/");
-         }}
-         />
-         <button 
-            onClick={() => {
-                props.dispatch(removeMovie({id: props.movie.id}));
-                props.history.push("/");
-            }}
-            >
-            Remove</button>
-    </div>
-)
+export class EditRecommendation extends React.Component {
+    onSubmit = (movie) => {
+        this.props.editMovie(this.props.movie.id, movie);
+        this.props.history.push("/");
+    };
+    onRemove = () => {
+        this.props.removeMovie({id: this.props.movie.id});
+        this.props.history.push("/");
+    };
+    render() {
+        return (
+            <div>
+                <RecommendationForm
+                 movie={this.props.movie}
+                 onSubmit = {this.onSubmit}
+                 />
+                 <button 
+                    onClick={this.onRemove}
+                    >
+                    Remove</button>
+            </div>
+        );
+    }
 };
 
-const mapStateToProps = (state, props) => {
-    return {
-        movie: state.movies.find((movie) => movie.id === props.match.params.id)  
-    };
-};
-export default connect(mapStateToProps)(EditRecommendation);
+const mapStateToProps = (state, props) => ({
+    movie: state.movies.find((movie) => movie.id === props.match.params.id)  
+});
+
+const mapDispatchToProps = (dispatch, props) => ({
+    editMovie: (id, movie) => dispatch(editMovie(id, movie)),
+    removeMovie: (data) => dispatch(removeMovie(data))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(EditRecommendation);
+
+
+
+
+// export class EditMovie extends React.Component {
+//   onSubmit = (movie) => {
+//     this.props.editMovie(this.props.movie.id, movie);
+//     this.props.history.push('/');
+//   };
+//   onRemove = () => {
+//     this.props.removeMovie({ id: this.props.movie.id });
+//     this.props.history.push('/');
+//   };
+//   render() {
+//     return (
+//       <div>
+//         <RecommendationForm
+//           movie={this.props.movie}
+//           onSubmit={this.onSubmit}
+//         />
+//         <button onClick={this.onRemove}>Remove</button>
+//       </div>
+//     );
+//   }
+// };
+
+// const mapStateToProps = (state, props) => ({
+//   movie: state.movies.find((movie) => movie.id === props.match.params.id)
+// });
+
+// const mapDispatchToProps = (dispatch, props) => ({
+//   editMovie: (id, movie) => dispatch(editMovie(id, movie)),
+//   removeMovie: (data) => dispatch(removeMovie(data))
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(EditMovie);

@@ -9,10 +9,10 @@ const firebaseConfig = {
     messagingSenderId: "1060526259969",
     appId: "1:1060526259969:web:fd1a2b3f38eb8928b46500",
     measurementId: "G-R74GXFH7MK"
-  };
+};
 
-  firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-  firebase.database().ref().set({
-      name: "Heli"
-  });
+const database = firebase.database();
+
+export {firebase, database as default};

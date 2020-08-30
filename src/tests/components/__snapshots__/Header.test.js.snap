@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+<header>
+  <h1>
+    Movies
+  </h1>
+  <[object Object]
+    activeClassName="is-active"
+    exact={true}
+    to="/"
+  >
+    Home
+  </[object Object]>
+  <[object Object]
+    activeClassName="is-active"
+    to="/create"
+  >
+        Create Recommendation!
+  </[object Object]>
+</header>
+`;

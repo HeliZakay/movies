@@ -9,7 +9,8 @@ export default class RecommendationForm extends React.Component {
             personName:props.movie ? props.movie.personName : "",
             content: props.movie? props.movie.content: "",
             score: props.movie? props.movie.score: 7,
-            error:""
+            error:"",
+            createdAt: props.movie? props.movie.createdAt: moment()
         }
     }
     onMovieNameChange =(event) => {
@@ -37,7 +38,7 @@ export default class RecommendationForm extends React.Component {
             this.props.onSubmit({
                 movieName: this.state.movieName,
                 score: parseInt(this.state.score),
-                createdAt: moment(),
+                createdAt: this.state.createdAt,
                 personName: this.state.personName,
                 content: this.state.content
             });
