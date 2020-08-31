@@ -11,6 +11,7 @@ exports[`should render EditRecommendation correctly 1`] = `
         "movieName": "Persian Prince",
         "personName": "Heli",
         "score": 7,
+        "watchList": true,
       }
     }
     onSubmit={[Function]}

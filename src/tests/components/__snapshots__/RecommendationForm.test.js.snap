@@ -142,7 +142,7 @@ exports[`should render error for invalid form submission 2`] = `
 <div>
   <p>
     <em>
-      Please fill in both movie name and a movie rating
+      Please fill in movie name and a movie rating
     </em>
   </p>
   <form

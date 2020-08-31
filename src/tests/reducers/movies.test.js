@@ -57,3 +57,18 @@ test("shouldn't edit movie when id not found", () => {
     });
     expect(state).toEqual(movies);
 });
+
+test("should add movie to watch list", () => {
+    const state = moviesReducer(movies, {type: "ADD_MOVIE_TO_WATCH_LIST", id: movies[1].id});
+    expect(state[1].watchList).toEqual(true);
+});
+
+test("should remove movie from watch list", () => {
+    const beforeState= moviesReducer(movies, {type: "ADD_MOVIE_TO_WATCH_LIST", id: movies[1].id});
+    expect(beforeState[1].watchList).toEqual(true);
+    const afterState = moviesReducer(movies, {type: "REMOVE_MOVIE_FROM_WATCH_LIST", id: movies[1].id});
+    expect(afterState[1].watchList).toEqual(false);
+});
+
+
+

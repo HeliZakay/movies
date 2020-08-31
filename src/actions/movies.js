@@ -47,6 +47,17 @@ export const editMovie = (id, updates) => ({
   updates
 });
 
+//ADD TO WATCH LIST
+export const addMovieToWatchList = (id) => ({
+  type: 'ADD_MOVIE_TO_WATCH_LIST',
+  id
+});
+
+export const removeMovieFromWatchList = (id) => ({
+  type: 'REMOVE_MOVIE_FROM_WATCH_LIST',
+  id
+});
+
 
   // REMOVE_MOVIE
   export const removeMovie = ({ id } = {}) => ({

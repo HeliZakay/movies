@@ -6,7 +6,8 @@ export default [{
     score: 8,
     personName: "Dorit",
     createdAt: moment(4000),
-    content: "Cute"
+    content: "Cute",
+    watchList: false
 },
 {
     id: "2",
@@ -14,7 +15,8 @@ export default [{
     score: 10,
     personName: "Michal",
     createdAt: moment(1000),
-    content: "the movie is OK"
+    content: "the movie is OK",
+    watchList: false
 },
 {
     id: "3",
@@ -22,5 +24,6 @@ export default [{
     score: 7,
     personName: "Heli",
     createdAt: moment(2000),
-    content: "Very unique"
+    content: "Very unique",
+    watchList: true
 }];

@@ -73,6 +73,7 @@ test("should call onSubmit prop for valid form submission", () => {
         movieName: movies[0].movieName,
         personName: movies[0].personName,
         score: movies[0].score,
-        createdAt: movies[0].createdAt
+        createdAt: movies[0].createdAt,
+        watchList: movies[0].watchList
     });
 });

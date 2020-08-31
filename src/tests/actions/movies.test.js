@@ -1,4 +1,4 @@
-import {addMovie, editMovie, removeMovie} from "../../actions/movies";
+import {addMovie, editMovie, removeMovie, addMovieToWatchList, removeMovieFromWatchList} from "../../actions/movies";
 import moment from "moment";
 
 test("should setup remove movie action object", () => {
@@ -47,6 +47,24 @@ test("should setup add movie action object with default values", () => {
             createdAt: 0,
             id: expect.any(String)
         }
+    });
+});
+
+
+test("should setup add Movie To Watch List action object", () => {
+    const action = addMovieToWatchList("123abc");
+    expect(action).toEqual({
+        type: "ADD_MOVIE_TO_WATCH_LIST",
+        id: "123abc",
+    });
+});
+
+
+test("should setup remove movie from watch list action object", () => {
+    const action = removeMovieFromWatchList("123abc");
+    expect(action).toEqual({
+        type: "REMOVE_MOVIE_FROM_WATCH_LIST",
+        id: "123abc",
     });
 });
 

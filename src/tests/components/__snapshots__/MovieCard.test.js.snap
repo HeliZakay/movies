@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should renders MovieCard with movie 1`] = `
+exports[`should render MovieCard with movie 1`] = `
 <div>
   <[object Object]
     to="/edit/1"
@@ -27,5 +27,10 @@ exports[`should renders MovieCard with movie 1`] = `
     Created At: 
     January 1, 1970
   </p>
+  <button
+    onClick={[Function]}
+  >
+    Add to my watching List!
+  </button>
 </div>
 `;

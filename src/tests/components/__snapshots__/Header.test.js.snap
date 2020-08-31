@@ -16,7 +16,13 @@ exports[`should render Header correctly 1`] = `
     activeClassName="is-active"
     to="/create"
   >
-        Create Recommendation!
+       Create Recommendation
+  </[object Object]>
+  <[object Object]
+    activeClassName="is-active"
+    to="/watchList"
+  >
+       My Watching list
   </[object Object]>
 </header>
 `;

@@ -2,9 +2,9 @@
 
 exports[`should render Homepage correctly 1`] = `
 <div>
-  <h1>
+  <h2>
     Movies recommended by friends
-  </h1>
+  </h2>
   <p>
     Take a look at your friends' recommendations!
   </p>
