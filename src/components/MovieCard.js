@@ -1,14 +1,14 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import moment from "moment";
-import {addMovieToWatchList, removeMovieFromWatchList} from "../actions/movies";
+import {startAddMovieToWatchList, startRemoveMovieFromWatchList} from "../actions/movies";
 import { connect } from "react-redux";
 
 export class MovieCard extends React.Component {
     onAddOrRemoveFromWatchList = () => {
         this.props.watchList? 
-        this.props.removeMovieFromWatchList(this.props.id) :
-        this.props.addMovieToWatchList(this.props.id);
+        this.props.startRemoveMovieFromWatchList(this.props.id) :
+        this.props.startAddMovieToWatchList(this.props.id);
     };
     render() {
         return (
@@ -27,8 +27,8 @@ export class MovieCard extends React.Component {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    addMovieToWatchList: (id) => dispatch(addMovieToWatchList(id)),
-    removeMovieFromWatchList: (id) => dispatch(removeMovieFromWatchList(id))
+    startAddMovieToWatchList: (id) => dispatch(startAddMovieToWatchList(id)),
+    startRemoveMovieFromWatchList: (id) => dispatch(startRemoveMovieFromWatchList(id))
  });
 
  export default connect(undefined, mapDispatchToProps)(MovieCard);
