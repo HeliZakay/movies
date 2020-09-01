@@ -1,5 +1,11 @@
-import {addMovie, editMovie, removeMovie, addMovieToWatchList, removeMovieFromWatchList} from "../../actions/movies";
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import {startAddMovie, addMovie, editMovie, removeMovie, addMovieToWatchList, removeMovieFromWatchList} from "../../actions/movies";
 import moment from "moment";
+import movies from "../fixtures/movies";
+//import database from "../../firebase/firebase";
+
+const createMockStore = configureMockStore([thunk]);
 
 test("should setup remove movie action object", () => {
     const action = removeMovie({id: "123abc"});
@@ -19,36 +25,61 @@ test("should setup edit movie action object", () => {
 });
 
 test("should setup add movie action object with provided values", () => {
-    const movieData = {
-        personName: "Heli",
-        movieName: "Avater",
-        content: "Weird movie",
-        score: 10,
-        createdAt: moment()
-    };
-    const action = addMovie(movieData);
+    const action = addMovie(movies[2]);
     expect(action).toEqual({
         type: "ADD_MOVIE",
-        movie: {
-            ...movieData,
-            id: expect.any(String)
-        }
+        movie: movies[2]
     });
 });
-test("should setup add movie action object with default values", () => {
-    const action = addMovie();
-    expect(action).toEqual({
-        type: "ADD_MOVIE",
-        movie: {
-            personName: "",
-            movieName: "",
-            content: "",
-            score: 0,
-            createdAt: 0,
-            id: expect.any(String)
-        }
-    });
-});
+
+
+// test('should add movie to database and store', (done) => {
+//     const store = createMockStore({});
+//     const movieData = {
+//         movieName: "Tarazan",
+//         score: 8,
+//         personName: "Dorit",
+//         createdAt: moment(4000),
+//         content: "Cute",
+//         watchList: false
+//     };
+  
+//     store.dispatch(startAddMovie(movieData)).then(() => {
+//       const actions = store.getActions();
+//       expect(actions[0]).toEqual({
+//         type: 'ADD_MOVIE',
+//         movie: {
+//           id: expect.any(String),
+//           ...movieData
+//         }
+//       });
+//       done();
+//       return database.ref(`movies/${actions[0].movie.id}`).once('value');
+//     }).then((snapshot) => {
+//       expect(snapshot.val()).toEqual(movieData);
+//       done();
+//     });
+//   });
+
+
+// test("should add movie with defaults to database and store", () => {
+
+// });
+
+// test("should setup add movie action object with default values", () => {
+//     const action = addMovie();
+//     expect(action).toEqual({
+//         type: "ADD_MOVIE",
+//         movie: {
+//             personName: "",
+//             movieName: "",
+//             content: "",
+//             score: 0,
+//             createdAt: 0,
+//             id: expect.any(String)
+//         }
+//     });
+// });
 
 
 test("should setup add Movie To Watch List action object", () => {

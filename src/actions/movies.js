@@ -4,23 +4,11 @@ import moment from "moment";
 
 
 // ADD_MOVIE
-export const addMovie = (movie = {
-        personName: "",
-        movieName: "",
-        content: "",
-        score: 0,
-        createdAt: 0
-}) => {
-    return ({
+export const addMovie = (movie) =>  ({
       type: 'ADD_MOVIE',
-      movie: {
-        ...movie,
-        id: uuid()
-      }
-    });
-  };
-
-
+      movie
+});
+  
 export const startAddMovie = (movieData = {}) => {
   return (dispatch) => {
     const {
