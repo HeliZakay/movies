@@ -52,4 +52,24 @@ export const removeMovieFromWatchList = (id) => ({
     type: 'REMOVE_MOVIE',
     id
   });
-  
+
+  //SET_MOVIES
+  export const setMovies = (movies) => ({
+    type: "SET_MOVIES",
+    movies
+  });
+
+  export const startSetMovies = () => {
+    return (dispatch) => {
+       return database.ref("movies").once("value").then( (snapshot) => {
+        const movies = [];
+        snapshot.forEach((childSnapshot) => {
+          movies.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+          });
+        });
+        dispatch(setMovies(movies));
+      });
+    };
+  };

@@ -1,11 +1,19 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import {startAddMovie, addMovie, editMovie, removeMovie, addMovieToWatchList, removeMovieFromWatchList} from "../../actions/movies";
+import {setMovies, startAddMovie, addMovie, editMovie, removeMovie, addMovieToWatchList, removeMovieFromWatchList} from "../../actions/movies";
 import moment from "moment";
 import movies from "../fixtures/movies";
-//import database from "../../firebase/firebase";
+import database from "../../firebase/firebase";
 
 const createMockStore = configureMockStore([thunk]);
+
+beforeEach( (done) => {
+    const moviesData = {};
+    movies.forEach( ({id, content, movieName, personName, score, createdAt, watchList}) => {
+        moviesData[id] = {content, movieName, personName, score, createdAt, watchList};
+    });
+    database.ref("movies").set(moviesData).then( () => done());
+});
 
 test("should setup remove movie action object", () => {
     const action = removeMovie({id: "123abc"});
@@ -101,3 +109,10 @@ test("should setup remove movie from watch list action object", () => {
 
 
 
+test("should setup set movies action object with data", () => {
+    const action = setMovies(movies);
+    expect(action).toEqual({
+        type: "SET_MOVIES" ,
+        movies
+    });
+});

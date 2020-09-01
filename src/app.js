@@ -6,6 +6,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import configureStore from './store/configureStore';
 import "./firebase/firebase";
+import { startSetMovies } from "./actions/movies";
 
 const store = configureStore();
 const jsx = (
@@ -14,4 +15,9 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+
+store.dispatch(startSetMovies()).then( () => {
+    ReactDOM.render(jsx, document.getElementById('app'));
+});
+

@@ -42,6 +42,8 @@ export default (state = [], action) => {
         });
       case 'REMOVE_MOVIE':
         return state.filter(({ id }) => id !== action.id);
+      case "SET_MOVIES":
+        return action.movies;
       default:
         return state;
     }

@@ -70,5 +70,13 @@ test("should remove movie from watch list", () => {
     expect(afterState[1].watchList).toEqual(false);
 });
 
+test("should set movies", () => {
+    const action = {
+        type: "SET_MOVIES",
+        movies: [movies[1]]
+    };
+    const state = moviesReducer(movies, action);
+    expect(state).toEqual([movies[1]]);
+});
 
 
