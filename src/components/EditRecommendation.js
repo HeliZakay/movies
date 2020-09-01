@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import RecommendationForm from "./RecommendationForm";
-import {editMovie, removeMovie} from "../actions/movies";
+import {editMovie, startRemoveMovie} from "../actions/movies";
 
 export class EditRecommendation extends React.Component {
     onSubmit = (movie) => {
@@ -9,7 +9,7 @@ export class EditRecommendation extends React.Component {
         this.props.history.push("/");
     };
     onRemove = () => {
-        this.props.removeMovie({id: this.props.movie.id});
+        this.props.startRemoveMovie({id: this.props.movie.id});
         this.props.history.push("/");
     };
     render() {
@@ -34,7 +34,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
     editMovie: (id, movie) => dispatch(editMovie(id, movie)),
-    removeMovie: (data) => dispatch(removeMovie(data))
+    startRemoveMovie: (data) => dispatch(startRemoveMovie(data))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(EditRecommendation);
 

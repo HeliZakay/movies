@@ -14,7 +14,7 @@ export class MovieCard extends React.Component {
         return (
             <div>
             <Link to={`/edit/${this.props.id}`}><h3>Movie: {this.props.movieName}</h3></Link>
-            <p>Recommender: {this.props.personName}</p>
+            {/* <p>Recommender: {this.props.personName}</p> */}
             <p>Score: {this.props.score}</p>
             <p>Content: "{this.props.content}"</p>      
             <p>Created At: {moment(this.props.createdAt).format("MMMM D, YYYY")}</p> 

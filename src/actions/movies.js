@@ -46,12 +46,21 @@ export const removeMovieFromWatchList = (id) => ({
   id
 });
 
+ // REMOVE_MOVIE
+ export const removeMovie = ({ id } = {}) => ({
+  type: 'REMOVE_MOVIE',
+  id
+});
 
-  // REMOVE_MOVIE
-  export const removeMovie = ({ id } = {}) => ({
-    type: 'REMOVE_MOVIE',
-    id
-  });
+export const startRemoveMovie = ({id} = {}) => {
+  return (dispatch) => {
+     return database.ref(`movies/${id}`).remove().then( () => {
+        dispatch(removeMovie({id}));
+     });
+  };
+};
+
+ 
 
   //SET_MOVIES
   export const setMovies = (movies) => ({
