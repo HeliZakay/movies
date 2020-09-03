@@ -8,6 +8,8 @@ import configureStore from './store/configureStore';
 import "./firebase/firebase";
 import { startSetMovies } from "./actions/movies";
 import {firebase} from "./firebase/firebase";
+import {login, logout} from "./actions/auth";
+
 
 const store = configureStore();
 
@@ -30,6 +32,7 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        store.dispatch(login(user.uid));
         store.dispatch(startSetMovies()).then( () => {
             renderApp();
             if(history.location.pathname === "/") {
@@ -37,6 +40,7 @@ firebase.auth().onAuthStateChanged((user) => {
             }
         });
     } else {
+        store.dispatch(logout());
         renderApp();
         history.push("/");
     }

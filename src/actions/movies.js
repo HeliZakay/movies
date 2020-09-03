@@ -10,8 +10,8 @@ export const addMovie = (movie) =>  ({
 });
   
 export const startAddMovie = (movieData = {}) => {
-  return (dispatch) => {
-    
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const {
       movieName="",
       personName="",
@@ -29,7 +29,7 @@ export const startAddMovie = (movieData = {}) => {
       createdAt: moment(createdAt).format(), 
       watchList
     };
-     return database.ref("movies").push(movie).then( (ref) => {
+     return database.ref(`users/${uid}/movies`).push(movie).then( (ref) => {
         dispatch(addMovie({
           id: ref.key,
           ...movie
@@ -46,8 +46,9 @@ export const editMovie = (id, updates) => ({
 });
 
 export const startEditMovie = (id, updates) => {
-  return (dispatch) => {
-     return database.ref(`movies/${id}`).update(updates).then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+     return database.ref(`users/${uid}/movies/${id}`).update(updates).then(() => {
         dispatch(editMovie(id, updates));
      });
   };
@@ -61,8 +62,9 @@ export const addMovieToWatchList = (id) => ({
 });
 
 export const startAddMovieToWatchList = (id) => {
-  return (dispatch) => {
-    return database.ref(`movies/${id}`).update({watchList: true}).then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/movies/${id}`).update({watchList: true}).then(() => {
       dispatch(addMovieToWatchList(id));
     });
   };
@@ -74,8 +76,9 @@ export const removeMovieFromWatchList = (id) => ({
 });
 
 export const startRemoveMovieFromWatchList = (id) => {
-  return (dispatch) => {
-    return database.ref(`movies/${id}`).update({watchList: false}).then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/movies/${id}`).update({watchList: false}).then(() => {
       dispatch(removeMovieFromWatchList(id));
     });
   };
@@ -89,8 +92,9 @@ export const startRemoveMovieFromWatchList = (id) => {
 });
 
 export const startRemoveMovie = ({id} = {}) => {
-  return (dispatch) => {
-     return database.ref(`movies/${id}`).remove().then( () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+     return database.ref(`users/${uid}/movies/${id}`).remove().then( () => {
         dispatch(removeMovie({id}));
      });
   };
@@ -105,8 +109,9 @@ export const startRemoveMovie = ({id} = {}) => {
   });
 
   export const startSetMovies = () => {
-    return (dispatch) => {
-       return database.ref("movies").once("value").then( (snapshot) => {
+    return (dispatch, getState) => {
+      const uid = getState().auth.uid;
+       return database.ref(`users/${uid}/movies`).once("value").then( (snapshot) => {
         const movies = [];
         snapshot.forEach((childSnapshot) => {
           movies.push({
