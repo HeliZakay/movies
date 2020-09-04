@@ -1,16 +1,14 @@
-//get movies on watching list
+//find specific movie in watchList
 
-export default (movies) => {
-    return movies.filter((movie) => movie.watchList);
-    // return movies.filter((movie) => {
-    //   const textMatch = movie.movieName.toLowerCase().includes(text.toLowerCase());
-    //   const personMatch = movie.personName.toLowerCase().includes(person.toLowerCase());
-    //   return textMatch && personMatch;
-    // }).sort((a, b) => {
-    //   if (sortBy === 'date') {
-    //     return a.createdAt < b.createdAt ? 1 : -1;
-    //   } else if (sortBy === 'score') {
-    //     return a.score < b.score ? 1 : -1;
-    //   }
-    // });
+export const isMovieOnWatchList = (movies, id) => {
+    const filteredArray = movies.filter((movie) => movie === id);
+    if(filteredArray.length === 0) {
+      return false;
+    }
+    return true;
   };
+
+  export const getWatchListMovies = (movies, watchList) => {
+    return movies.filter( (movie) => watchList.includes(movie.id) );
+  };
+  

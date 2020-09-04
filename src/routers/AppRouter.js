@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history';
 import NotFoundPage from '../components/NotFoundPage';
 import HomePage from '../components/HomePage';
 import Login from '../components/Login';
+import Friends from '../components/Friends';
 import AddRecommendation from '../components/AddRecommendation';
 import EditRecommendation from '../components/EditRecommendation';
 import WatchList from '../components/WatchList';
@@ -21,6 +22,7 @@ const AppRouter = () => (
         <PrivateRoute path="/create" component={AddRecommendation} />
         <PrivateRoute path="/watchList" component={WatchList} />
         <PrivateRoute path="/edit/:id" component={EditRecommendation} />
+        <PrivateRoute path="/friends" component={Friends} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

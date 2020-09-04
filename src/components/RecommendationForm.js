@@ -11,7 +11,7 @@ export default class RecommendationForm extends React.Component {
             score: props.movie? props.movie.score: 7,
             error:"",
             createdAt: props.movie? props.movie.createdAt: moment(),
-            watchList: props.movie? props.movie.watchList: false
+            // watchList: props.movie? props.movie.watchList: false
         }
     }
     onMovieNameChange =(event) => {
@@ -42,7 +42,7 @@ export default class RecommendationForm extends React.Component {
                 createdAt: this.state.createdAt,
                 personName: this.state.personName,
                 content: this.state.content,
-                watchList: this.state.watchList
+                // watchList: this.state.watchList
             });
         }
     };

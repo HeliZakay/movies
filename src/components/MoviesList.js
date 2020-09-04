@@ -8,7 +8,9 @@ export const MoviesList = (props) => {
         <div>
             {props.movies.length ===0 ? <p>No movies yet- Add a recommendation</p>
             : props.movies.map((movie) => 
-            <MovieCard key={movie.id} {...movie}
+            <MovieCard 
+            key={movie.id}
+             {...movie}
             />)}
         </div>
     );

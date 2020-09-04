@@ -11,14 +11,12 @@ export const addMovie = (movie) =>  ({
   
 export const startAddMovie = (movieData = {}) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
     const {
       movieName="",
       personName="",
       score=0,
       content="",
-      createdAt="0",   
-      watchList="false"   
+      createdAt="0",     
      } = movieData;
 
      const movie = {
@@ -27,9 +25,9 @@ export const startAddMovie = (movieData = {}) => {
       score,
       content,
       createdAt: moment(createdAt).format(), 
-      watchList
+      userUid: getState().auth.uid
     };
-     return database.ref(`users/${uid}/movies`).push(movie).then( (ref) => {
+     return database.ref("movies").push(movie).then( (ref) => {
         dispatch(addMovie({
           id: ref.key,
           ...movie
@@ -46,44 +44,12 @@ export const editMovie = (id, updates) => ({
 });
 
 export const startEditMovie = (id, updates) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-     return database.ref(`users/${uid}/movies/${id}`).update(updates).then(() => {
+  return (dispatch) => {
+     return database.ref(`movies/${id}`).update(updates).then(() => {
         dispatch(editMovie(id, updates));
      });
   };
 };
-
-
-//ADD TO WATCH LIST
-export const addMovieToWatchList = (id) => ({
-  type: 'ADD_MOVIE_TO_WATCH_LIST',
-  id
-});
-
-export const startAddMovieToWatchList = (id) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/movies/${id}`).update({watchList: true}).then(() => {
-      dispatch(addMovieToWatchList(id));
-    });
-  };
-};
-
-export const removeMovieFromWatchList = (id) => ({
-  type: 'REMOVE_MOVIE_FROM_WATCH_LIST',
-  id
-});
-
-export const startRemoveMovieFromWatchList = (id) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/movies/${id}`).update({watchList: false}).then(() => {
-      dispatch(removeMovieFromWatchList(id));
-    });
-  };
-};
-
 
  // REMOVE_MOVIE
  export const removeMovie = ({ id } = {}) => ({
@@ -93,8 +59,7 @@ export const startRemoveMovieFromWatchList = (id) => {
 
 export const startRemoveMovie = ({id} = {}) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-     return database.ref(`users/${uid}/movies/${id}`).remove().then( () => {
+     return database.ref(`movies/${id}`).remove().then( () => {
         dispatch(removeMovie({id}));
      });
   };
@@ -108,18 +73,18 @@ export const startRemoveMovie = ({id} = {}) => {
     movies
   });
 
+
   export const startSetMovies = () => {
-    return (dispatch, getState) => {
-      const uid = getState().auth.uid;
-       return database.ref(`users/${uid}/movies`).once("value").then( (snapshot) => {
+    return (dispatch) => {
+      return database.ref("movies").once("value").then( (snapshot) => {
         const movies = [];
-        snapshot.forEach((childSnapshot) => {
-          movies.push({
-            id: childSnapshot.key,
-            ...childSnapshot.val()
-          });
+        snapshot.forEach((movieSnapshot) => {
+              movies.push({
+                 id: movieSnapshot.key,
+                 ...movieSnapshot.val()
+              });
         });
         dispatch(setMovies(movies));
-      });
+      }); 
     };
   };

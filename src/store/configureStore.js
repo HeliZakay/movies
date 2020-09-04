@@ -3,6 +3,8 @@ import thunk from "redux-thunk";
 import moviesReducer from "../reducers/movies";
 import filtersReducer from "../reducers/filters";
 import authReducer from "../reducers/auth";
+import watchListReducer from "../reducers/watchList";
+import friendsReducer from "../reducers/friends";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
 
@@ -11,7 +13,9 @@ export default () => {
     combineReducers({
       movies: moviesReducer,
       filters: filtersReducer,
-      auth: authReducer
+      auth: authReducer,
+      watchList: watchListReducer,
+      friends: friendsReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
      );
