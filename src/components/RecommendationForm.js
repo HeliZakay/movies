@@ -1,17 +1,17 @@
 import React from "react";
 import moment from "moment";
+import {connect} from "react-redux";
 
-export default class RecommendationForm extends React.Component {
+export class RecommendationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             movieName: props.movie ? props.movie.movieName : "",
-            personName:props.movie ? props.movie.personName : "",
+            personName:props.movie ? props.movie.personName : props.username,
             content: props.movie? props.movie.content: "",
             score: props.movie? props.movie.score: 7,
             error:"",
-            createdAt: props.movie? props.movie.createdAt: moment(),
-            // watchList: props.movie? props.movie.watchList: false
+            createdAt: props.movie? props.movie.createdAt: moment()         
         }
     }
     onMovieNameChange =(event) => {
@@ -42,7 +42,7 @@ export default class RecommendationForm extends React.Component {
                 createdAt: this.state.createdAt,
                 personName: this.state.personName,
                 content: this.state.content,
-                // watchList: this.state.watchList
+              
             });
         }
     };
@@ -91,3 +91,7 @@ export default class RecommendationForm extends React.Component {
         );
     }
 }
+const mapStateToProps = (state) => ({
+    username: state.auth.username
+});
+export default connect(mapStateToProps)(RecommendationForm);

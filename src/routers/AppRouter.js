@@ -5,11 +5,13 @@ import NotFoundPage from '../components/NotFoundPage';
 import HomePage from '../components/HomePage';
 import Login from '../components/Login';
 import Friends from '../components/Friends';
+import Signup from '../components/Signup';
 import AddRecommendation from '../components/AddRecommendation';
 import EditRecommendation from '../components/EditRecommendation';
 import WatchList from '../components/WatchList';
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import SignupRoute from "./SignupRoute";
 
 export let history = createBrowserHistory();
 
@@ -18,11 +20,12 @@ const AppRouter = () => (
     <div>
       <Switch>
         <PublicRoute path="/" component={Login} exact={true} />
-        <PrivateRoute path="/homePage" component={HomePage} />
-        <PrivateRoute path="/create" component={AddRecommendation} />
-        <PrivateRoute path="/watchList" component={WatchList} />
-        <PrivateRoute path="/edit/:id" component={EditRecommendation} />
-        <PrivateRoute path="/friends" component={Friends} />
+        <SignupRoute path="/signup" component={Signup} />
+        <PrivateRoute  path="/homePage" component={HomePage} />
+        <PrivateRoute  path="/create" component={AddRecommendation} />
+        <PrivateRoute  path="/watchList" component={WatchList} />
+        <PrivateRoute  path="/edit/:id" component={EditRecommendation} />
+        <PrivateRoute  path="/friends" component={Friends} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

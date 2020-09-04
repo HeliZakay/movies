@@ -25,6 +25,7 @@
     "redux-thunk": "2.2.0",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
+    "superheroes": "^3.0.0",
     "uuid": "3.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"

@@ -7824,6 +7824,13 @@ style-loader@^1.2.1:
     loader-utils "^2.0.0"
     schema-utils "^2.6.6"
 
+superheroes@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/superheroes/-/superheroes-3.0.0.tgz#5a94fa6a7db87a95dd57ba1a5acd5e1daabad941"
+  integrity sha512-XXXzeKHMnf0rmZItYkGU803JlqYpoxvxzKFoe6k8C4bolcKfLZH716Rm4DyNJhxPTurbzDEB/QC7TXGsoei+ew==
+  dependencies:
+    unique-random-array "^2.0.0"
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
@@ -8170,6 +8177,18 @@ unique-filename@^1.1.1:
   integrity sha512-Vmp0jIp2ln35UTXuryvjzkjGdRyf9b2lTXuSYUiPmzRcl3FDtYqAwOnTJkAngD9SWhnoJzDbTKwaOrZ+STtxNQ==
   dependencies:
     unique-slug "^2.0.0"
+
+unique-random-array@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/unique-random-array/-/unique-random-array-2.0.0.tgz#9e639b1a9dc141e97350a6fc6f17da4b0717b1ad"
+  integrity sha512-xR87O95fZ7hljw84J8r1YDXrvffPLWN513BNOP4Bv0KcgG5dyEUrHwsvP7mVAOKg4Y80uqRbpUk0GKr8il70qg==
+  dependencies:
+    unique-random "^2.1.0"
+
+unique-random@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/unique-random/-/unique-random-2.1.0.tgz#7a8413da5176d028567168b57125ac5c0cec5c25"
+  integrity sha512-iQ1ZgWac3b8YxGThecQFRQiqgk6xFERRwHZIWeVVsqlbmgCRl0PY13R4mUkodNgctmg5b5odG1nyW/IbOxQTqg==
 
 unique-slug@^2.0.0:
   version "2.0.2"

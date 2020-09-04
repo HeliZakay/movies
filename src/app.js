@@ -11,7 +11,7 @@ import { startSetWatchListMovies } from "./actions/watchList";
 import {firebase} from "./firebase/firebase";
 import {startLogin, logout} from "./actions/auth";
 import {startSetFriends} from "./actions/friends";
-
+import {startSetUserDetails} from "./actions/auth";
 
 const store = configureStore();
 
@@ -34,17 +34,17 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        store.dispatch(startLogin(user));
-        return store.dispatch(startSetMovies()).then(()=> {
-            return store.dispatch(startSetWatchListMovies()).then(() => {
-                return store.dispatch(startSetFriends()).then(() => {
-                    renderApp();
-                    if(history.location.pathname === "/") {
-                        history.push("/homePage");
-                    }
+        return store.dispatch(startLogin(user)).then(() => {
+            return store.dispatch(startSetMovies()).then(()=> {
+                return store.dispatch(startSetWatchListMovies()).then(() => {
+                    return store.dispatch(startSetFriends()).then(() => {
+                        return store.dispatch(startSetUserDetails()).then(()=> {
+                            renderApp();
+                        });  
+                    });
                 });
             });
-        });
+        }); 
     } else {
         store.dispatch(logout());
         renderApp();

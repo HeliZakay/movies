@@ -5,6 +5,7 @@ export default (state = {friends: [], error: ""}, action) => {
                 friends: [
                     ...state.friends,
                     {
+                        username: action.username,
                         userId: action.userId,
                         email: action.email
                     }

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Route, Redirect} from "react-router-dom";
 
 
-export const PublicRoute = ({
+export const SignupRoute = ({
     doesHaveUsername,
     isAuthenticated,
     component: Component,
@@ -11,14 +11,12 @@ export const PublicRoute = ({
 }) => (
     <Route {...rest} component={ (props) => (
         
-        isAuthenticated && doesHaveUsername ? (
-            <Redirect to="/homePage" />
-            
-        ) : isAuthenticated? (
-            <Redirect to="/signup" />
-        ) : (
-            <Component {...props} />      
-        )
+        isAuthenticated && doesHaveUsername ?
+        <Redirect to="/homePage" /> :
+        isAuthenticated? 
+            <Component {...props} /> :
+              <Redirect to="/" /> 
+          
     )} 
     />
 );
@@ -26,7 +24,6 @@ export const PublicRoute = ({
 const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid,
     doesHaveUsername: !!state.auth.username
-    
 });
 
-export default connect(mapStateToProps)(PublicRoute);
+export default connect(mapStateToProps)(SignupRoute);

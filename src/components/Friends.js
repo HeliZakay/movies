@@ -38,10 +38,10 @@ export class Friends extends React.Component {
               : 
                   this.props.friends.map((friendObject) => 
                       (
-                          <p 
-                                key={friendObject.userId}>
-                                {friendObject.email}
-                         </p>
+                          <div key={friendObject.userId}>
+                          <p>{friendObject.username}</p>
+                          <p>{friendObject.email} </p> 
+                          </div>
                       )
                 )
               }

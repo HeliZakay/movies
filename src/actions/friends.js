@@ -1,10 +1,11 @@
 import database from "../firebase/firebase";
 
 
-export const addFriend = (userId, email) => ({
+export const addFriend = (userId, email, username) => ({
     type: 'ADD_FRIEND',
     userId,
-    email
+    email,
+    username
   });
   
 
@@ -38,8 +39,8 @@ export const addFriend = (userId, email) => ({
                     } else {
                         const uid = getState().auth.uid;
                         
-                        return database.ref(`users/${uid}/friends/${user.key}`).update({email: email}).then(() => {
-                            dispatch(addFriend(user.key, email));
+                        return database.ref(`users/${uid}/friends/${user.key}`).update({email: email, username: user.val().username}).then(() => {
+                            dispatch(addFriend(user.key, email, user.val().username));
                             dispatch(friendFound());
                             
                     });
@@ -68,7 +69,8 @@ export const addFriend = (userId, email) => ({
         snapshot.forEach((friendSnapshot) => {
               friends.push({
                  userId: friendSnapshot.key,
-                 email: friendSnapshot.val().email
+                 email: friendSnapshot.val().email,
+                 username: friendSnapshot.val().username
               });
         });
         
