@@ -10,9 +10,11 @@ export class MoviesListFilters extends React.Component {
         this.props.setPersonFilter(event.target.value);
     };
     onSortChange = (event) => {
+        
         event.target.value === "date"?
-        this.props.sortByDate()
-        : this.props.sortByScore()
+        (this.props.sortByDate())
+        : (this.props.sortByScore())
+        
     };
     render() {
         return (
@@ -48,8 +50,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     setTextFilter: (movieName) => dispatch(setTextFilter(movieName)),
     setPersonFilter: (person) => dispatch(setPersonFilter(person)),
-    sortByDate: () => dispatch(sortByDate),
-    sortByScore: () => dispatch(sortByScore)
+    sortByDate: () => dispatch(sortByDate()),
+    sortByScore: () => dispatch(sortByScore())
 });
 
 
