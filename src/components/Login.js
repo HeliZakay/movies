@@ -4,6 +4,7 @@ import {showAuthPopup} from "../actions/auth";
 
 export const Login =  ({showAuthPopup}) => (
     <div className="box-layout">
+    <div className="box-layout__bg"></div>
     <div className="box-layout__box">
         <h1 className="box-layout__title">Movies<span className="box-layout__title__with"> with </span>  Friends</h1>
         <p className="box-layout__text">See friends recommendations for movies</p>
