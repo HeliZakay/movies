@@ -1,0 +1,35 @@
+.box-layout {
+    align-items: center;
+    background: url('/public/images/bg.jpg');
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 75vw;
+    margin: auto;
+}
+
+.box-layout__box {
+    background: fade-out(white, 0.2);
+    border-radius: 3px;
+    padding: $l-size $l-size 0 $l-size ;
+    text-align: center;
+    width: 40rem;
+    height: 29rem;
+}
+.box-layout__title {
+    margin: 10px $m-size 20px $m-size;
+    line-height: 1;
+    font-family: 'Actor', sans-serif;
+    font-size: 4rem;
+}
+.box-layout__title__with {
+    font-size: 3.9rem;
+}
+
+
+.box-layout__text {
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 2rem;
+}
+

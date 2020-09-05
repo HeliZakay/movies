@@ -16,6 +16,7 @@ module.exports = (env) => {
     return {
         mode: 'development',
         entry: "./src/app.js",
+        context: __dirname,
         output: {
             path: path.join(__dirname, "public", "dist"),
             filename: "bundle.js"
@@ -27,6 +28,14 @@ module.exports = (env) => {
                     test: /\.js$/,
                     exclude: /node_modules/
                 },
+                {
+                    test: /\.(png|jpg|gif)$/i,
+                    use: [
+                      {
+                        loader: 'url-loader',
+                      },
+                    ],
+                  },
                 {
                     test: /\.s?css$/,
                     use: 
@@ -48,7 +57,8 @@ module.exports = (env) => {
                             options: {
                                 sourceMap: true
                             }
-                        }]
+                        }
+                    ]
                 }
             ]
         },
