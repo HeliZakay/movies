@@ -1,9 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Route, Redirect} from "react-router-dom";
-
+import LoadingPage from "../components/LoadingPage";
 
 export const PublicRoute = ({
+    flag,
     doesHaveUsername,
     isAuthenticated,
     component: Component,
@@ -14,9 +15,11 @@ export const PublicRoute = ({
         isAuthenticated && doesHaveUsername ? (
             <Redirect to="/homePage" />
             
-        ) : isAuthenticated? (
+        ) : isAuthenticated && flag ? (
             <Redirect to="/signup" />
-        ) : (
+        ) : isAuthenticated? 
+            <LoadingPage />:
+         (
             <Component {...props} />      
         )
     )} 
@@ -25,7 +28,8 @@ export const PublicRoute = ({
 
 const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid,
-    doesHaveUsername: !!state.auth.username
+    doesHaveUsername: !!state.auth.username,
+    flag: state.auth.flag
     
 });
 

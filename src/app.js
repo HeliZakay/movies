@@ -12,6 +12,7 @@ import {firebase} from "./firebase/firebase";
 import {startLogin, logout} from "./actions/auth";
 import {startSetFriends} from "./actions/friends";
 import {startSetUserDetails} from "./actions/auth";
+import LoadingPage from "./components/LoadingPage";
 
 const store = configureStore();
 
@@ -30,7 +31,7 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {

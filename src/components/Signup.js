@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {startAddUsername} from "../actions/auth";
+import {startAddUsername, startLogout} from "../actions/auth";
 const superheroes = require('superheroes');
 
 export class Signup extends React.Component {
@@ -32,6 +32,7 @@ export class Signup extends React.Component {
             <br/>
             <br/>
             <form >
+            <button onClick={this.props.startLogout}>Logout</button>
             <h3>It's your first time, choose a cool nickname</h3>
             <button onClick={this.onRandomizeNicknameClick}>Randomize a cool nickname</button>
             <input 
@@ -52,7 +53,8 @@ export class Signup extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startAddUsername: (username) => dispatch(startAddUsername(username))
+    startAddUsername: (username) => dispatch(startAddUsername(username)),
+    startLogout: () => dispatch(startLogout())
 });
 
 export default connect(undefined, mapDispatchToProps)(Signup);

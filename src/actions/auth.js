@@ -1,6 +1,6 @@
 import {firebase, googleAuthProvider} from "../firebase/firebase";
 import database from "../firebase/firebase";
-import { setPersonFilter } from "./filters";
+
 
 export const login = (uid) => ({
     type: "LOGIN",
