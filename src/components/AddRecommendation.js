@@ -11,10 +11,18 @@ export class AddRecommendation extends React.Component {
    render() {
       return (
          <div>
-         <h1>Add Recommendation</h1>
-         <RecommendationForm
+         <div className="page-header">
+         <div className="content-container--form">
+            <h2>Add Recommendation</h2>
+         </div>
+            
+         </div>
+         <div className="content-container--form">
+         <RecommendationForm 
            onSubmit={this.onSubmit}
           />
+         </div>
+         
          </div>
       );
    }

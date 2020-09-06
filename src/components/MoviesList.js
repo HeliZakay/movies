@@ -5,7 +5,7 @@ import getVisibleMovies from "../selectors/movies";
 
 export const MoviesList = (props) => {
     return (
-        <div>
+        <div className="content-container">
             {props.movies.length ===0 ? <p>No movies yet- Add a recommendation</p>
             : props.movies.map((movie) => 
             <MovieCard 

@@ -9,8 +9,14 @@ import MoviesListFilters from "./MoviesListFilters";
 export const WatchList = (props) => {
     return (
         <div>
-            <h2>My Watching List</h2>
-            <MoviesListFilters />
+        <div className="page-header">
+        <div className="content-container">
+        <h2>My Watching List</h2>
+        </div>
+         
+        </div>
+        <div className="content-container">
+        <MoviesListFilters />
             {props.movies.length ===0 ?
             (
                 <p>No movies yet- Add movies to your watching list from homepage</p>
@@ -21,6 +27,9 @@ export const WatchList = (props) => {
                     );
                 })
             )}
+        </div>
+            
+           
         </div>
     );
 };

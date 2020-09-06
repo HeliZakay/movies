@@ -1,0 +1,27 @@
+
+
+.text-input {
+    border: 1.5px solid #cacccd;
+    height: 50px;
+    padding: $s-size;
+    font-size: $font-size-large;
+    font-weight: 300;
+}
+
+.text-input
+
+.select {
+    @extend .text-input;
+    // -webkit-appearance: menulist-button;
+   height: 100rem;
+   
+}
+.textarea {
+    @extend .text-input;
+    height: 10rem;
+}
+
+.text-area--contact {
+    height: 20rem;
+    width: 70rem
+}

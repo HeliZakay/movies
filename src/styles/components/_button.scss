@@ -14,3 +14,22 @@
     margin-top: 0;
     margin-left: 140px;
 }
+
+
+
+.button--form {
+    margin-top:15px;
+    border-radius: 40px;
+    background: $yellow;
+    color: rgb(10, 10, 102);
+    font-family: 'helvetica', sans-serif;
+    font-weight: 900;
+    
+}
+
+.button--secondary {
+    background: #888;
+    border-radius: 40px;
+    margin-top:0;
+    font-weight: 500;
+}

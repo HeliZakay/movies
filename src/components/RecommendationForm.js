@@ -49,10 +49,11 @@ export class RecommendationForm extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.state.error && <p><em>{this.state.error}</em></p>}
-                <form onSubmit={this.onSubmit}>
-                    <input 
+            
+                
+                <form className="form" onSubmit={this.onSubmit}>
+                    {this.state.error && <p className="form__message"><em>{this.state.error}</em></p>}    
+                    <input className="text-input"
                         type="text"
                         placeholder="Movie Name"
                         autoFocus
@@ -68,26 +69,27 @@ export class RecommendationForm extends React.Component {
                         min="1"
                         max="10"
                     />
-                    <br />
-                    <br />
-                    <textarea
+                    
+                    <textarea className="textarea"
                         placeholder="Write your review for the movie (optional)"
                         value={this.state.content}
                         onChange={this.onContentChange}>
                     </textarea>
-                    <br />
-                    <br />
+                    
+                    <label> Your Name: </label>
                     <input 
                         type="text"     
                         placeholder="Your name (optional)"                   
                         value={this.state.personName}
                         onChange={this.onPersonNameChange}
                     />
-                     <br />
-                    <br />
-                    <button >Recommend!</button>
+                    
+                    <div>
+                        <button className="button button--form"><strong>Recommend!</strong></button>
+                    </div>
+                    
                 </form>
-            </div>
+            
         );
     }
 }

@@ -18,26 +18,36 @@ export class MoviesListFilters extends React.Component {
     };
     render() {
         return (
-            <div>
-            <input 
-            type="text" 
-            placeholder="filter by movie name"
-            value={this.props.filters.text}
-            onChange={this.onMovieChange}    
-            />
-            <input 
-            type="text" 
-            placeholder="filter by recommender"
-            value={this.props.filters.person}
-            onChange={this.onPersonChange}    
-            />
-            <select 
-            value={this.props.filters.sortBy}
-            onChange ={this.onSortChange} 
-            >
-                <option value="date">Latest</option>
-                <option value="score">Top Rated</option>
-            </select>
+            <div className="content-container">
+                <div className="input-group">
+                    <div className="input-group__item">
+                    <input className="text-input" 
+                    type="text" 
+                    placeholder="filter by movie name"
+                    value={this.props.filters.text}
+                    onChange={this.onMovieChange}    
+                    />
+                    </div>
+
+                    <div className="input-group__item">
+                    <input className="text-input"
+                    type="text" 
+                     placeholder="filter by recommender"
+                     value={this.props.filters.person}
+                      onChange={this.onPersonChange}    
+                     />
+                    </div>
+                    
+                    <div className="input-group__item">
+                    <select className="select"
+                    value={this.props.filters.sortBy}
+                     onChange ={this.onSortChange} 
+                    >
+                         <option value="date">Latest</option>
+                         <option value="score">Top Rated</option>
+                     </select>
+                    </div>
+                </div>
         </div>
         );
     }

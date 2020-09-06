@@ -2,6 +2,12 @@
     max-width: 90%;
     margin: 0 auto;
     padding: 0 $m-size;
+    
 
+}
 
+.content-container--form {
+    @extend .content-container;
+    max-width: 45%;
+    
 }

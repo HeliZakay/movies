@@ -16,15 +16,24 @@ export class EditRecommendation extends React.Component {
     render() {
         return (
             <div>
-                <RecommendationForm
+            <div className="page-header">
+                <div className="content-container--form">
+                <h2>Edit Recommendation</h2>
+                </div>
+                
+            </div>
+            <div className="content-container--form">
+            <RecommendationForm
                  movie={this.props.movie}
                  onSubmit = {this.onSubmit}
                  />
-                 <button 
+                 <button className="button button--secondary" 
                     onClick={this.onRemove}
                     >
                     Remove</button>
             </div>
+            </div>
+                
         );
     }
 };
