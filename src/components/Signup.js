@@ -28,14 +28,14 @@ export class Signup extends React.Component {
     };
     render() {
         return (
-            <div>
-            <br/>
-            <br/>
-            <form >
-            <button onClick={this.props.startLogout}>Logout</button>
-            <h3>It's your first time, choose a cool nickname</h3>
-            <button onClick={this.onRandomizeNicknameClick}>Randomize a cool nickname</button>
-            <input 
+            <div className="box-layout">
+           <div className="box-layout__bg"></div>
+           <div className="box-layout__signup-box">
+           <form >
+            {/* <button className="button button--secondary" onClick={this.props.startLogout}>Logout</button> */}
+            <h2 className="friends__subtitle">It's your first time, choose a cool nickname</h2>
+            
+            <input className="text-input text-input__signup"
                 type="text"
                 placeholder="UserName"
                 autoFocus={true}
@@ -44,8 +44,13 @@ export class Signup extends React.Component {
                 required
                 onChange={this.onUsernameChange}
             />
-                <button type="submit" onClick={this.onSubmit} >OK</button>
+           <button className="button button--form" onClick={this.onRandomizeNicknameClick}>Randomize a cool nickname</button>
+                <br/>
+                <button className="button button--signup"type="submit" onClick={this.onSubmit} >OK</button>
+                
             </form> 
+           </div>
+           
         </div>
         );     
     };

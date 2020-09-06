@@ -20,7 +20,7 @@ export class Friends extends React.Component {
     };
     render() {
         return (
-            <div>
+            <div className="friends">
              <div className="page-header">
                 <div className="content-container">
                 <h2>My Friends</h2>
@@ -33,21 +33,21 @@ export class Friends extends React.Component {
 
                     
                 </div>
-                <input 
+                <input className="text-input friend-input"
                     type="email"
                     placeholder="friend's email"
                     autoFocus
                     value = {this.state.email}
                     onChange= {this.onEmailChange}
                 />
-                {this.props.error && <p><em>{this.props.error}</em></p>}
-                <button type="submit">Add a friend</button>
+                {this.props.error && <p className="friends__error"><em>{this.props.error}</em></p>}
+                <button className="button button--form" type="submit">Add a friend</button>
               </form>
 
 
-              <h3>Your list of friends:</h3>
+              <h3 className="friends__subtitle">Your list of friends:</h3>
               {this.props.friends.length ===0 ? 
-              <p>No friends yet- Add a friend</p>
+              <p className="friends__message">Add a friend!</p>
               : 
                   this.props.friends.map((friendObject) => 
                       (

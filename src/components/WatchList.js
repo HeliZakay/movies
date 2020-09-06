@@ -19,7 +19,7 @@ export const WatchList = (props) => {
         <MoviesListFilters />
             {props.movies.length ===0 ?
             (
-                <p>No movies yet- Add movies to your watching list from homepage</p>
+                <p class="friends__error"><em>Add movies to your watching list from homepage!</em></p>
             ) : (
                 props.movies.map((movie) => {
                     return (
