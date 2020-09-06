@@ -16,7 +16,7 @@ export const Header = ({startLogout, username}) => (
     <br/> */}
     <NavLink className="header__title" to="/watchList" activeClassName="is-active"> <h2>Watching list</h2></NavLink>
     <NavLink className="header__title" to="/friends" activeClassName="is-active"><h2>Friends</h2> </NavLink>
-    <button onClick={startLogout}>Logout</button>
+    <button className="button button--link" onClick={startLogout}>Logout</button>
     </div>
     </div>
   </header>

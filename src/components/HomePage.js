@@ -1,11 +1,15 @@
 import React from 'react';
 import MoviesList from "./MoviesList";
+import Actions from "./Actions";
+import Open from "./Open";
+import ListHeading from "./ListHeading";
 import MoviesListFilters from "./MoviesListFilters";
 
 const HomePage = () => (
   <div>
-    <h2>Movies recommended by friends</h2>
-    <p>Take a look at your friends' recommendations!</p>
+    <Open />
+    <Actions />
+    <ListHeading />
     <hr/>
     <MoviesListFilters />
     <MoviesList />

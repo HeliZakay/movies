@@ -9,6 +9,7 @@ import Signup from '../components/Signup';
 import AddRecommendation from '../components/AddRecommendation';
 import EditRecommendation from '../components/EditRecommendation';
 import WatchList from '../components/WatchList';
+import Contact from '../components/Contact';
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import SignupRoute from "./SignupRoute";
@@ -26,6 +27,7 @@ const AppRouter = () => (
         <PrivateRoute  path="/watchList" component={WatchList} />
         <PrivateRoute  path="/edit/:id" component={EditRecommendation} />
         <PrivateRoute  path="/friends" component={Friends} />
+        <PrivateRoute  path="/contact" component={Contact} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
