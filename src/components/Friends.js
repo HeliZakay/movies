@@ -38,8 +38,9 @@ export class Friends extends React.Component {
                     value = {this.state.email}
                     onChange= {this.onEmailChange}
                 />
+                
+                <button className="btn btn-primary button--add-friend btn-lg" type="submit">Add a friend</button>
                 {this.props.error && <p className="friends__error"><em>{this.props.error}</em></p>}
-                <button className="button button--form" type="submit">Add a friend</button>
               </form>
               
               <h3 className="friends__subtitle">Your list of friends:</h3>
@@ -49,7 +50,7 @@ export class Friends extends React.Component {
               : 
                   <div className="row">
                   {this.props.friends.map((friendObject) => 
-                  <div key={friendObject.userId} className=" col-sm-12 col-md-6 col-lg-4">
+                  <div key={friendObject.userId} className=" col-sm-12 col-md-12 col-lg-12">
                     <FriendCard  {...friendObject}/>
                     </div>
                 )

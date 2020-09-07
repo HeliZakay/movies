@@ -12,3 +12,9 @@
     background: $blue;
     color: white;
 }
+
+.custom-card--friend{
+    @extend .custom-card;
+    width: 50rem;
+    margin: 50px 0;
+}
