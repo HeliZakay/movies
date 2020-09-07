@@ -33,7 +33,7 @@ export class Signup extends React.Component {
            <div className="box-layout__signup-box">
            <form >
             {/* <button className="button button--secondary" onClick={this.props.startLogout}>Logout</button> */}
-            <h2 className="friends__subtitle">It's your first time, choose a cool nickname</h2>
+            <h2 className="signup__subtitle">It's your first time, choose a cool nickname</h2>
             
             <input className="text-input text-input__signup"
                 type="text"
