@@ -12,7 +12,7 @@ export class Contact extends React.Component {
             action="/" 
             method="post" 
             encType="text/plain"
-            // onSubmit={this.onSubmit}
+            onSubmit={this.onSubmit}
             className="form" >
 
             <div className="page-header">
