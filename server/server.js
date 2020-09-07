@@ -23,7 +23,7 @@ app.post("/", function(req, res) {
     let data = req.body;
 
     const smtpConfig = {
-        host: "movies-friends-recommendations.herokuapp.com",
+        host: 'smtp.gmail.com',
         port: 465,
         secure: true,
         auth: {
