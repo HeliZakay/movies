@@ -16,29 +16,46 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(publicPath, "index.html"));
 });
 
+
+
 app.post("/", function(req, res) {
-    let data = req.body;
-    let smtpTransport = nodemailer.createTransport("SMTP", {
-        service: "Gmail",
-        auth: {
-            user: "helizakay2@gmail.com",
-            pass: process.env.ALTERNATIVE_PASSWORD
-        }
-    });
-    smtpTransport.sendMail({
-        from: "helizakay2@gmail.com",
-        to:"helizakay2@gmail.com",
-        subject: "Movies Recommendations",
-        html: data
-    }, function(error, response) {
-        if(error){
-            console.log(error);
-        } else {
-            console.log(response.message);
-        }
-    smtpTransport.close();
     
-    });
+    let data = req.body;
+
+    const smtpConfig = {
+        host: "movies-friends-recommendations.herokuapp.com",
+        port: 465,
+        secure: true,
+        auth: {
+                 user: process.env.EMAIL_ID,
+                 pass: process.env.ALTERNATIVE_PASSWORD
+        }
+      }
+      const transporter = nodemailer.createTransport(smtpConfig);
+      const mailOptions = {
+        from: process.env.EMAIL_ID,
+        to: process.env.EMAIL_ID,
+        subject: 'movies', 
+        html: 'Email Content' 
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error)                          
+        } 
+        else {
+          console.log(`Message sent: ${info.response}`);
+        };
+      });
+    
+
+    transporter.verify(function(error, success) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Server is ready to take our messages");
+        }
+      });
+
 });
 
 app.listen(port, () => {
