@@ -13,7 +13,7 @@ export class AddRecommendation extends React.Component {
          <div>
          <div className="page-header">
          <div className="content-container--form">
-            <h2>Add Recommendation</h2>
+            <h2 className="page-header__title">Add Recommendation</h2>
          </div>
             
          </div>

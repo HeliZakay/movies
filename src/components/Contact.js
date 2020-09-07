@@ -17,7 +17,7 @@ export class Contact extends React.Component {
 
             <div className="page-header">
             <div className="content-container--form">
-                 <h2>Send Feedback</h2>
+                 <h2 className="page-header__title">Send Feedback</h2>
             </div>
         </div>
         <div className="content-container--form">

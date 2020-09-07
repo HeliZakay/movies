@@ -24,9 +24,11 @@ export class Friends extends React.Component {
             <div className="friends">
              <div className="page-header">
                 <div className="content-container">
-                <h2>My Friends</h2>
+                <h2 className="page-header__title">My Friends</h2>
                 </div>
                 </div>
+               
+               
             <div className="content-container">
             <form onSubmit={this.onSubmit}>
                 <input className="text-input friend-input"
@@ -39,7 +41,7 @@ export class Friends extends React.Component {
                 {this.props.error && <p className="friends__error"><em>{this.props.error}</em></p>}
                 <button className="button button--form" type="submit">Add a friend</button>
               </form>
-
+              
               <h3 className="friends__subtitle">Your list of friends:</h3>
               
               {this.props.friends.length ===0 ? 
@@ -55,6 +57,7 @@ export class Friends extends React.Component {
               </div>
               }
               </div>  
+              
          </div>
         );
     };

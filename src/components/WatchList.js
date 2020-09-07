@@ -11,7 +11,7 @@ export const WatchList = (props) => {
         <div>
         <div className="page-header">
         <div className="content-container">
-        <h2>My Watch List</h2>
+        <h2 className="page-header__title">My Watch List</h2>
         </div>
          
         </div>
