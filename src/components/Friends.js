@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import {startSearchFriendInDB} from "../actions/friends";
+import FriendCard from "./FriendCard";
 
 export class Friends extends React.Component {
     constructor(props) {
@@ -28,10 +29,7 @@ export class Friends extends React.Component {
                 </div>
             <div className="content-container">
             <form onSubmit={this.onSubmit}>
-                
                 <div className="content-container">
-
-                    
                 </div>
                 <input className="text-input friend-input"
                     type="email"
@@ -44,22 +42,20 @@ export class Friends extends React.Component {
                 <button className="button button--form" type="submit">Add a friend</button>
               </form>
 
-
               <h3 className="friends__subtitle">Your list of friends:</h3>
+              <div className="row">
               {this.props.friends.length ===0 ? 
               <p className="friends__message">Add a friend!</p>
               : 
                   this.props.friends.map((friendObject) => 
-                      (
-                          <div key={friendObject.userId}>
-                          <p>{friendObject.username}</p>
-                          <p>{friendObject.email} </p> 
-                          </div>
-                      )
+                  <div key={friendObject.userId} className=" col-sm-12 col-md-6 col-lg-4">
+                    <FriendCard  {...friendObject}/>
+                    </div>
                 )
               }
               </div>
               
+              </div>  
          </div>
         );
     };

@@ -12,6 +12,15 @@
 .header__title {
     color: white;
     text-decoration: none;
+    :hover {
+        color: $yellow;
+    }
+   
     
 }
+.greeting {
+    :hover {
+        color: white;
+    }
+} 
 

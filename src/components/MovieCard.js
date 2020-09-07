@@ -13,20 +13,31 @@ export class MovieCard extends React.Component {
     };
     render() {
         return (
-            <div>
+            <div className="card card bg-light mb-3 custom-card">
+            
             {this.props.userUid === this.props.currentUserUid ? (
-                <Link to={`/edit/${this.props.id}`}><h3>Movie: {this.props.movieName}</h3></Link>
+                <Link to={`/edit/${this.props.id}`}><h3 className="card-header">Movie: {this.props.movieName}</h3></Link>
             ): (
-                <h3>Movie: {this.props.movieName}</h3>
+                <h3 className="card-header">Movie: {this.props.movieName}</h3>
             )}
-            <p>Recommender: {this.props.personName}</p>
-            <p>Score: {this.props.score}</p>
-            <p>Content: "{this.props.content}"</p>      
-            <p>Created At: {moment(this.props.createdAt).format("MMMM D, YYYY")}</p> 
-            <button onClick={this.onAddOrRemoveFromWatchList}>
+            <div className="card-body">
+            <div className="custom-card__card-content">
+            <p className="card-title">Score: {this.props.score}</p>
+            <p className="card-subtitle mb-2 text-muted">Recommender: {this.props.personName}</p>
+            
+            <p className="card-text"> "{this.props.content}"</p>      
+             
+            <button className="btn btn-lg btn-primary" onClick={this.onAddOrRemoveFromWatchList}>
             {(isMovieOnWatchList(this.props.watchList, this.props.id)) ? "Remove from my watching list": "Add to my watching List!"}
-            </button>  
-        </div>
+            </button>
+            </div>
+          
+            <p className="card-footer text-muted">Created At: {moment(this.props.createdAt).format("MMMM D, YYYY")}</p> 
+            </div>
+            </div>
+            
+            
+       
         );
     };
 };
