@@ -9,8 +9,7 @@ export class Contact extends React.Component {
     render() {
         return (
             <form
-            action="/" 
-            method="post" 
+         
             encType="text/plain"
             onSubmit={this.onSubmit}
             className="form" >
