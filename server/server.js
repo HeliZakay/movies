@@ -27,7 +27,7 @@ app.post("/", function(req, res) {
     });
     smtpTransport.sendMail({
         from: "helizakay2@gmail.com",
-        to:"helizakay1@gmail.com",
+        to:"helizakay2@gmail.com",
         subject: "Movies Recommendations",
         html: data
     }, function(error, response) {
