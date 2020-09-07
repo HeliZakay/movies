@@ -12,7 +12,7 @@ export default () => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/popcorn.png"></img> 
             </div>
-            <h3>Add a movie</h3>
+            <h3 className="actions-section__text">Add a movie</h3>
             
             </Link>
         </div>
@@ -21,7 +21,7 @@ export default () => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/familyguy.png"></img>  
             </div>
-            <h3>Add a friend</h3>
+            <h3 className="actions-section__text">Add a friend</h3>
            
             </Link>
         </div>
@@ -30,7 +30,7 @@ export default () => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/envelop.png"></img>  
             </div>
-            <h3>Send feedback</h3>
+            <h3 className="actions-section__text">Send feedback</h3>
             
             </Link>
         </div>

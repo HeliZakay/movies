@@ -9,5 +9,7 @@
 .content-container--form {
     @extend .content-container;
     max-width: 45%;
-    
+    @media (max-width: $desktop-breakpoint) {
+        max-width: 90%;
+    }
 }

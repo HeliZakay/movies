@@ -1,3 +1,6 @@
 .filters {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    @media(max-width: $desktop-breakpoint) {
+        margin-bottom: 0;
+    }
 }

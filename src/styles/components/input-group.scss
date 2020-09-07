@@ -1,12 +1,16 @@
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: $xl-size;
+    
     justify-content: center;
     @media(min-width: $desktop-breakpoint) {
         flex-direction: row;
-        margin-bottom: $m-size;
+        margin-bottom: 60px;
     }
+    @media(max-width: $desktop-breakpoint) {
+        margin-bottom: $s-size;
+    }
+    
    
 }
 

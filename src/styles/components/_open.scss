@@ -1,4 +1,8 @@
 .open {
     background: url('/public/images/bg.jpg');
     height: 125px;
+    @media (max-width: $desktop-breakpoint) {
+        height:0;
+    }
+    
 }

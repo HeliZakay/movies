@@ -2,7 +2,9 @@
     background:$light-blue;
     padding: $l-size 0;
     padding-bottom: $m-size;
-
+    @media (max-width: $desktop-breakpoint) {
+        padding: $s-size 0;
+    }
 }
 
 .actions-section__wrapper {
@@ -16,6 +18,10 @@
     height: 70px;
    margin: 0 auto;
    display: block;
+   @media (max-width: $desktop-breakpoint) {
+    height: 50px;
+}
+
 }
 
 .actions-section__link {
@@ -27,7 +33,6 @@
         margin-top: 0;
         
     } 
-
 }
 
 .actions-section__background {
@@ -37,5 +42,11 @@
     }
     border-radius: 100%;
     text-align: center;
-   
 }
+
+.actions-section__text {
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.4rem;
+    }
+}
+   
