@@ -8,14 +8,14 @@ export const Header = ({startLogout, username}) => (
     <div className="content-container">
     <div className="header__content">
     {username && <h2 className="header__title greeting"><em>Hi {username.charAt(0).toUpperCase() + username.slice(1)}</em></h2>}
-    <Link className="header__title" to="/homePage">
-    <h1>Movies with Friends</h1>
-    </Link>
+    <NavLink activeClassName="header__active-class" className="header__title" to="/homePage">
+    <h2>Movies with Friends</h2>
+    </NavLink>
    
     {/* <NavLink to="/create" activeClassName="is-active">   Create Recommendation</NavLink>
     <br/> */}
-    <NavLink className="header__title" to="/watchList" activeClassName="is-active"> <h2>Watching list</h2></NavLink>
-    <NavLink className="header__title" to="/friends" activeClassName="is-active"><h2>Friends</h2> </NavLink>
+    <NavLink activeClassName="header__active-class" className="header__title" to="/watchList" > <h2>Watching list</h2></NavLink>
+    <NavLink activeClassName="header__active-class" className="header__title" to="/friends" ><h2>Friends</h2> </NavLink>
     <button className="header__title button button--link" onClick={startLogout}>Logout</button>
     </div>
     </div>

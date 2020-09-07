@@ -18,7 +18,7 @@ export class MoviesListFilters extends React.Component {
     };
     render() {
         return (
-            <div className="content-container">
+            <div className="content-container filters">
                 <div className="input-group">
                     <div className="input-group__item">
                     <input className="text-input" 

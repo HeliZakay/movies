@@ -25,7 +25,7 @@
     margin-top:15px;
     border-radius: 40px;
     background: $yellow;
-    color: rgb(10, 10, 102);
+    color: $dark-blue;
     font-family: 'helvetica', sans-serif;
     font-weight: 900;
     
@@ -36,4 +36,12 @@
     border-radius: 40px;
     margin-top:0;
     font-weight: 500;
+}
+
+.button-movie {
+    color: $dark-blue;
+    font-size: 1.7rem;
+    font-weight: 600;
+    width: 22rem;
+    border-radius: 40px;
 }

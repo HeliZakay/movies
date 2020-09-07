@@ -16,9 +16,9 @@ export class MovieCard extends React.Component {
             <div className="card card bg-light mb-3 custom-card">
             
             {this.props.userUid === this.props.currentUserUid ? (
-                <Link to={`/edit/${this.props.id}`}><h3 className="card-header">Movie: {this.props.movieName}</h3></Link>
+                <Link to={`/edit/${this.props.id}`}><h3 className="card-header custom-card-header">Movie: {this.props.movieName}</h3></Link>
             ): (
-                <h3 className="card-header">Movie: {this.props.movieName}</h3>
+                <h3 className="card-header custom-card-header">Movie: {this.props.movieName}</h3>
             )}
             <div className="card-body">
             <div className="custom-card__card-content">
@@ -27,7 +27,7 @@ export class MovieCard extends React.Component {
             
             <p className="card-text"> "{this.props.content}"</p>      
              
-            <button className="btn btn-lg btn-primary" onClick={this.onAddOrRemoveFromWatchList}>
+            <button className="btn button-movie btn-warning btn-lg" onClick={this.onAddOrRemoveFromWatchList}>
             {(isMovieOnWatchList(this.props.watchList, this.props.id)) ? "Remove from my watching list": "Add to my watching List!"}
             </button>
             </div>

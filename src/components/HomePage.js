@@ -10,9 +10,13 @@ const HomePage = () => (
     <Open />
     <Actions />
     <ListHeading />
-    <hr/>
+    
+    <div className="movie-list-section">
+    
     <MoviesListFilters />
     <MoviesList />
+    </div>
+   
   </div>
 );
 
