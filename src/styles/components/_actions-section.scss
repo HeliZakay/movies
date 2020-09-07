@@ -34,12 +34,11 @@
         
     } 
 }
+.actions-section__link:hover .actions-section__img {
+    transform: rotateZ(20deg);
+}
 
 .actions-section__background {
-    
-    :hover {
-        transform: rotateZ(20deg);
-    }
     border-radius: 100%;
     text-align: center;
 }

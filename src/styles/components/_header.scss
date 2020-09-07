@@ -11,18 +11,20 @@
 }
 .header__title {
     color: white;
-    text-decoration: none;
-    :hover {
+    text-decoration: none;  
+    
+}
+
+.header__active-class {
+    color:$yellow;
+}
+.header {
+    :hover{
         color: $yellow;
     }
-   
-    
 }
 .greeting {
     :hover {
         color: white;
     }
 } 
-.header__active-class {
-    color:$yellow;
-}
