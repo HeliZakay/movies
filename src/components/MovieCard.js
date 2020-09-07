@@ -28,7 +28,7 @@ export class MovieCard extends React.Component {
             <p className="card-text"> "{this.props.content}"</p>      
              
             <button className="btn button-movie btn-warning btn-lg" onClick={this.onAddOrRemoveFromWatchList}>
-            {(isMovieOnWatchList(this.props.watchList, this.props.id)) ? "Remove from my watching list": "Add to my watching List!"}
+            {(isMovieOnWatchList(this.props.watchList, this.props.id)) ? "Remove from my watch list": "Add to my watch list!"}
             </button>
             </div>
           

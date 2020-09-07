@@ -11,17 +11,17 @@ export const WatchList = (props) => {
         <div>
         <div className="page-header">
         <div className="content-container">
-        <h2>My Watching List</h2>
+        <h2>My Watch List</h2>
         </div>
          
         </div>
-        
+        <div className="content-container">
         <MoviesListFilters />
             {props.movies.length ===0 ?
             (
-                <div className="content-container">
-                <p className="friends__error"><em>Add movies to your watching list from homepage!</em></p>
-                </div>
+                
+                <p className="friends__error"><em>Add movies to your watch list from homepage!</em></p>
+               
             ) : (
                 props.movies.map((movie) => {
                     return (
@@ -32,6 +32,7 @@ export const WatchList = (props) => {
         
             
            
+        </div>
         </div>
     );
 };
