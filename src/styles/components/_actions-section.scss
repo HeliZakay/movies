@@ -7,13 +7,9 @@
 
 .actions-section__wrapper {
     display: flex;
-    justify-content: space between;
+    justify-content: space-around;
     align-items: center;
     padding: $m-size 0;
-}
-.actions-section__item {
-    padding: 0 180px;
-    text-align: center;
 }
 
 .actions-section__img {

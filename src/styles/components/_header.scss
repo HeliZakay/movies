@@ -5,23 +5,13 @@
 
 .header__content {
     display: flex;
-    justify-content: space between;
+    justify-content: space-between;
     align-items: center;
     padding: $s-size 0;
 }
 .header__title {
     color: white;
     text-decoration: none;
-    font-size: 1.1rem;
-    h1 {
-        margin: 0;
-    }
-    margin: 0 $m-size;
-    padding: 0 90px;
+    
 }
 
-.header__greeting {
-    color: white;
-    text-decoration: none;
-  
-}
