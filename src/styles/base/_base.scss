@@ -13,6 +13,7 @@ body {
   font-family: 'Sawarabi Gothic', sans-serif;
   font-size: $m-size;
   line-height: 1.6;
+  padding-bottom: 100px;
   
 }
 
@@ -27,3 +28,5 @@ button:disabled {
 .is-active {
   font-weight: bold;
 }
+
+
