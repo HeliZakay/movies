@@ -5,6 +5,7 @@ import filtersReducer from "../reducers/filters";
 import authReducer from "../reducers/auth";
 import watchListReducer from "../reducers/watchList";
 import friendsReducer from "../reducers/friends";
+import messagesReducer from "../reducers/message";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
 
@@ -15,7 +16,8 @@ export default () => {
       filters: filtersReducer,
       auth: authReducer,
       watchList: watchListReducer,
-      friends: friendsReducer
+      friends: friendsReducer,
+      messages: messagesReducer           
     }),
     composeEnhancers(applyMiddleware(thunk))
      );

@@ -20,6 +20,10 @@
     @extend .text-input;
     height: 10rem;
 }
+.textarea--message-friend {
+    @extend .textarea;
+    width: 90%;
+}
 
 .text-area--contact {
     height: 20rem;

@@ -12,3 +12,13 @@ export default (movies, { text, sortBy, person}) => {
       }
     });
   };
+
+  export const getMovieById = (movies, movieId) => {
+    let result = undefined;
+    movies.forEach((movie) => {
+      if(movie.id === movieId) {
+        result = movie;
+      }
+    });
+    return result;
+  };

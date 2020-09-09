@@ -23,11 +23,18 @@ export const WatchList = (props) => {
                 <p className="friends__error"><em>Add movies to your watch list from homepage!</em></p>
                
             ) : (
-                props.movies.map((movie) => {
+                <div className="row">
+               
+                {props.movies.map((movie) => {
                     return (
-                        <MovieCard key={movie.id} {...movie} /> 
+                        <div 
+                        key={movie.id} 
+                        className=" col-sm-12 col-md-6 col-lg-4">
+                        <MovieCard  {...movie} /> 
+                        </div>
                     );
-                })
+                })}
+                </div>
             )}
         
             

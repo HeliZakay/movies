@@ -21,7 +21,7 @@ export default () => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/familyguy.png"></img>  
             </div>
-            <h3 className="actions-section__text">Add a friend</h3>
+            <h3 className="actions-section__text">Message a friend</h3>
            
             </Link>
         </div>

@@ -31,7 +31,8 @@ export default (state = {friends: [], error: ""}, action) => {
             return {
                 friends: action.friends,
                 error: ""
-            }
+            };
+
         default:
             return state;
     }

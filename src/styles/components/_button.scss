@@ -61,3 +61,11 @@
     margin-bottom: 5px;
     font-size: 1.7rem;
 }
+
+.button--recommend-friend {
+    @extend .button;
+    margin-top: 10px;
+}
+.new-message {
+    margin-bottom: 40px;
+}
