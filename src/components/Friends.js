@@ -17,7 +17,7 @@ export class Friends extends React.Component {
     };
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.startSearchFriendInDB(this.state.email);
+        this.props.startSearchFriendInDB(this.state.email.toLowerCase());
         this.props.history.push("/friends");
     };
     render() {
