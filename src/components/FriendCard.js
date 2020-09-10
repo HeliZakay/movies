@@ -108,7 +108,7 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startAddMessageToFriend: (recommender, friend, movies) => dispatch(startAddMessageToFriend(recommender, friend, movies)),
+    startAddMessageToFriend: (message) => dispatch(startAddMessageToFriend(message)),
     startSetMessagesSent: () => dispatch(startSetMessagesSent())
 });
 

@@ -45,6 +45,8 @@ import { startDeleteMessage } from '../actions/messages';
                                     id={message.id}
                                     createdAt= {message.createdAt}
                                     username={message.recommender.username}
+                                    email={message.recommender.email}
+                                    uid={message.recommender.uid}
                                     movieName={message.movie ? message.movie.movieName: undefined}
                                     movieId={message.movie ? message.movie.id: undefined}
                                     content={message.content}

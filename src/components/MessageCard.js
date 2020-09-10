@@ -4,13 +4,44 @@ import moment from "moment";
 import {isMovieOnWatchList} from "../selectors/watchList";
 import {startAddMovieToWatchList, startRemoveMovieFromWatchList} from "../actions/watchList";
 import {startDeleteMessage} from "../actions/messages";
+import {startAddMessageToFriend} from "../actions/messages";
 
 export class MessageCard extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            showTextare: false,
+            content: ""
+        }
+    }
+    showTextare = () => {
+        this.setState({...this.state, showTextare: !this.state.showTextare});
+    }
+    onContentChange = (event) => {
+        const content = event.target.value;
+        this.setState( () => ({...this.state, content}));
+    };
     onAddOrRemoveFromWatchList = () => {
         (isMovieOnWatchList(this.props.watchList, this.props.movieId))? 
         this.props.startRemoveMovieFromWatchList(this.props.movieId):
         this.props.startAddMovieToWatchList(this.props.movieId);
     };
+    onMessageSend = () => {
+        if (this.state.content) {
+            this.setState({...this.state, showTextare: false});
+            this.props.startAddMessageToFriend({
+                recommender: this.props.user,
+                friend: {
+                    username: this.props.username,
+                    email: this.props.email,
+                    uid: this.props.userId
+                },
+                movie: {},
+                createdAt: moment(),
+                content: this.state.content
+            });
+        }
+    };  
    
     render() {
         return (
@@ -42,9 +73,28 @@ export class MessageCard extends React.Component{
                     className="btn button-movie btn-warning btn-lg"
                     onClick={this.onAddOrRemoveFromWatchList}>
                      Add to my watch list!
-                     </button>
-                )
+                     </button>)
                 }
+                <div>
+                <button
+                    onClick={this.showTextare} 
+                    className="btn button-friend--message btn-primary btn-lg"
+                    >
+                    Respond!
+                     </button>
+                     </div>
+                     {this.state.showTextare && <div><textarea className="textarea--message-only-friend"
+                        placeholder="write a personal message"
+                        value={this.state.content}
+                        onChange={this.onContentChange}>
+                         </textarea>
+                         <button
+                         onClick={this.onMessageSend}
+                         className="btn btn-primary button--add-friend btn-lg"
+                         >
+                         Send
+                         </button>
+                         </div>}
             </div>
             </div>
         </div>
@@ -57,14 +107,16 @@ const mapStateToProps = (state) => ({
     myName: state.auth.username,
     watchList: state.watchList,
     userId: state.auth.uid,
-    messages: state.messages.messagesRecieved
+    messages: state.messages.messagesRecieved,
+    user: state.auth
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
     startAddMovieToWatchList: (id) => dispatch(startAddMovieToWatchList(id)),
     startRemoveMovieFromWatchList: (id) => dispatch(startRemoveMovieFromWatchList(id)),
-    startDeleteMessage: (messageId) => dispatch(startDeleteMessage(messageId))
+    startDeleteMessage: (messageId) => dispatch(startDeleteMessage(messageId)),
+    startAddMessageToFriend: (message) => dispatch(startAddMessageToFriend(message)) 
  });
 
 
