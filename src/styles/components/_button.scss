@@ -69,3 +69,10 @@
 .new-message {
     margin-bottom: 40px;
 }
+
+.button-friend--message {
+    @extend .button-friend;
+    color:white;
+    font-weight: 300;
+    margin-top: 9px;
+}

@@ -11,10 +11,16 @@
 .custom-card-header{
     background: $blue;
     color: white;
+    display:flex;
+    justify-content: space-between;
 }
 
 .custom-card--friend{
     @extend .custom-card;
     width: 40rem;
     margin: 50px 0;
+}
+
+.custom-card-header__envelop-and-header{
+    display:flex;
 }

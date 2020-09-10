@@ -16,8 +16,8 @@ export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, 
           content
         };
         database.ref(`users/${friend.uid}/messagesRecieved`).push(messageRecieved);
-        database.ref(`users/${recommender.uid}/messagesSent`).push(messageSent).then(() => {
-          dispatch(addMessageToSent(messageSent));
+        database.ref(`users/${recommender.uid}/messagesSent`).push(messageSent).then((ref) => {
+          dispatch(addMessageToSent({id: ref.key,...messageSent}));
         });
        
     };
@@ -28,6 +28,18 @@ export const addMessageToSent = (message) => ({
   message
 });
 
+export const startDeleteMessage = ({messageId, userId}) => {
+    return (dispatch) => {
+      database.ref(`users/${userId}/messagesRecieved/${messageId}`).remove().then(() => {
+        dispatch(deleteMessage(messageId));
+      })
+    }
+}
+
+export const deleteMessage = (messageId) => ({
+    type: "DELETE_MESSAGE",
+    messageId
+});
 
 
 export const startSetMessagesRecieved = () => {
@@ -36,7 +48,7 @@ export const startSetMessagesRecieved = () => {
     return database.ref(`users/${uid}/messagesRecieved`).once("value").then((snapshot) => {
       const messagesRecieved = [];
       snapshot.forEach((childSnapshot) => {
-        messagesRecieved.push(childSnapshot);
+        messagesRecieved.push({...childSnapshot.val(), id: childSnapshot.key});
       });
       dispatch(setMessagesRecieved(messagesRecieved));
     });
@@ -49,7 +61,7 @@ export const startSetMessagesSent = () => {
     return database.ref(`users/${uid}/messagesSent`).once("value").then((snapshot) => {
       const messagesSent = [];
       snapshot.forEach((childSnapshot) => {
-        messagesSent.push(childSnapshot);
+        messagesSent.push({...childSnapshot.val(), id: childSnapshot.key});
       });
       dispatch(setMessagesSent(messagesSent));
     });

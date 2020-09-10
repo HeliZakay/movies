@@ -19,6 +19,13 @@ export default (state=defaultStateOfMessages, action) => {
                 ...state,
                 messagesSent: action.messagesSent
             };
+        case "DELETE_MESSAGE":
+            return {
+                ...state,
+                messagesRecieved: state.messagesRecieved.filter((message) => {
+                    return message.id !== action.messageId;
+                })  
+            }
         default:
             return state;
     }

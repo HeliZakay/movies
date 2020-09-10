@@ -23,8 +23,8 @@ export const filterOnlyMoviesNotRecommendedYet = (
   {moviesToFilterFrom, messagesSent, friend }) => {
    let listOfForbiddenMovies = [];
    messagesSent.forEach((message) => {
-     const sameFriend = message.val().friend.uid === friend.userId;
-     sameFriend && listOfForbiddenMovies.push(message.val().movie.id);
+     const sameFriend = message.friend.uid === friend.userId;
+     sameFriend && message.movie && listOfForbiddenMovies.push(message.movie.id);
    });
    const filteredList = moviesToFilterFrom.filter((movie) => {
     return (
