@@ -18,7 +18,7 @@ export const Header = ({startLogout, username, language}) => (
     <NavLink activeClassName="header__active-class" className="header__title" to="/messages" > <h2>{language === "English"? "Messages" : "הודעות"}</h2></NavLink>
     <NavLink activeClassName="header__active-class" className="header__title" to="/watchList" > <h2>{language === "English"? "Watch List" : "רשימת הצפייה שלי"}</h2></NavLink>
     <NavLink activeClassName="header__active-class" className="header__title" to="/friends" ><h2>{language === "English"? "Friends" : "חברים"}</h2> </NavLink>
-    <button className="header__title button button--link" onClick={startLogout}>{language === "Logout"? "Friends" : "התנתק"}</button>
+    <button className="header__title button button--link" onClick={startLogout}>{language === "English"? "Logout" : "התנתק"}</button>
     </div>
     </div>
   </header>
