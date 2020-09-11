@@ -11,7 +11,7 @@ export class AddRecommendation extends React.Component {
    render() {
       return (
          <div>
-         <div className="page-header">
+         <div className="page-header" >
          <div className="content-container--form">
             <h2 className="page-header__title">
             {this.props.language === "English"? "Add Recommendation" : "הוספת המלצה על סרט"}</h2>

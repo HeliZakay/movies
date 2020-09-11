@@ -34,7 +34,10 @@ import { startDeleteMessage } from '../actions/messages';
                 </Link>
                     {this.props.messagesRecieved.length === 0 ?
                         (
-                        <p>Inbox is empty</p>
+                            <p>
+                            {this.props.language === "English"? "Inbox is empty":
+                             "תיבת דואר ריקה"}
+                            </p>
                     ) : (
                         <div className="row">
     

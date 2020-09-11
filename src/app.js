@@ -19,7 +19,10 @@ const store = configureStore();
 
 const jsx = (
     <Provider store={store}>
-        <AppRouter />
+    <div className={store.getState().auth.language !== "English"&& "text-align-right" }>
+    <AppRouter />
+    </div>
+        
     </Provider>
 );
 
