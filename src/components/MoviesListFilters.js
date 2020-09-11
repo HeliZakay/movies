@@ -23,7 +23,7 @@ export class MoviesListFilters extends React.Component {
                     <div className="input-group__item">
                     <input className="text-input" 
                     type="text" 
-                    placeholder="filter by movie name"
+                    placeholder={this.props.language === "English"? "filter by movie name": "סנן לפי שם סרט"}
                     value={this.props.filters.text}
                     onChange={this.onMovieChange}    
                     />
@@ -32,7 +32,7 @@ export class MoviesListFilters extends React.Component {
                     <div className="input-group__item">
                     <input className="text-input"
                     type="text" 
-                     placeholder="filter by recommender"
+                     placeholder={this.props.language === "English"? "filter by recommender": "סנן לפי שם הממליץ"}
                      value={this.props.filters.person}
                       onChange={this.onPersonChange}    
                      />
@@ -43,8 +43,8 @@ export class MoviesListFilters extends React.Component {
                     value={this.props.filters.sortBy}
                      onChange ={this.onSortChange} 
                     >
-                         <option value="date">Latest</option>
-                         <option value="score">Top Rated</option>
+                         <option value="date">{this.props.language === "English"? "Latest": "הכי חדשים"}</option>
+                         <option value="score">{this.props.language === "English"? "Top Rated": "הניקוד הגבוה ביותר"}</option>
                      </select>
                     </div>
                 </div>
@@ -54,7 +54,8 @@ export class MoviesListFilters extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-    filters: state.filters
+    filters: state.filters,
+    language: state.auth.language
 });
 
 const mapDispatchToProps = (dispatch) => ({

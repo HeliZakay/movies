@@ -19,7 +19,9 @@ import { startDeleteMessage } from '../actions/messages';
     
                 <div className="page-header">
                     <div className="content-container">
-                        <h2 className="page-header__title">Inbox</h2>
+                        <h2 className="page-header__title">
+                        {this.props.language === "English"? "Inbox": "תיבת דואר נכנס"}
+                        </h2>
                     </div>
                 </div>
     
@@ -27,7 +29,7 @@ import { startDeleteMessage } from '../actions/messages';
                 <Link to="/friends">
                 <button 
                 className="new-message btn btn-primary button--add-friend btn-lg ">
-                Send a new message!
+                {this.props.language === "English"? "Send a new message!": "!שלח הודעה חדשה"}
                 </button>
                 </Link>
                     {this.props.messagesRecieved.length === 0 ?
@@ -70,7 +72,7 @@ import { startDeleteMessage } from '../actions/messages';
     return {
         messagesRecieved: sortByDate(state.messages.messagesRecieved),
         messagesSent: state.messages.messagesSent,
-           
+        language: state.auth.language           
     }
 };
 

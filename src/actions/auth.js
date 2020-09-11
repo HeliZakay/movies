@@ -47,11 +47,28 @@ export const startLogin = ({uid, email: userEmail}) => {
     };
   };
 
-export const setUserDetails = ({username, email, uid}) => ({
+  
+  export const addLanguage = (language) => ({
+    type: "ADD_LANGUAGE",
+    language
+  });
+
+
+  export const startAddLanguage = (language) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}`).update({language: language}).then( () => {
+            dispatch(addLanguage(language));
+        });
+    };
+  };
+
+export const setUserDetails = ({username, email, uid, language}) => ({
     type: "SET_USER_DETAILS",
     username,
     uid,
-    email
+    email,
+    language
 });
 
 export const startSetUserDetails = () => {
@@ -61,7 +78,8 @@ export const startSetUserDetails = () => {
             const username = snapshot.val().username;
             const uid = snapshot.key;
             const email = snapshot.val().email;
-            dispatch(setUserDetails({username, uid, email}));
+            const language = snapshot.val().language? snapshot.val().language: "" ;
+            dispatch(setUserDetails({username, uid, email, language}));
         });
     };
 };

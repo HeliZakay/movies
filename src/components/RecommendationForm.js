@@ -55,13 +55,13 @@ export class RecommendationForm extends React.Component {
                     {this.state.error && <p className="form__message"><em>{this.state.error}</em></p>}    
                     <input className="text-input"
                         type="text"
-                        placeholder="Movie Name"
+                        placeholder={this.props.language === "English"? "Movie Name": "שם הסרט" }
                         autoFocus
                         value = {this.state.movieName}
                         onChange= {this.onMovieNameChange}
                     />
                     
-                    <label> Movie Rating: </label>
+                    <label> {this.props.language === "English"? "Movie Rating:": "ציון הסרט" } </label>
                      <input 
                         type="number"                        
                         value={this.state.score}
@@ -71,21 +71,26 @@ export class RecommendationForm extends React.Component {
                     />
                     
                     <textarea className="textarea"
-                        placeholder="Write your review for the movie (optional)"
+                        placeholder={this.props.language === "English"? "Write your review for the movie (optional)": " (כתבו ביקורת על הסרט (אופציונאלי" }
                         value={this.state.content}
                         onChange={this.onContentChange}>
                     </textarea>
                     
-                    <label> Your Name: </label>
+                    <label> {this.props.language === "English"? "Your Name: ": ":השם שלך"} </label>
                     <input 
                         type="text"     
-                        placeholder="Your name (optional)"                   
+                        placeholder={this.props.language === "English"? "Your name (optional)"  : "השם שלך" }                  
                         value={this.state.personName}
                         onChange={this.onPersonNameChange}
                     />
                     
                     <div>
-                        <button className="button button--form"><strong>Recommend!</strong></button>
+                        <button className="button button--form">
+                        <strong>
+                        {this.props.language === "English"? " Recommend!" : "!המלץ"}
+                       
+                        </strong>
+                        </button>
                     </div>
                     
                 </form>
@@ -94,6 +99,7 @@ export class RecommendationForm extends React.Component {
     }
 }
 const mapStateToProps = (state) => ({
-    username: state.auth.username
+    username: state.auth.username,
+    language: state.auth.language
 });
 export default connect(mapStateToProps)(RecommendationForm);

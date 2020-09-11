@@ -25,7 +25,9 @@ export class Friends extends React.Component {
             <div className="friends">
              <div className="page-header">
                 <div className="content-container">
-                <h2 className="page-header__title">My Friends</h2>
+                <h2 className="page-header__title">
+                {this.props.language === "English"? " My Friends": "חברים"}
+               </h2>
                 </div>
                 </div>
                 
@@ -35,21 +37,30 @@ export class Friends extends React.Component {
             <form onSubmit={this.onSubmit}>
                 <input className="text-input friend-input"
                     type="email"
-                    placeholder="friend's email"
+                    placeholder={this.props.language === "English"? "friend's email": "הכניסו את האימייל של החבר"}
                     autoFocus
                     value = {this.state.email}
                     onChange= {this.onEmailChange}
                 />
                 
-                <button className="btn btn-primary button--add-friend btn-lg" type="submit">Add a friend</button>
+                <button className="btn btn-primary button--add-friend btn-lg" type="submit">
+                {this.props.language === "English"? " Add a friend": "הוסיפו את החבר/ה"}
+               
+                </button>
                 {this.props.error && <p className="friends__error"><em>{this.props.error}</em></p>}
               </form>
               
-              <h3 className="friends__subtitle">Your list of friends:</h3>
+              <h3 className="friends__subtitle">
+              {this.props.language === "English"? " Your list of friends:": ":רשימת החברים"}
+              
+              </h3>
               
               
               {this.props.friends.length ===0 ? 
-              <p className="friends__message">Add a friend!</p>
+              <p className="friends__message">
+              {this.props.language === "English"? " Add a friend!": "!הוסיפו חברים"}
+              
+              </p>
               : 
                   <div className="row">
                   {this.props.friends.map((friendObject) => 
@@ -72,7 +83,8 @@ const mapDispatchToProps = (dispatch) => ({
 
  const mapStateToProps = (state) => ({
      friends: state.friends.friends,
-     error: state.friends.error
+     error: state.friends.error,
+     language: state.auth.language
  });
 
  export default connect(mapStateToProps, mapDispatchToProps)(Friends);

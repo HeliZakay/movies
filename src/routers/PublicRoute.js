@@ -4,6 +4,7 @@ import {Route, Redirect} from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
 
 export const PublicRoute = ({
+    language,
     flag,
     doesHaveUsername,
     isAuthenticated,
@@ -11,17 +12,19 @@ export const PublicRoute = ({
     ...rest
 }) => (
     <Route {...rest} component={ (props) => (
+
         
-        isAuthenticated && doesHaveUsername ? (
-            <Redirect to="/homePage" />
-            
-        ) : isAuthenticated && flag ? (
-            <Redirect to="/signup" />
-        ) : isAuthenticated? 
-            <LoadingPage />:
-         (
-            <Component {...props} />      
+        isAuthenticated && doesHaveUsername && flag && !language ?
+        (<Redirect to="./language" />): (
+            isAuthenticated && doesHaveUsername && flag && language?
+            ( <Redirect to="./homePage" /> ) : (
+                !isAuthenticated? (  <Component {...props} />) : (
+                    isAuthenticated && flag && !doesHaveUsername ?
+                    (<Redirect to="/signup" />) : (<LoadingPage />)
+                )
+            )
         )
+            
     )} 
     />
 );
@@ -29,7 +32,8 @@ export const PublicRoute = ({
 const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid,
     doesHaveUsername: !!state.auth.username,
-    flag: state.auth.flag
+    flag: state.auth.flag,
+    language: !!state.auth.language
     
 });
 

@@ -11,7 +11,9 @@ export const WatchList = (props) => {
         <div>
         <div className="page-header">
         <div className="content-container">
-        <h2 className="page-header__title">My Watch List</h2>
+        <h2 className="page-header__title">
+        {props.language === "English"? "My Watch List": "רשימת הצפייה שלי"}
+        </h2>
         </div>
          
         </div>
@@ -46,7 +48,8 @@ export const WatchList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        movies: getVisibleMovies(getWatchListMovies(state.movies, state.watchList), state.filters)
+        movies: getVisibleMovies(getWatchListMovies(state.movies, state.watchList), state.filters),
+        language: state.auth.language
     };
 };
 export default connect(mapStateToProps)(WatchList);

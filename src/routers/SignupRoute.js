@@ -5,6 +5,7 @@ import LoadingPage from "../components/LoadingPage";
 
 
 export const SignupRoute = ({
+    language,
     flag,
     doesHaveUsername,
     isAuthenticated,
@@ -12,14 +13,16 @@ export const SignupRoute = ({
     ...rest
 }) => (
     <Route {...rest} component={ (props) => (
-        
-        isAuthenticated && doesHaveUsername ?
-        <Redirect to="/homePage" /> :
-        isAuthenticated && flag? 
-            <Component {...props} /> :
-            isAuthenticated? <LoadingPage />:
-              <Redirect to="/" /> 
-          
+         isAuthenticated && doesHaveUsername && flag && !language ?
+        (<Redirect to="./language" />): (
+            isAuthenticated && doesHaveUsername && flag && language?
+            ( <Redirect to="./homePage" /> ) : (
+                !isAuthenticated? ( <Redirect to="./" />) : (
+                    isAuthenticated && flag && !doesHaveUsername ?
+                    ( <Component {...props} />) : (<LoadingPage />)
+                )
+            )
+        )      
     )} 
     />
 );
@@ -27,7 +30,8 @@ export const SignupRoute = ({
 const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid,
     doesHaveUsername: !!state.auth.username,
-    flag: state.auth.flag
+    flag: state.auth.flag,
+    language: !!state.auth.language
 });
 
 export default connect(mapStateToProps)(SignupRoute);

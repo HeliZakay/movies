@@ -18,7 +18,10 @@ export class EditRecommendation extends React.Component {
             <div>
             <div className="page-header">
                 <div className="content-container--form">
-                <h2 className="page-header__title">Edit Recommendation</h2>
+                <h2 
+                className="page-header__title">
+                {this.props.language === "English"? "Edit Recommendation": "עריכת המלצת סרט"}
+                </h2>
                 </div>
                 
             </div>
@@ -30,7 +33,9 @@ export class EditRecommendation extends React.Component {
                  <button className="button button--secondary" 
                     onClick={this.onRemove}
                     >
-                    Remove</button>
+                    {this.props.language === "English"? "Remove": "הסר את הסרט"}
+                    
+                    </button>
             </div>
             </div>
                 
@@ -39,7 +44,8 @@ export class EditRecommendation extends React.Component {
 };
 
 const mapStateToProps = (state, props) => ({
-    movie: state.movies.find((movie) => movie.id === props.match.params.id)  
+    movie: state.movies.find((movie) => movie.id === props.match.params.id),
+    language: state.auth.language
 });
 
 const mapDispatchToProps = (dispatch) => ({

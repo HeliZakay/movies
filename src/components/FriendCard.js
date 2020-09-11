@@ -71,12 +71,17 @@ export class FriendCard extends React.Component {
             <button 
             onClick={this.showUserRecommendations} 
             className="btn button-friend btn-warning btn-lg">
-            Send {this.props.friendObj.username} a recommendation 
+             {this.props.language === "English"? ("Send "+ this.props.friendObj.username + " a recommendation"):
+                (this.props.friendObj.username+"שלחו המלצה ל")
+                } 
             </button>
+            <br/>
             <button
             onClick={this.showTextare} 
             className="btn button-friend--message btn-primary btn-lg">
-            Send {this.props.friendObj.username} a message 
+             {this.props.language === "English"? ("Send "+ this.props.friendObj.username + " a message"):
+                (this.props.friendObj.username+"שלחו הודעה ל")
+                }
             </button>
             {this.state.showUserRecommendations &&
              <UserRecommendations 
@@ -93,7 +98,10 @@ export class FriendCard extends React.Component {
             <button   
                 onClick={this.onMessageSend}
                 className="btn btn-primary button--add-friend btn-lg">
-                Send to {this.props.friendObj.username}
+                {this.props.language === "English"? ("Send to "+ this.props.friendObj.username):
+                (this.props.friendObj.username+" שלחו ל")
+                }
+                
              </button> 
             </div>
             }
@@ -104,7 +112,8 @@ export class FriendCard extends React.Component {
     }
 }
 const mapStateToProps = (state) => ({
-    user: state.auth
+    user: state.auth,
+    language: state.auth.language
 });
 
 

@@ -13,7 +13,8 @@ export class AddRecommendation extends React.Component {
          <div>
          <div className="page-header">
          <div className="content-container--form">
-            <h2 className="page-header__title">Add Recommendation</h2>
+            <h2 className="page-header__title">
+            {this.props.language === "English"? "Add Recommendation" : "הוספת המלצה על סרט"}</h2>
          </div>
             
          </div>
@@ -32,5 +33,9 @@ export class AddRecommendation extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
    startAddMovie: (movie) => dispatch(startAddMovie(movie))
 });
+
+const mapStateToProps = (state) => ({
+   language: state.auth.language
+});
    
-export default connect(undefined, mapDispatchToProps)(AddRecommendation);
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecommendation);

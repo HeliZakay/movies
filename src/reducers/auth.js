@@ -1,5 +1,5 @@
 
-export default (state = {uid: undefined, username: "", email: undefined, flag: false}, action) => {
+export default (state = {uid: undefined, username: "", email: undefined,language: "", flag: false}, action) => {
     switch (action.type) {
         case "LOGIN":
             return {
@@ -13,12 +13,18 @@ export default (state = {uid: undefined, username: "", email: undefined, flag: f
                 uid: action.uid,
                 username: action.username,
                 email: action.email,
-                flag: true
+                flag: true,
+                language: action.language
             };
         case "ADD_USERNAME":
             return {
                 ...state,
                 username: action.username
+            }
+        case "ADD_LANGUAGE":
+            return {
+                ...state,
+                language: action.language
             }
         default:
             return state;

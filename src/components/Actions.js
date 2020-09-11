@@ -1,7 +1,8 @@
 import React from "react";
 import { Link} from 'react-router-dom';
+import {connect} from "react-redux";
 
-export default () => {
+export const Actions = (props) => {
     return (
         <div className="actions-section">
         <div className="content-container">
@@ -12,7 +13,7 @@ export default () => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/popcorn.png"></img> 
             </div>
-            <h3 className="actions-section__text">Add a movie</h3>
+            <h3 className="actions-section__text">{props.language === "English" ? "Add a movie": "המלץ על סרט"}</h3>
             
             </Link>
         </div>
@@ -21,7 +22,7 @@ export default () => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/familyguy.png"></img>  
             </div>
-            <h3 className="actions-section__text">Message a friend</h3>
+            <h3 className="actions-section__text">{props.language === "English" ? "Message a friend": "שלח הודעה לחבר"}</h3>
            
             </Link>
         </div>
@@ -30,7 +31,7 @@ export default () => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/envelop.png"></img>  
             </div>
-            <h3 className="actions-section__text">Send feedback</h3>
+            <h3 className="actions-section__text">{props.language === "English" ? "Send feedback": "שלח פידבק על האפליקציה"}</h3>
             
             </Link>
         </div>
@@ -39,6 +40,12 @@ export default () => {
         </div>
     );
 };
+
+const mapStateToProps = (state) => ({
+    language: state.auth.language
+});
+
+export default connect(mapStateToProps)(Actions);
 
 
 

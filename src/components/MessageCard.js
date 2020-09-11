@@ -54,7 +54,8 @@ export class MessageCard extends React.Component{
             mail
             </i>
             <h3 >
-            Message from {this.props.username}!
+            {this.props.language === "English"? ("Message from" + this.props.username+ "!"): ( "!"+this.props.username+ "הודעה מ ")}
+            
             </h3>        
             </div>
             <i onClick={() => this.props.onDelete(this.props.id, this.props.userId)} className="trash delete-icon material-icons">
@@ -63,9 +64,19 @@ export class MessageCard extends React.Component{
             </div>
             <div className="card-body">
             <div className="custom-card__card-content">
-                <p className="card-subtitle mb-2 text-muted">Created at: {moment(this.props.createdAt).format("MMMM D, YYYY")}</p>
+                <p className="card-subtitle mb-2 text-muted">
+                {this.props.language === "English"? 
+                " Created at: "+ moment(this.props.createdAt).format("MMMM D, YYYY"):
+                moment(this.props.createdAt).format("MMMM D, YYYY")+ " נוצר בתאריך "
+                }
+               </p>
                 {this.props.movieName &&
-                <p className="card-title">Hi {this.props.myName}! I think you might like the movie {this.props.movieName}.</p>
+                <p className="card-title">
+                {this.props.language === "English"? ("Hi "+ this.props.myName +" ! I think you might like the movie "+ this.props.movieName +"."):
+                ("! יהיה לטעמך " +this.props.movieName + " נראה לי שהסרט " )
+                  }
+                
+                </p>
                 }
                 {this.props.content && <p className="card-text"> "{this.props.content}"</p> }
                 {this.props.movieName && 
@@ -73,7 +84,7 @@ export class MessageCard extends React.Component{
                     <button 
                     className="btn button-movie btn-warning btn-lg"
                     onClick={this.onAddOrRemoveFromWatchList}>
-                     Add to my watch list!
+                    {this.props.language === "English"? "Add to my watch list!": "!הוסף לרשימת הצפייה שלי"}
                      </button>)
                 }
                 <div>
@@ -81,11 +92,12 @@ export class MessageCard extends React.Component{
                     onClick={this.showTextare} 
                     className="btn button-friend--message btn-primary btn-lg"
                     >
-                    Respond!
+                    {this.props.language === "English"? " Respond!": "!הגב להודעה"}
+                   
                      </button>
                      </div>
                      {this.state.showTextare && <div><textarea className="textarea--message-only-friend"
-                        placeholder="write a personal message"
+                        placeholder={this.props.language === "English"? "write a personal message": "כתבו הודעה אישית"}
                         value={this.state.content}
                         onChange={this.onContentChange}>
                          </textarea>
@@ -93,7 +105,7 @@ export class MessageCard extends React.Component{
                          onClick={this.onMessageSend}
                          className="btn btn-primary button--add-friend btn-lg"
                          >
-                         Send
+                         {this.props.language === "English"? "Send": "שלח"}
                          </button>
                          </div>}
             </div>
@@ -109,7 +121,8 @@ const mapStateToProps = (state) => ({
     watchList: state.watchList,
     userId: state.auth.uid,
     messages: state.messages.messagesRecieved,
-    user: state.auth
+    user: state.auth,
+    language: state.auth.language
 });
 
 
