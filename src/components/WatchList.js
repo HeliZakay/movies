@@ -8,7 +8,7 @@ import MoviesListFilters from "./MoviesListFilters";
 
 export const WatchList = (props) => {
     return (
-        <div>
+        <div className={String(props.language !== "English" && "align-right")}>
         <div className="page-header">
         <div className="content-container">
         <h2 className="page-header__title">

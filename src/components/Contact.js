@@ -8,8 +8,8 @@ export class Contact extends React.Component {
     }
     render() {
         return (
-            <form
-         
+            <div className={String(this.props.language !== "English" && "align-right")}>
+            <form 
             encType="text/plain"
             onSubmit={this.onSubmit}
             className="form" >
@@ -53,7 +53,7 @@ export class Contact extends React.Component {
         </div>
         </div>
         </form>
-
+        </div>
         );
     };
 }

@@ -22,7 +22,7 @@ export class Friends extends React.Component {
     };
     render() {
         return (
-            <div className="friends">
+            <div className={String(this.props.language !== "English" ? "align-right friends": "friends")}>
              <div className="page-header">
                 <div className="content-container">
                 <h2 className="page-header__title">

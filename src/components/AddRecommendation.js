@@ -10,7 +10,7 @@ export class AddRecommendation extends React.Component {
    };
    render() {
       return (
-         <div>
+         <div className={String(this.props.language !== "English" && "align-right")}>
          <div className="page-header" >
          <div className="content-container--form">
             <h2 className="page-header__title">

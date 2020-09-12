@@ -15,7 +15,7 @@ import { startDeleteMessage } from '../actions/messages';
     };
     render() {
         return (
-            <div>
+            <div className={String(this.props.language !== "English" && "align-right")}>
     
                 <div className="page-header">
                     <div className="content-container">

@@ -14,7 +14,7 @@ export const MoviesList = (props) => {
          {props.movies.map((movie) => 
        
         <div key={movie.id} className=" col-sm-12 col-md-6 col-lg-4">
-        <MovieCard 
+        <MovieCard className={props.language !== "English" && "align-right"}
          {...movie}
         />
         </div>
@@ -29,7 +29,8 @@ export const MoviesList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        movies: getVisibleMovies(state.movies, state.filters)
+        movies: getVisibleMovies(state.movies, state.filters),
+        language: state.auth.language
     };
 };
 export default connect(mapStateToProps)(MoviesList);
