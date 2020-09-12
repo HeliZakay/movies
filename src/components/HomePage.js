@@ -2,22 +2,17 @@ import React from 'react';
 import MoviesList from "./MoviesList";
 import Actions from "./Actions";
 import Open from "./Open";
-import ListHeading from "./ListHeading";
 import MoviesListFilters from "./MoviesListFilters";
 import {connect} from "react-redux";
 
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
     <Open />
-    <Actions />
-    <ListHeading />
-    
+    <Actions />    
     <div className="movie-list-section">
-    
     <MoviesListFilters />
     <MoviesList />
     </div>
-   
   </div>
 );
 

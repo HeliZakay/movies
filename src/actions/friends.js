@@ -42,7 +42,7 @@ export const addFriend = (userId, email, username) => ({
                         return database.ref(`users/${uid}/friends/${user.key}`).update({email: email, username: user.val().username}).then(() => {
                             dispatch(addFriend(user.key, email, user.val().username));
                             dispatch(friendFound());
-                            
+                            database.ref(`users/${user.key}/friends/${uid}`).update({email: getState().auth.email, username: getState().auth.username});                            
                     });
                     }  
                 }
@@ -54,6 +54,8 @@ export const addFriend = (userId, email, username) => ({
         });
     };
   };
+
+
 
   export const setFriends = (friends) => ({
     type: "SET_FRIENDS",
@@ -79,5 +81,4 @@ export const addFriend = (userId, email, username) => ({
     };
   };
 
-  
   
