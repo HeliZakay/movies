@@ -47,9 +47,6 @@ export class MovieCard extends React.Component {
        
     };
     render() {
-        const propsItem = {
-            reviews: this.props.reviews
-        }
         return (
             <div className="card card bg-light mb-3 custom-card">
             {/* {this.props.userUid === this.props.currentUserUid ? (
@@ -72,7 +69,7 @@ export class MovieCard extends React.Component {
             </h3>
             <div className="card-body">
             <div className="custom-card__card-content">
-            <ReviewsCarousel {...propsItem}/>
+            <ReviewsCarousel reviews={this.props.reviews}/>
             </div>
             <div className="card-footer text-muted">           
            <button
@@ -130,9 +127,6 @@ export class MovieCard extends React.Component {
             </div> 
             </div>
             </div>
-            
-            
-       
         );
     };
 };

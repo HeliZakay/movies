@@ -13,21 +13,15 @@ export const MoviesList = (props) => {
         <div className="row">
          {props.movies.map((movie) => 
          {
-             const reviews = movie.reviews;
-             const id = movie.id;
-             const movieName = movie.movieName;
-             const propsObj = {
-                 reviews,
-                 id,
-                 movieName
-             }
              return (
                     <div 
                     key={movie.id} 
                     className=" col-sm-12 col-md-6 col-lg-4">
                     <MovieCard 
                         className={props.language !== "English" && "align-right"}
-                        {...propsObj}
+                        reviews = {movie.reviews}
+                        id={movie.id}
+                        movieName={movie.movieName}
                      />
                     </div>
              );

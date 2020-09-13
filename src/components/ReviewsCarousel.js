@@ -27,12 +27,12 @@ export class ReviewsCarousel extends React.Component {
     render() {
         return (
             <div className="reviews-carousel">
-            {this.props.reviews.length > 1 && 
+            
              <i 
             onClick={this.onBackwards}
             className="backwards material-icons">
             arrow_back_ios
-            </i>}
+            </i>
             <Review 
                 content= {this.props.reviews[this.state.currentReview].content}
                 createdAt= {this.props.reviews[this.state.currentReview].createdAt}
@@ -40,13 +40,13 @@ export class ReviewsCarousel extends React.Component {
                 score= {this.props.reviews[this.state.currentReview].score}
 
             /> 
-            {this.props.reviews.length > 1 && 
+           
             <i 
             onClick={this.onForward}
             className="forward material-icons">
             arrow_forward_ios
             </i>
-            }
+            
             </div>
         );
     }
