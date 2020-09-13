@@ -33,15 +33,18 @@ export class MovieCard extends React.Component {
         this.props.startAddMovieToWatchList(this.props.id);
     };
     onQuickReviewSend = () => {
-        this.onShow();
-        const review = {
-            movieId: this.props.id,
-            score: this.state.score,
-            personName: this.props.username,
-            content: this.state.content,
-            createdAt: moment() 
-        };
-        this.props.startAddReview(review);
+        if (this.state.content) {
+            this.setState({...this.state, show: false, content: ""});
+            const review = {
+                movieId: this.props.id,
+                score: this.state.score,
+                personName: this.props.username,
+                content: this.state.content,
+                createdAt: moment() 
+            };
+            this.props.startAddReview(review);
+        }
+       
     };
     render() {
         const propsItem = {
@@ -71,7 +74,7 @@ export class MovieCard extends React.Component {
             <div className="custom-card__card-content">
             <ReviewsCarousel {...propsItem}/>
             </div>
-            <p className="card-footer text-muted">           
+            <div className="card-footer text-muted">           
            <button
            onClick={this.onShow}
             className="btn button-movie btn-warning btn-lg" >
@@ -106,19 +109,25 @@ export class MovieCard extends React.Component {
 
             </div>}
             <a onClick={this.onAddOrRemoveFromWatchList}>
-            <div className="custom-card__add-to-watch-list" >
-            <div>
+            <div  >
+            {(isMovieOnWatchList(this.props.watchList, this.props.id)) ?
+            <div className="custom-card__add-to-watch-list">
             <i className="material-icons">
+            remove_circle
+            </i>
+             {this.props.language === "English"?
+             "Remove from my watch list": "הסר מרשימת הצפייה שלי"}
+             </div>:
+             <div className="custom-card__add-to-watch-list">
+             <i className="material-icons">
             add_circle
             </i>
-            </div>
-            <p>
-            {(isMovieOnWatchList(this.props.watchList, this.props.id)) ? (this.props.language === "English"?"Remove from my watch list": "הסר מרשימת הצפייה שלי"): (this.props.language === "English"? "Add to my watch list!": "הוסף לרשימת הצפייה שלי")}
-            </p>
-           
-            </div>
+              {this.props.language === "English"?"Add to my watch list!": "הוסף לרשימת הצפייה שלי"}
+             </div>
+           }
+           </div>
             </a>
-            </p> 
+            </div> 
             </div>
             </div>
             
