@@ -3,8 +3,14 @@
 export default (movies, userUid) => {
   
     const userRecommendations =  movies.filter((movie) => {
-      return userUid === movie.userUid}
-    );
+      let isMyRecommendation = false;
+      movie.reviews.forEach((review) => {
+        if (review.userUid === userUid) {
+          isMyRecommendation = true;
+        }
+      });
+      return isMyRecommendation;
+    });
     return userRecommendations;
 };
 

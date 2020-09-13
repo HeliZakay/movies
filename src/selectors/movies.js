@@ -22,3 +22,13 @@ export default (movies, { text, sortBy, person}) => {
     });
     return result;
   };
+
+  export const getMovieReviews = (movieId, movies) => {
+    let reviews = [];
+    movies.forEach((movie) => {
+      if (movie.id === movieId) {
+        reviews=movie.reviews;
+      }
+    });
+    return reviews;
+  }
