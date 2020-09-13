@@ -28,10 +28,10 @@ export default (state = [], action) => {
               if (!movie.reviews) {
                 movie.reviews = new Array();
               }  
-              const reviews = movie.reviews.push(action.review)
+              movie.reviews.push(action.review)
                 return {
                   ...movie,
-                  reviews
+                  reviews: movie.reviews
               }
             }
             else {return movie};
