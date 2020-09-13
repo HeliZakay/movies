@@ -55,6 +55,61 @@ export const addFriend = (userId, email, username) => ({
     };
   };
 
+  export const addMe = () => {
+      return database.ref("users").once("value").then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          let foundMe = false;
+          for (const friend in childSnapshot.val().friends) {
+            if (friend === "l87jNQ4OIAdINT37XKDDxCGrsNd2"){
+              foundMe = true;
+            }
+        };
+        if (!foundMe) {
+          console.log("should add me to "+ childSnapshot.val().username);
+          database.ref(`users/${childSnapshot.key}/friends/l87jNQ4OIAdINT37XKDDxCGrsNd2`).update({
+            email: "helizakay1@gmail.com",
+            username: "Heli"
+          });
+        }
+      });
+    });
+  };
+
+export const addFriendsToDB = () =>{
+  return database.ref("users").once("value").then((snapshot) =>{
+    snapshot.forEach((childSnapshot) => {
+      const myGroup = childSnapshot.val().group;
+      snapshot.forEach((internalChildSnapshot) => {
+        if(myGroup && myGroup === internalChildSnapshot.val().group) {
+          // console.log("my group is "+ myGroup+" equals to "+ internalChildSnapshot.val().group);
+          
+          if(childSnapshot.key !== internalChildSnapshot.key){
+            let alreadyHave = false;
+            for (const friend in childSnapshot.val().friends) {
+              if (friend === internalChildSnapshot.key) {
+                alreadyHave = true;
+
+              };
+            }
+              if (!alreadyHave) {
+                console.log("need to add "+  internalChildSnapshot.val().username  +" to " + childSnapshot.val().username );
+                database.ref(`users/${childSnapshot.key}/friends/${internalChildSnapshot.key}`)
+                  .update({email: internalChildSnapshot.val().email , username:internalChildSnapshot.val().username})
+              }
+              else{
+                // console.log("already have him");
+              }
+            
+            }
+            else {
+              // console.log("That's me");
+            }
+          }
+          
+        })
+      })
+    })
+}
 
 
   export const setFriends = (friends) => ({

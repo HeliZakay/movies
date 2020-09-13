@@ -4,13 +4,16 @@ import Actions from "./Actions";
 import Open from "./Open";
 import MoviesListFilters from "./MoviesListFilters";
 import {connect} from "react-redux";
-
+// import {addFriendsToDB} from "../actions/friends.js";
+// import {addMe} from "../actions/friends.js";
 
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
   
     <Open />
     <Actions />    
+    {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
+    {/* <button onClick={addMe}>addMe</button> */}
     <div className="movie-list-section">
     <MoviesListFilters />
     <MoviesList />
