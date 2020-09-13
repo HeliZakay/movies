@@ -22,6 +22,20 @@ export default (state = [], action) => {
         return state.filter(({ id }) => id !== action.id);
       case "SET_MOVIES":
         return action.movies;
+      case "ADD_REVIEW":
+          state.map((movie) => {
+            if (movie.id === action.movieId) {
+              if (!movie.reviews) {
+                movie.reviews = new Array();
+              }  
+              const reviews = movie.reviews.push(action.review)
+                return {
+                  ...movie,
+                  reviews
+              }
+            }
+            else {return movie};
+          });   
       default:
         return state;
     }

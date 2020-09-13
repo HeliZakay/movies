@@ -12,13 +12,26 @@ export const MoviesList = (props) => {
         :
         <div className="row">
          {props.movies.map((movie) => 
-       
-        <div key={movie.id} className=" col-sm-12 col-md-6 col-lg-4">
-        <MovieCard className={props.language !== "English" && "align-right"}
-         {...movie}
-        />
-        </div>
-        )}
+         {
+             const reviews = movie.reviews;
+             const id = movie.id;
+             const movieName = movie.movieName;
+             const propsObj = {
+                 reviews,
+                 id,
+                 movieName
+             }
+             return (
+                    <div 
+                    key={movie.id} 
+                    className=" col-sm-12 col-md-6 col-lg-4">
+                    <MovieCard 
+                        className={props.language !== "English" && "align-right"}
+                        {...propsObj}
+                     />
+                    </div>
+             );
+         })}
         </div>
         }
     </div>

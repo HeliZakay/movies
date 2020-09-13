@@ -5,7 +5,7 @@
 
 .custom-card__card-content {
     
-    padding: 15px 10px;
+    padding: 15px 0;
 }
 
 .custom-card-header{
@@ -23,5 +23,19 @@
 
 .custom-card-header__envelop-and-header{
     display:flex;
+}
+
+.cusom-card__card-add-review {
+    display: flex;
+    
+}
+.custom-card__add-to-watch-list {
+    margin-top: 20px;
+    display: flex;
+    color: $nesquik-light-blue;
+}
+
+.custom-card__quick-review-section{
+    padding-top: 20px;
 }
 

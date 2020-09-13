@@ -44,3 +44,8 @@
     @extend .textarea--message-friend;
     margin-top: 18px;
 }
+
+.textarea--quick-review{
+    @extend .textarea;
+    width: 98%;
+}

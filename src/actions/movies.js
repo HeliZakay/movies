@@ -18,23 +18,52 @@ export const startAddMovie = (movieData = {}) => {
       content="",
       createdAt="0",     
      } = movieData;
-
      const movie = {
-      movieName,
+      movieName
+    };
+    const review = {
+      personName,
+      score,
+      content,
+      createdAt: moment(createdAt).format(), 
+      userUid: getState().auth.uid
+    }
+     return database.ref("movies").push(movie).then( (ref) => {
+        return database.ref(`movies/${ref.key}/reviews`).push(review).then(() => {
+          dispatch(addMovie({
+            id: ref.key,
+            movieName,
+            reviews: [review]
+          }));
+        });
+     });
+  };
+};
+
+export const startAddReview = ({movieId, score, personName, content, createdAt}) => {
+  return (dispatch, getState) => {
+     const reviewItem = {
       personName,
       score,
       content,
       createdAt: moment(createdAt).format(), 
       userUid: getState().auth.uid
     };
-     return database.ref("movies").push(movie).then( (ref) => {
-        dispatch(addMovie({
+     return database.ref(`movies/${movieId}/reviews`).push(reviewItem).then( (ref) => {
+        dispatch(addReview(movieId, {
           id: ref.key,
-          ...movie
+          ...reviewItem
         }));
      });
   };
 };
+
+export const addReview = (movieId, review) => ({
+  type: "ADD_REVIEW",
+  review,
+  movieId
+});
+
 
 // EDIT_MOVIE
 export const editMovie = (id, updates) => ({
@@ -79,12 +108,24 @@ export const startRemoveMovie = ({id} = {}) => {
       return database.ref("movies").once("value").then( (snapshot) => {
         const movies = [];
         snapshot.forEach((movieSnapshot) => {
+            const reviews = [];
+            if (movieSnapshot.val().reviews){
+              const reviewsObj = movieSnapshot.val().reviews;
+              for (const [key, value] of Object.entries(reviewsObj)) {
+                reviews.push({
+                  id: key,
+                  ...value
+                });
+              }
+            }
               movies.push({
                  id: movieSnapshot.key,
-                 ...movieSnapshot.val()
+                 ...movieSnapshot.val(),
+                 reviews
               });
         });
         dispatch(setMovies(movies));
       }); 
     };
   };
+
