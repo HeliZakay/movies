@@ -1,11 +1,17 @@
 import React from "react";
 import RecommendationForm from "./RecommendationForm";
 import {connect} from "react-redux";
-import {startAddMovie} from "../actions/movies";
+import {startAddMovie, startAddReview} from "../actions/movies";
+import {isMovieNameExistsAlready} from "../selectors/movies";
 
 export class AddRecommendation extends React.Component {
    onSubmit = (movie) => {
-      this.props.startAddMovie(movie);
+      const movieId = isMovieNameExistsAlready(movie.movieName, this.props.movies);
+      if (movieId) {
+         this.props.startAddReview({movieId, ...movie});
+      } else {
+         this.props.startAddMovie(movie);
+      }
       this.props.history.push("/homePage");
    };
    render() {
@@ -31,11 +37,13 @@ export class AddRecommendation extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-   startAddMovie: (movie) => dispatch(startAddMovie(movie))
+   startAddMovie: (movie) => dispatch(startAddMovie(movie)),
+   startAddReview: (review) => dispatch(startAddReview(review))
 });
 
 const mapStateToProps = (state) => ({
-   language: state.auth.language
+   language: state.auth.language,
+   movies: state.movies
 });
    
 export default connect(mapStateToProps, mapDispatchToProps)(AddRecommendation);

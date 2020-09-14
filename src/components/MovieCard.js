@@ -32,8 +32,8 @@ export class MovieCard extends React.Component {
         this.props.startRemoveMovieFromWatchList(this.props.id):
         this.props.startAddMovieToWatchList(this.props.id);
     };
-    onQuickReviewSend = () => {
-        if (this.state.content) {
+    onQuickReviewSend = (event) => {
+        event.preventDefault();
             this.setState({...this.state, show: false, content: ""});
             const review = {
                 movieId: this.props.id,
@@ -43,8 +43,6 @@ export class MovieCard extends React.Component {
                 createdAt: moment() 
             };
             this.props.startAddReview(review);
-        }
-       
     };
     render() {
         return (
@@ -81,7 +79,8 @@ export class MovieCard extends React.Component {
            </button>
             
             {this.state.show && <div className="custom-card__quick-review-section">
-                <label> {this.props.language === "English"? "Movie Rating:": "ציון הסרט" } </label>
+            <form onSubmit={this.onQuickReviewSend}>
+            <label> {this.props.language === "English"? "Movie Rating:": "ציון הסרט" } </label>
                      <input 
                         type="number"                        
                         value={this.state.score}
@@ -97,13 +96,13 @@ export class MovieCard extends React.Component {
                 </textarea>
                 <br/>
                 <button 
-                onClick={this.onQuickReviewSend} 
+                type="submit" 
                 className="btn button-friend--message btn-primary btn-lg">
                         <strong>
                         {this.props.language === "English"? " Send!" : "!שלח"}
                         </strong>
-                        </button>
-
+                </button>
+            </form>
             </div>}
             <a onClick={this.onAddOrRemoveFromWatchList}>
             <div  >

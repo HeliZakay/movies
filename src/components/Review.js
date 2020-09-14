@@ -11,7 +11,7 @@ export class Review extends React.Component {
             <p className="card-subtitle mb-2 text-muted">
             {this.props.language === "English"? ("Created At: " + moment(this.props.createdAt).format("MMMM D, YYYY")) : ( moment(this.props.createdAt).format("MMMM D, YYYY"))+ ": נוצר בתאריך " }
             </p>
-            <p className="card-text"> "{this.props.content}"</p>      
+            {this.props.content && <p className="card-text"> "{this.props.content}"</p>}      
             </div>
         );
     }

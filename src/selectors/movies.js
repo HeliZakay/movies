@@ -32,3 +32,13 @@ export default (movies, { text, sortBy, person}) => {
     });
     return reviews;
   }
+
+  export const isMovieNameExistsAlready = (movieName, movies) => {
+    let result = undefined;
+    movies.forEach((movie) => {
+      if (movie.movieName === movieName) {
+        result=movie.id;
+      }
+    });
+    return result;
+  }

@@ -93,8 +93,8 @@ export const addFriendsToDB = () =>{
             }
               if (!alreadyHave) {
                 console.log("need to add "+  internalChildSnapshot.val().username  +" to " + childSnapshot.val().username );
-                database.ref(`users/${childSnapshot.key}/friends/${internalChildSnapshot.key}`)
-                  .update({email: internalChildSnapshot.val().email , username:internalChildSnapshot.val().username})
+                // database.ref(`users/${childSnapshot.key}/friends/${internalChildSnapshot.key}`)
+                //   .update({email: internalChildSnapshot.val().email , username:internalChildSnapshot.val().username})
               }
               else{
                 // console.log("already have him");

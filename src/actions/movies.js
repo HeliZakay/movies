@@ -129,3 +129,7 @@ export const startRemoveMovie = ({id} = {}) => {
     };
   };
 
+export const unifyReviews = () => {
+  database.ref("movies/-MGnz68SXXFy0sVqeoP3").remove();
+    
+}
