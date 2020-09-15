@@ -10,7 +10,6 @@ import {connect} from "react-redux";
 
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
-  
     <Open />
     <Actions />    
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}

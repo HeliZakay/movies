@@ -7,6 +7,7 @@ export const MoviesList = (props) => {
     return (
        
          <div className="content-container">
+          
         
         {props.movies.length ===0 ? <p>No movies yet- Add a recommendation</p>
         :

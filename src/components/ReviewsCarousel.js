@@ -27,6 +27,7 @@ export class ReviewsCarousel extends React.Component {
     render() {
         return (
             <div className="reviews-carousel">
+            {this.props.reviews.length > 1 && <div className="reviews-carousel__icon-wrapper">
             {this.props.language === "English"?
             <i 
             onClick={this.onBackwards}
@@ -37,17 +38,20 @@ export class ReviewsCarousel extends React.Component {
             onClick={this.onForward}
             className="forward material-icons" >
             arrow_forward_ios
-            </i>
-             }
-            
-            <Review 
+            </i>}
+            </div>} 
+           <div className= {this.props.reviews.length === 1? "review--one-review" : "review"}>
+           <Review 
                 content= {this.props.reviews[this.state.currentReview].content}
                 createdAt= {this.props.reviews[this.state.currentReview].createdAt}
                 personName= {this.props.reviews[this.state.currentReview].personName}
                 score= {this.props.reviews[this.state.currentReview].score}
             /> 
-              {this.props.language === "English"?
-              <i
+           </div>
+           
+            {this.props.reviews.length > 1 && <div className="reviews-carousel__icon-wrapper">
+            {this.props.language === "English"?
+            <i
             onClick={this.onForward}
             className="forward material-icons" >
             arrow_forward_ios
@@ -56,9 +60,8 @@ export class ReviewsCarousel extends React.Component {
             onClick={this.onBackwards}
             className="backwards material-icons">
             arrow_back_ios
-            </i>
-             }
-           
+            </i>}
+            </div>}
             </div>
         );
     }

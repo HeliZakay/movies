@@ -20,6 +20,9 @@ body {
 button, a {
   cursor: pointer;
 }
+.test {
+  text-align: center;
+}
 
 button:disabled {
   cursor: default;

@@ -1,5 +1,6 @@
 // Movie Reducer
 
+
 export default (state = [], action) => {
     switch (action.type) {
       case 'ADD_MOVIE':
@@ -23,15 +24,12 @@ export default (state = [], action) => {
       case "SET_MOVIES":
         return action.movies;
       case "ADD_REVIEW":
-          state.map((movie) => {
+          return state.map((movie) => {
             if (movie.id === action.movieId) {
-              if (!movie.reviews) {
-                movie.reviews = new Array();
-              }  
-              movie.reviews.push(action.review)
+              const updatedReviewsArray = [action.review, ...movie.reviews];
                 return {
-                  ...movie,
-                  reviews: movie.reviews
+                  ...movie, 
+                  reviews: updatedReviewsArray
               }
             }
             else {return movie};

@@ -1,10 +1,12 @@
 .actions-section {
-    background:$light-blue;
+    background: #eeeeee;
     padding: $l-size 0;
     padding-bottom: $m-size;
     @media (max-width: $desktop-breakpoint) {
         padding: $s-size 0;
     }
+    color: white;
+    
 }
 
 .actions-section__wrapper {
@@ -28,7 +30,7 @@
     font-family: 'Sawarabi Gothic', sans-serif;
     text-decoration: none;
     font-size: 1.3rem;
-    color: $blue;
+    color: $dark-blue;
     h3 {
         margin-top: 0;
         

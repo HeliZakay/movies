@@ -5,14 +5,13 @@
 
 .custom-card__card-content {
     
-    padding: 15px 0;
+    padding: 0 0 8px 0;
 }
 
 .custom-card-header{
     background: $blue;
     color: white;
-    display:flex;
-    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .custom-card--friend{

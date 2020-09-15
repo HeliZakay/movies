@@ -6,6 +6,9 @@ import {startAddReview} from "../actions/movies";
 import { connect } from "react-redux";
 import {isMovieOnWatchList} from "../selectors/watchList";
 import ReviewsCarousel from "./ReviewsCarousel";
+import MovieData from "./MovieData";
+
+
 
 export class MovieCard extends React.Component {
     constructor(props) {
@@ -15,6 +18,14 @@ export class MovieCard extends React.Component {
             score: 7,
             show: false
         }
+    }
+    computeAverageScore = (reviews) => {
+        let sum = 0;
+        reviews.forEach((review) => {
+            sum += Number(review.score);
+        })
+        const result = sum/reviews.length;
+        return  Math.round(result*2)/2;;
     }
     onShow = () => {
         this.setState(() => ({...this.state, show: !this.state.show}))
@@ -43,10 +54,13 @@ export class MovieCard extends React.Component {
                 createdAt: moment() 
             };
             this.props.startAddReview(review);
+            
     };
     render() {
         return (
-            <div className="card card bg-light mb-3 custom-card">
+            <div 
+            className="card card bg-light mb-3 custom-card">
+
             {/* {this.props.userUid === this.props.currentUserUid ? (
                 <Link to={`/edit/${this.props.id}`}>
                 <h3 
@@ -61,12 +75,19 @@ export class MovieCard extends React.Component {
                 ("Movie: " + this.props.movieName ): (  this.props.movieName )}
                 </h3>
             )} */}
-            <h3 className="card-header custom-card-header">
+            <div className="card-header custom-card-header">
+            <h3 >
                 {this.props.language === "English"?
-                ("Movie: " + this.props.movieName ): (  this.props.movieName )}
+                ("Movie: " + this.props.movieName ): (  this.props.movieName+" :סרט" )}
             </h3>
+            </div>
             <div className="card-body">
             <div className="custom-card__card-content">
+            <MovieData 
+            movieId = {this.props.id}
+            averageScore= {this.computeAverageScore(this.props.reviews)}
+            reviewsCount={this.props.reviews.length}
+            />
             <ReviewsCarousel reviews={this.props.reviews}/>
             </div>
             <div className="card-footer text-muted">           
