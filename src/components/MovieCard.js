@@ -57,33 +57,18 @@ export class MovieCard extends React.Component {
             
     };
     didSendReviewToMovie = ({reviews, uid}) => {
-        let didSendReviewToMovie = false;
+        let reviewId;
         reviews.forEach((review) => {
           if (review.userUid === uid) {
-            didSendReviewToMovie = true;
+            reviewId = review.id;
           }
         });
-        return didSendReviewToMovie;
+        return reviewId;
       }
     render() {
         return (
             <div 
             className="card card bg-light mb-3 custom-card">
-
-            {/* {this.props.userUid === this.props.currentUserUid ? (
-                <Link to={`/edit/${this.props.id}`}>
-                <h3 
-                className="card-header custom-card-header">
-                {this.props.language === "English"?
-                ("Movie: " + this.props.movieName ): (  this.props.movieName  )}
-                </h3>
-                </Link>
-            ): (
-                <h3 className="card-header custom-card-header">
-                {this.props.language === "English"?
-                ("Movie: " + this.props.movieName ): (  this.props.movieName )}
-                </h3>
-            )} */}
             <div className="card-header custom-card-header">
             <h3 >
                 {this.props.language === "English"?
@@ -101,7 +86,22 @@ export class MovieCard extends React.Component {
             </div>
             <div className="card-footer text-muted">   
             {this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews})? (
+                <div className="custom-card__edit-section">
                 <p>{this.props.language === "English"? "You reviewd this movie!": "שלחת ביקורת לסרט! "}</p>
+                <Link 
+                className="edit-icon-link" 
+                to={`/edit/${this.props.id}`}
+                >
+                <div className="custom-card__edit-section">
+                <i className="material-icons">
+                create
+                </i>
+                <p>
+                {this.props.language === "English"? "edit": "לעריכה "}
+                </p>
+                </div> 
+                </Link>
+                </div>
             ):(
                 <button
                 onClick={this.onShow}

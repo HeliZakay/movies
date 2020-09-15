@@ -1,6 +1,5 @@
 
   export const sortReviewsByDate = (reviews) => {
-    console.log("here");
     return reviews.sort((a,b) => {
       return a.createdAt < b.createdAt ? 1 : -1;
     });

@@ -66,30 +66,32 @@ export const addReview = (movieId, review) => ({
 
 
 // EDIT_MOVIE
-export const editMovie = (id, updates) => ({
+export const editMovie = ({movieId, reviewId, updatedReview}) => ({
   type: 'EDIT_MOVIE',
-  id,
-  updates
+  movieId,
+  reviewId,
+  updatedReview
 });
 
-export const startEditMovie = (id, updates) => {
+export const startEditMovie = ({movieId, reviewId, updatedReview}) => {
   return (dispatch) => {
-     return database.ref(`movies/${id}`).update(updates).then(() => {
-        dispatch(editMovie(id, updates));
+     return database.ref(`movies/${movieId}/reviews/${reviewId}`).update(updatedReview).then(() => {
+        dispatch(editMovie({movieId, reviewId, updatedReview}));
      });
   };
 };
 
  // REMOVE_MOVIE
- export const removeMovie = ({ id } = {}) => ({
+ export const removeMovie = ({movieId, reviewId} = {}) => ({
   type: 'REMOVE_MOVIE',
-  id
+  movieId,
+  reviewId
 });
 
-export const startRemoveMovie = ({id} = {}) => {
-  return (dispatch, getState) => {
-     return database.ref(`movies/${id}`).remove().then( () => {
-        dispatch(removeMovie({id}));
+export const startRemoveMovie = ({movieId, reviewId} = {}) => {
+  return (dispatch) => {
+     return database.ref(`movies/${movieId}/reviews/${reviewId}`).remove().then( () => {
+        dispatch(removeMovie({movieId, reviewId}));
      });
   };
 };

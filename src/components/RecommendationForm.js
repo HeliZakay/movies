@@ -7,20 +7,24 @@ export class RecommendationForm extends React.Component {
         super(props);
         this.state = {
             movieName: props.movie ? props.movie.movieName : "",
-            personName:props.movie ? props.movie.personName : props.username,
-            content: props.movie? props.movie.content: "",
-            score: props.movie? props.movie.score: 7,
+            personName:props.review ? props.review.personName : props.username,
+            content: props.review? props.review.content: "",
+            score: props.review? props.review.score: 7,
             error:"",
-            createdAt: props.movie? props.movie.createdAt: moment()         
+            createdAt: moment()         
         }
     }
     onMovieNameChange =(event) => {
-        const movieName = event.target.value;
-        this.setState( () => ({movieName}));
+        if (!this.props.review) {
+            const movieName = event.target.value;
+            this.setState( () => ({movieName}));
+        }
     };
     onPersonNameChange =(event) => {
-        const personName = event.target.value;
-        this.setState( () => ({personName}));
+        if (!this.props.review) {
+            const personName = event.target.value;
+            this.setState( () => ({personName}));
+        }
     };
     onContentChange = (event) => {
         const content = event.target.value;
@@ -42,7 +46,6 @@ export class RecommendationForm extends React.Component {
                 createdAt: this.state.createdAt,
                 personName: this.state.personName,
                 content: this.state.content,
-              
             });
         }
     };
@@ -100,6 +103,7 @@ export class RecommendationForm extends React.Component {
 }
 const mapStateToProps = (state) => ({
     username: state.auth.username,
+    uid: state.auth.uid,
     language: state.auth.language
 });
 export default connect(mapStateToProps)(RecommendationForm);
