@@ -35,7 +35,7 @@ export class UserRecommendations extends React.Component {
         (<div>
         <h3>
         {this.props.language === "English"?
-         "Which of your recommendations do you think "+this.props.friend.username+ " would like?":"?יאהב " +this.props.friend.username+" איזה מבין הסרטים הבאים "
+         "Which of your recommendations do you think "+this.props.friend.username+ " would like?":"איזה מבין הסרטים הבאים  " +this.props.friend.username+" יאהב?  "
          
          }
         
@@ -68,9 +68,9 @@ export class UserRecommendations extends React.Component {
                  this.props.movies, this.state.movieChosenId), this.state.content)} 
          className="btn btn-primary button--add-friend btn-lg">
          {this.props.language === "English"? ("Recommend to "+this.props.friend.username):
-         (this.props.friend.username+"המליצו ל")
+         ("המליצו ל"+this.props.friend.username)
          }
-         </button> "
+         </button> 
          
         </div>)}
      </div>

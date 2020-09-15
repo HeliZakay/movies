@@ -29,7 +29,7 @@ import { startDeleteMessage } from '../actions/messages';
                 <Link to="/friends">
                 <button 
                 className="new-message btn btn-primary button--add-friend btn-lg ">
-                {this.props.language === "English"? "Send a new message!": "!שלח הודעה חדשה"}
+                {this.props.language === "English"? "Send a new message!": "שלח הודעה חדשה!"}
                 </button>
                 </Link>
                     {this.props.messagesRecieved.length === 0 ?

@@ -78,7 +78,7 @@ export class MovieCard extends React.Component {
             <div className="card-header custom-card-header">
             <h3 >
                 {this.props.language === "English"?
-                ("Movie: " + this.props.movieName ): (  this.props.movieName+" :סרט" )}
+                ("Movie: " + this.props.movieName ): ( " סרט:    " +this.props.movieName )}
             </h3>
             </div>
             <div className="card-body">
@@ -96,7 +96,7 @@ export class MovieCard extends React.Component {
             className="btn button-movie btn-warning btn-lg" >
            <div className="custom-card__add-review-text">
             </div>
-           {(this.props.language === "English"? "Add a quick review!": " !הוסף המלצה זריזה")}
+           {(this.props.language === "English"? "Add a quick review!": " הוסף המלצה זריזה! ")}
            </button>
             
             {this.state.show && <div className="custom-card__quick-review-section">

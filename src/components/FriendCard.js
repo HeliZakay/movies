@@ -72,7 +72,7 @@ export class FriendCard extends React.Component {
             onClick={this.showUserRecommendations} 
             className="btn button-friend btn-warning btn-lg">
              {this.props.language === "English"? ("Send "+ this.props.friendObj.username + " a recommendation"):
-                (this.props.friendObj.username+"שלחו המלצה ל")
+                ("שלחו המלצה ל"+this.props.friendObj.username)
                 } 
             </button>
             <br/>
@@ -80,7 +80,7 @@ export class FriendCard extends React.Component {
             onClick={this.showTextare} 
             className="btn button-friend--message btn-primary btn-lg">
              {this.props.language === "English"? ("Send "+ this.props.friendObj.username + " a message"):
-                (this.props.friendObj.username+"שלחו הודעה ל")
+                ("שלחו הודעה ל"+this.props.friendObj.username)
                 }
             </button>
             {this.state.showUserRecommendations &&
@@ -91,7 +91,7 @@ export class FriendCard extends React.Component {
             {this.state.showTextare &&
             <div>
             <textarea className="textarea--message-only-friend"
-                        placeholder="write a personal message"
+                        placeholder={this.props.language === "English"? "write a personal message": "כתבו הודעה אישית"}
                         value={this.state.content}
                         onChange={this.onContentChange}>
             </textarea>
@@ -99,7 +99,7 @@ export class FriendCard extends React.Component {
                 onClick={this.onMessageSend}
                 className="btn btn-primary button--add-friend btn-lg">
                 {this.props.language === "English"? ("Send to "+ this.props.friendObj.username):
-                (this.props.friendObj.username+" שלחו ל")
+                ("שלחו ל"+this.props.friendObj.username)
                 }
                 
              </button> 

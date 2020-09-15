@@ -54,7 +54,7 @@ export class MessageCard extends React.Component{
             mail
             </i>
             <h3 >
-            {this.props.language === "English"? ("Message from" + this.props.username+ "!"): ( "!"+this.props.username+ "הודעה מ ")}
+            {this.props.language === "English"? ("Message from " + this.props.username+ "!"): (  "הודעה מ "+this.props.username+"!")}
             
             </h3>        
             </div>
@@ -67,13 +67,13 @@ export class MessageCard extends React.Component{
                 <p className="card-subtitle mb-2 text-muted">
                 {this.props.language === "English"? 
                 " Created at: "+ moment(this.props.createdAt).format("MMMM D, YYYY"):
-                moment(this.props.createdAt).format("MMMM D, YYYY")+ " נוצר בתאריך "
+                 " נוצר בתאריך "+moment(this.props.createdAt).format("MMMM D, YYYY")
                 }
                </p>
                 {this.props.movieName &&
                 <p className="card-title">
                 {this.props.language === "English"? ("Hi "+ this.props.myName +" ! I think you might like the movie "+ this.props.movieName +"."):
-                ("! יהיה לטעמך " +this.props.movieName + " נראה לי שהסרט " )
+                ( " נראה לי שהסרט "+this.props.movieName+" יהיה לטעמך! ")
                   }
                 
                 </p>
@@ -84,7 +84,7 @@ export class MessageCard extends React.Component{
                     <button 
                     className="btn button-movie btn-warning btn-lg"
                     onClick={this.onAddOrRemoveFromWatchList}>
-                    {this.props.language === "English"? "Add to my watch list!": "!הוסף לרשימת הצפייה שלי"}
+                    {this.props.language === "English"? "Add to my watch list!": "הוסף לרשימת הצפייה שלי!"}
                      </button>)
                 }
                 <div>
@@ -92,7 +92,7 @@ export class MessageCard extends React.Component{
                     onClick={this.showTextare} 
                     className="btn button-friend--message btn-primary btn-lg"
                     >
-                    {this.props.language === "English"? " Respond!": "!הגב להודעה"}
+                    {this.props.language === "English"? " Respond!": "הגב להודעה!"}
                    
                      </button>
                      </div>
