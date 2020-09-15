@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import MovieCard from "./MovieCard";
 import getVisibleMovies from "../selectors/movies";
 
+
 export const MoviesList = (props) => {
     return (
        

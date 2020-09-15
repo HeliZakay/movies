@@ -56,6 +56,15 @@ export class MovieCard extends React.Component {
             this.props.startAddReview(review);
             
     };
+    didSendReviewToMovie = ({reviews, uid}) => {
+        let didSendReviewToMovie = false;
+        reviews.forEach((review) => {
+          if (review.userUid === uid) {
+            didSendReviewToMovie = true;
+          }
+        });
+        return didSendReviewToMovie;
+      }
     render() {
         return (
             <div 
@@ -90,15 +99,18 @@ export class MovieCard extends React.Component {
             />
             <ReviewsCarousel reviews={this.props.reviews}/>
             </div>
-            <div className="card-footer text-muted">           
-           <button
-           onClick={this.onShow}
-            className="btn button-movie btn-warning btn-lg" >
-           <div className="custom-card__add-review-text">
-            </div>
-           {(this.props.language === "English"? "Add a quick review!": " הוסף המלצה זריזה! ")}
-           </button>
-            
+            <div className="card-footer text-muted">   
+            {this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews})? (
+                <p>{this.props.language === "English"? "You reviewd this movie!": "שלחת ביקורת לסרט! "}</p>
+            ):(
+                <button
+                onClick={this.onShow}
+                className="btn button-movie btn-warning btn-lg" >
+                <div className="custom-card__add-review-text">
+                {(this.props.language === "English"? "Add a quick review!": " הוסף המלצה זריזה! ")}
+                 </div>
+                </button>
+            )}                    
             {this.state.show && <div className="custom-card__quick-review-section">
             <form onSubmit={this.onQuickReviewSend}>
             <label> {this.props.language === "English"? "Movie Rating:": "ציון הסרט" } </label>
@@ -162,7 +174,8 @@ const mapDispatchToProps = (dispatch) => ({
      currentUserUid: state.auth.uid,
      watchList: state.watchList,
      language: state.auth.language,
-     username: state.auth.username
+     username: state.auth.username,
+     uid: state.auth.uid
  });
 
  export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

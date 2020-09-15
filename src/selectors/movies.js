@@ -1,3 +1,11 @@
+
+  export const sortReviewsByDate = (reviews) => {
+    console.log("here");
+    return reviews.sort((a,b) => {
+      return a.createdAt < b.createdAt ? 1 : -1;
+    });
+  }
+
 const computeAverageScore = (movie) => {
   let sum = 0;
   movie.reviews.forEach((review) => {
@@ -18,6 +26,9 @@ export default (movies, { text, sortBy, person}) => {
         }
       });
       return textMatch && personMatch;
+    }).map((movie) => {
+      const sortedReviews = sortReviewsByDate(movie.reviews)
+      return {...movie, reviews: sortedReviews}
     }).sort((a, b) => {
       if (sortBy === 'date') {
         return a.reviews[a.reviews.length - 1].createdAt < b.reviews[b.reviews.length - 1].createdAt ? 1 : -1;
