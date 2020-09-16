@@ -5,13 +5,15 @@ import {isMovieOnWatchList} from "../selectors/watchList";
 import {startAddMovieToWatchList, startRemoveMovieFromWatchList} from "../actions/watchList";
 import {startDeleteMessage} from "../actions/messages";
 import {startAddMessageToFriend} from "../actions/messages";
+import {startMarkMessageAsRead} from "../actions/messages";
 
 export class MessageCard extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             showTextare: false,
-            content: ""
+            content: "",
+            open: props.read
         }
     }
     showTextare = () => {
@@ -41,7 +43,11 @@ export class MessageCard extends React.Component{
                 content: this.state.content
             });
         }
-    };  
+    }; 
+    onOpenClick = () => {
+        this.setState({...this.state, open: true});
+        this.props.startMarkMessageAsRead(this.props.userId, this.props.id);
+    } 
    
     render() {
         return (
@@ -68,7 +74,16 @@ export class MessageCard extends React.Component{
                 " Created at: "+ moment(this.props.createdAt).format("MMMM D, YYYY"):
                  " נוצר בתאריך "+moment(this.props.createdAt).format("MMMM D, YYYY")
                 }
+                <br/>
+                { typeof this.state.open !== "undefined" && this.state.open === false && <button
+                onClick={this.onOpenClick}
+                className="btn button-movie btn-warning btn-lg"
+                >
+                {this.props.language === "English"? "Open!" : "פתח!"}
+                </button>}
+
                </p>
+               {(this.state.open===true || typeof this.state.open ==="undefined") && <div> 
                 {this.props.movieName &&
                 <p className="card-title">
                 {this.props.language === "English"? ("Hi "+ this.props.myName +" ! I think you might like the movie "+ this.props.movieName +"."):
@@ -77,8 +92,8 @@ export class MessageCard extends React.Component{
                 
                 </p>
                 }
-                {this.props.content && <p className="card-text"> "{this.props.content}"</p> }
-                {this.props.movieName && 
+                { this.props.content && <p className="card-text"> "{this.props.content}"</p> }
+                { this.props.movieName && 
                     !(isMovieOnWatchList(this.props.watchList, this.props.movieId)) && (
                     <button 
                     className="btn button-movie btn-warning btn-lg"
@@ -86,15 +101,18 @@ export class MessageCard extends React.Component{
                     {this.props.language === "English"? "Add to my watch list!": "הוסף לרשימת הצפייה שלי!"}
                      </button>)
                 }
-                <div>
+                 <div>
                 <button
                     onClick={this.showTextare} 
                     className="btn button-friend--message btn-primary btn-lg"
-                    >
+                >
                     {this.props.language === "English"? " Respond!": "הגב להודעה!"}
-                   
-                     </button>
-                     </div>
+                </button>
+                </div>
+
+               </div>
+               }
+
                      {this.state.showTextare && <div><textarea className="textarea--message-only-friend"
                         placeholder={this.props.language === "English"? "write a personal message": "כתבו הודעה אישית"}
                         value={this.state.content}
@@ -129,7 +147,8 @@ const mapDispatchToProps = (dispatch) => ({
     startAddMovieToWatchList: (id) => dispatch(startAddMovieToWatchList(id)),
     startRemoveMovieFromWatchList: (id) => dispatch(startRemoveMovieFromWatchList(id)),
     startDeleteMessage: (messageId) => dispatch(startDeleteMessage(messageId)),
-    startAddMessageToFriend: (message) => dispatch(startAddMessageToFriend(message)) 
+    startAddMessageToFriend: (message) => dispatch(startAddMessageToFriend(message)),
+    startMarkMessageAsRead: (userId, messageId) => dispatch(startMarkMessageAsRead(userId, messageId))
  });
 
 

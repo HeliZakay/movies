@@ -12,14 +12,15 @@
 .header__title {
     color: white;
     text-decoration: none;  
-    
+    font-family: 'Sawarabi Gothic', sans-serif;
+    display:flex;   
 }
 
 .header__active-class {
     color:$yellow;
 }
 .header {
-    :hover{
+    :hover {
         color: $yellow;
     }
 }
@@ -28,3 +29,18 @@
         color: white;
     }
 } 
+.header__unread-messaged-count {
+    margin-left: 7px;
+    background: $yellow;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    color: $dark-blue;
+    border-radius: 100%;
+    font-weight: 700;   
+}
+.onHoverBlue {
+    :hover {
+        color: $dark-blue;
+    }
+}

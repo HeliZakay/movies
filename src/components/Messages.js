@@ -56,6 +56,7 @@ import { startDeleteMessage } from '../actions/messages';
                                     movieId={message.movie ? message.movie.id: undefined}
                                     content={message.content}
                                     onDelete={this.onDelete}
+                                    read={message.read}
                                  />     
                                 </div>
                             );

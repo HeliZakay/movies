@@ -45,8 +45,7 @@ export class FriendCard extends React.Component {
     }
     onMessageSend = () => {
         if (this.state.content) {
-            this.setState({...this.state, content: ""});
-            this.setState({...this.state, showTextare: false});
+            this.setState({...this.state, showTextare: false, content: ""});
             this.props.startAddMessageToFriend({
                 recommender: this.props.user,
                 friend: {

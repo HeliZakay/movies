@@ -26,6 +26,21 @@ export default (state=defaultStateOfMessages, action) => {
                     return message.id !== action.messageId;
                 })  
             }
+        case "MARK_MESSAGE_AS_READ":
+            return {
+                ...state,
+                messagesRecieved: state.messagesRecieved.map((message) => {
+                    if(message.id === action.messageId) {
+                        const updatedMessageObj = {
+                            ...message,
+                            read: true
+                        }
+                        return updatedMessageObj;
+                    } else {
+                        return message;
+                    }
+                })
+            }
         default:
             return state;
     }

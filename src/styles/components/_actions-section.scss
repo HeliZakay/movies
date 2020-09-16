@@ -1,5 +1,5 @@
 .actions-section {
-    background: #eeeeee;
+    background:  #faf3dd;
     padding: $l-size 0;
     padding-bottom: $m-size;
     @media (max-width: $desktop-breakpoint) {
@@ -46,6 +46,7 @@
 }
 
 .actions-section__text {
+    font-family: 'Laila', serif;
     @media (max-width: $desktop-breakpoint) {
         font-size: 1.4rem;
     }

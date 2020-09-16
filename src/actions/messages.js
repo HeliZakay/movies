@@ -7,7 +7,8 @@ export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, 
             recommender,
             movie,
             createdAt: moment(createdAt).format(),
-            content
+            content,
+            read: false
         };
         const messageSent ={
           friend,
@@ -79,3 +80,15 @@ export const setMessagesSent = (messagesSent) => ({
   messagesSent
 });
 
+export const startMarkMessageAsRead = (userId, messageId) => {
+  return (dispatch) => {
+    return database.ref(`users/${userId}/messagesRecieved/${messageId}`).update({read: true}).then(() => {
+      dispatch(markMessageAsRead(messageId));
+    });
+  };
+};
+
+export const markMessageAsRead = (messageId) => ({
+  type: "MARK_MESSAGE_AS_READ",
+  messageId
+});
