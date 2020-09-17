@@ -41,7 +41,8 @@ export class MessageCard extends React.Component{
                 },
                 movie: {},
                 createdAt: moment(),
-                content: this.state.content
+                content: this.state.content,
+                cardNum: undefined
             });
         }
     }; 
