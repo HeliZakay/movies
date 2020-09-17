@@ -1,15 +1,15 @@
 
-  export const sortReviewsByDate = (reviews) => {
-    return reviews.sort((a,b) => {
-      return a.createdAt < b.createdAt ? 1 : -1;
-    });
-  }
-
+  export const sortReviewsByDateAndPerson = (reviews, person) => { 
+    return reviews.sort((a,b) => { 
+        return a.createdAt < b.createdAt? 1:-1;
+      });
+  };
+  
 const computeAverageScore = (movie) => {
   let sum = 0;
   movie.reviews.forEach((review) => {
       sum += Number(review.score);
-  })
+  });
   const result = sum/movie.reviews.length;
   return  Math.round(result*2)/2;;
 }
@@ -26,11 +26,11 @@ export default (movies, { text, sortBy, person}) => {
       });
       return textMatch && personMatch;
     }).map((movie) => {
-      const sortedReviews = sortReviewsByDate(movie.reviews)
-      return {...movie, reviews: sortedReviews}
+      const sorted = sortReviewsByDateAndPerson(movie.reviews, person);
+      return {...movie, reviews: sorted};
     }).sort((a, b) => {
       if (sortBy === 'date') {
-        return a.reviews[a.reviews.length - 1].createdAt < b.reviews[b.reviews.length - 1].createdAt ? 1 : -1;
+        return a.reviews[0].createdAt < b.reviews[0].createdAt ? 1 : -1;
       } else if (sortBy === 'score') {
         return computeAverageScore(a) < computeAverageScore(b) ? 1 : -1;
       }

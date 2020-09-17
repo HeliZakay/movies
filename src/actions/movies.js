@@ -29,11 +29,11 @@ export const startAddMovie = (movieData = {}) => {
       userUid: getState().auth.uid
     }
      return database.ref("movies").push(movie).then( (ref) => {
-        return database.ref(`movies/${ref.key}/reviews`).push(review).then(() => {
+        return database.ref(`movies/${ref.key}/reviews`).push(review).then((r) => {
           dispatch(addMovie({
             id: ref.key,
             movieName,
-            reviews: [review]
+            reviews: [{...review, id: r.key}]
           }));
         });
      });
