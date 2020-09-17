@@ -83,7 +83,8 @@ export class MessageCard extends React.Component{
                 </button>}
 
                </p>
-               {(this.state.open===true || typeof this.state.open ==="undefined") && <div> 
+               {(this.state.open===true || typeof this.state.open ==="undefined") && <div>
+               {this.props.cardNum && <img className="card-in-message" src={'/images/shana-tova'+this.props.cardNum+'.png'}></img>} 
                 {this.props.movieName &&
                 <p className="card-title">
                 {this.props.language === "English"? ("Hi "+ this.props.myName +" ! I think you might like the movie "+ this.props.movieName +"."):

@@ -1,0 +1,24 @@
+.shana-tova {
+    padding: 50px 100px 100px 100px;
+}
+.shana-tova__images {
+    display:flex;
+    justify-content: space-around;
+    
+   
+}
+.shana-tove__card{
+ width: 170px;
+}
+.shana-tova__heading{
+    text-align: right;
+    margin: 40px 50px 70px 40px;
+    color: $blue;
+}
+.success-message{
+    color: green;
+}
+
+.card-in-message{
+    width: 100%;
+}

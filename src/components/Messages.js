@@ -57,6 +57,7 @@ import { startDeleteMessage } from '../actions/messages';
                                     content={message.content}
                                     onDelete={this.onDelete}
                                     read={message.read}
+                                    cardNum= {message.cardNum? message.cardNum : undefined}
                                  />     
                                 </div>
                             );

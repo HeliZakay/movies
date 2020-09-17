@@ -7,11 +7,16 @@ import {connect} from "react-redux";
 import {addFriendsToDB} from "../actions/friends.js";
 // import {addMe} from "../actions/friends.js";
 // import {unifyReviews} from "../actions/movies";
+import ShanaTova from "./ShanaTova";
 
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
     <Open />
+    <ShanaTova />
+    
     <Actions />   
+    
+    
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={addMe}>addMe</button> */}
     {/* <button onClick={unifyReviews}>Unify Reviews</button> */}
