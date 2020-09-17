@@ -42,7 +42,7 @@ export class MessageCard extends React.Component{
                 movie: {},
                 createdAt: moment(),
                 content: this.state.content,
-                cardNum: undefined
+                cardNum: "-1"
             });
         }
     }; 
@@ -86,7 +86,7 @@ export class MessageCard extends React.Component{
 
                </p>
                {(this.state.open===true || typeof this.state.open ==="undefined") && <div>
-               {this.props.cardNum && <img className="card-in-message" src={'/images/shana-tova'+this.props.cardNum+'.png'}></img>} 
+               {this.props.cardNum !== "-1" && <img className="card-in-message" src={'/images/shana-tova'+this.props.cardNum+'.png'}></img>} 
                 {this.props.movieName &&
                 <p className="card-title">
                 {this.props.language === "English"? ("Hi "+ this.props.myName +" ! I think you might like the movie "+ this.props.movieName +"."):
@@ -105,12 +105,12 @@ export class MessageCard extends React.Component{
                      </button>)
                 }
                  <div>
-                {/* <button
+                <button
                     onClick={this.showTextare} 
                     className="btn button-friend--message btn-primary btn-lg"
                 >
                     {this.props.language === "English"? " Respond!": "הגב להודעה!"}
-                </button> */}
+                </button>
                 </div>
                 {this.state.successMessage && <p className="success-message">
                     {this.props.language === "English"? "Your message was successfully sent!" : "ההודעה נשלחה בהצלחה!"}

@@ -39,12 +39,15 @@ export class FriendCard extends React.Component {
                 },
                 movie,
                 createdAt: moment(),
-                content
+                content,
+                cardNum: "-1"
             });
         }
     }
     onMessageSend = () => {
+        
         if (this.state.content) {
+            console.log("here");
             this.setState({...this.state, showTextare: false, content: "", successMessage: true});
             this.props.startAddMessageToFriend({
                 recommender: this.props.user,
@@ -55,7 +58,8 @@ export class FriendCard extends React.Component {
                 },
                 movie: {},
                 createdAt: moment(),
-                content: this.state.content
+                content: this.state.content,
+                cardNum: "-1"
             });
         }
     };  
@@ -67,21 +71,21 @@ export class FriendCard extends React.Component {
             <div className="card-body">
             <div className="custom-card__card-content">
             <p className="card-title">{this.props.friendObj.email}</p>
-            {/* <button 
+            <button 
             onClick={this.showUserRecommendations} 
             className="btn button-friend btn-warning btn-lg">
              {this.props.language === "English"? ("Send "+ this.props.friendObj.username + " a recommendation"):
                 ("שלחו המלצה ל"+this.props.friendObj.username)
                 } 
-            </button> */}
-            {/* <br/>
+            </button> 
+            <br/>
             <button
             onClick={this.showTextare} 
             className="btn button-friend--message btn-primary btn-lg">
              {this.props.language === "English"? ("Send "+ this.props.friendObj.username + " a message"):
                 ("שלחו הודעה ל"+this.props.friendObj.username)
                 }
-            </button> */}
+            </button>
             {this.state.successMessage && <p className="success-message">
                     {this.props.language === "English"? "Your message was successfully sent!" : "ההודעה נשלחה בהצלחה!"}
                 </p>}
