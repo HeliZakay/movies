@@ -104,12 +104,12 @@ export class MessageCard extends React.Component{
                      </button>)
                 }
                  <div>
-                <button
+                {/* <button
                     onClick={this.showTextare} 
                     className="btn button-friend--message btn-primary btn-lg"
                 >
                     {this.props.language === "English"? " Respond!": "הגב להודעה!"}
-                </button>
+                </button> */}
                 </div>
                 {this.state.successMessage && <p className="success-message">
                     {this.props.language === "English"? "Your message was successfully sent!" : "ההודעה נשלחה בהצלחה!"}
