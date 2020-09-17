@@ -13,11 +13,12 @@ export class MessageCard extends React.Component{
         this.state = {
             showTextare: false,
             content: "",
-            open: props.read
+            open: props.read,
+            successMessage: false
         }
     }
     showTextare = () => {
-        this.setState({...this.state, showTextare: !this.state.showTextare});
+        this.setState({...this.state, showTextare: !this.state.showTextare, successMessage: false});
     }
     onContentChange = (event) => {
         const content = event.target.value;
@@ -30,7 +31,7 @@ export class MessageCard extends React.Component{
     };
     onMessageSend = () => {
         if (this.state.content) {
-            this.setState({...this.state, showTextare: false, content: ""});
+            this.setState({...this.state, showTextare: false, content: "", successMessage: true});
             this.props.startAddMessageToFriend({
                 recommender: this.props.user,
                 friend: {
@@ -110,6 +111,9 @@ export class MessageCard extends React.Component{
                     {this.props.language === "English"? " Respond!": "הגב להודעה!"}
                 </button>
                 </div>
+                {this.state.successMessage && <p className="success-message">
+                    {this.props.language === "English"? "Your message was successfully sent!" : "ההודעה נשלחה בהצלחה!"}
+                </p>}
 
                </div>
                }

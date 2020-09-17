@@ -12,16 +12,16 @@ export class FriendCard extends React.Component {
             showUserRecommendations: false,
             showTextare: false,
             content: "",
-
+            successMessage: false
         }
     }
     showUserRecommendations = () => {
         return(this.props.startSetMessagesSent()).then(() => {
-            this.setState({...this.state, showUserRecommendations: !this.state.showUserRecommendations});
+            this.setState({...this.state, showUserRecommendations: !this.state.showUserRecommendations, successMessage: false, showTextare:false});
         })
     };
     showTextare = () => {
-        this.setState({...this.state, showTextare: !this.state.showTextare});
+        this.setState({...this.state, showTextare: !this.state.showTextare, successMessage: false, showUserRecommendations: false});
     }
     onContentChange = (event) => {
         const content = event.target.value;
@@ -29,7 +29,7 @@ export class FriendCard extends React.Component {
     };
     onRecommendationSend = (movie, content) => {
         if (movie) {
-            this.setState({...this.state, showUserRecommendations: false});
+            this.setState({...this.state, showUserRecommendations: false, successMessage:true});
             this.props.startAddMessageToFriend({
                 recommender: this.props.user,
                 friend :{
@@ -45,7 +45,7 @@ export class FriendCard extends React.Component {
     }
     onMessageSend = () => {
         if (this.state.content) {
-            this.setState({...this.state, showTextare: false, content: ""});
+            this.setState({...this.state, showTextare: false, content: "", successMessage: true});
             this.props.startAddMessageToFriend({
                 recommender: this.props.user,
                 friend: {
@@ -82,6 +82,9 @@ export class FriendCard extends React.Component {
                 ("שלחו הודעה ל"+this.props.friendObj.username)
                 }
             </button>
+            {this.state.successMessage && <p className="success-message">
+                    {this.props.language === "English"? "Your message was successfully sent!" : "ההודעה נשלחה בהצלחה!"}
+                </p>}
             {this.state.showUserRecommendations &&
              <UserRecommendations 
              onRecommendationSend={this.onRecommendationSend} 
