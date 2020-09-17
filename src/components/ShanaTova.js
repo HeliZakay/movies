@@ -26,7 +26,7 @@ export class ShanaTova extends React.Component {
             <div className="shana-tova__images">
            <div>
            <a onClick={() => this.onCardChoose("1")}>
-           <img className="shana-tove__card" src='/images/shana-tova.png'></img>
+           <img className="shana-tove__card" src='/images/shana-tova1.png'></img>
            </a>
            
            </div>
