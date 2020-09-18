@@ -12,7 +12,7 @@ import MoviesCarousel from "./MoviesCarousel";
 
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
-    <Open />
+    {/* <Open /> */}
     <ShanaTova />
     <MoviesCarousel />
     <Actions />   
