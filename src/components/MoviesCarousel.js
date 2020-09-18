@@ -39,9 +39,9 @@ export class MoviesCarousel extends React.Component {
           <h2 className="testimonial-text"></h2>
           <MovieCardCarousel
         className={this.props.language !== "English" && "align-right"}
-        review = {this.props.movies[43].reviews[0]}
-        id={this.props.movies[43].id}
-        movieName={this.props.movies[43].movieName}
+        review = {this.props.movies[22].reviews[0]}
+        id={this.props.movies[22].id}
+        movieName={this.props.movies[22].movieName}
       />
         </div>
         <div className="carousel-item container-fluid">
