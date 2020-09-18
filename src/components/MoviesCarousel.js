@@ -44,6 +44,33 @@ export class MoviesCarousel extends React.Component {
         movieName={this.props.movies[43].movieName}
       />
         </div>
+        <div className="carousel-item container-fluid">
+          <h2 className="testimonial-text"></h2>
+          <MovieCardCarousel
+        className={this.props.language !== "English" && "align-right"}
+        review = {this.props.movies[29].reviews[0]}
+        id={this.props.movies[29].id}
+        movieName={this.props.movies[29].movieName}
+      />
+        </div>
+        <div className="carousel-item container-fluid">
+          <h2 className="testimonial-text"></h2>
+          <MovieCardCarousel
+        className={this.props.language !== "English" && "align-right"}
+        review = {this.props.movies[30].reviews[0]}
+        id={this.props.movies[30].id}
+        movieName={this.props.movies[30].movieName}
+      />
+        </div>
+        <div className="carousel-item container-fluid">
+          <h2 className="testimonial-text"></h2>
+          <MovieCardCarousel
+        className={this.props.language !== "English" && "align-right"}
+        review = {this.props.movies[39].reviews[0]}
+        id={this.props.movies[39].id}
+        movieName={this.props.movies[39].movieName}
+      />
+        </div>
         
       </div>
       <a className="carousel-control-prev" href="#testemonial-carousel" role="button" data-slide="prev">
