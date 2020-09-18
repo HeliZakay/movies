@@ -61,7 +61,7 @@ export class MovieCardCarousel extends React.Component {
            {this.props.review.content && <p className="large-font">  "{this.props.review.content}" </p> }
             <p className="large-font margin-bottom"> {this.props.language === "English"?("Score: "+ this.props.review.score): ("ציון: "+ this.props.review.score)}</p>
             <div className="middle" >   
-            {!this.didSendReviewToMovie({uid: this.props.uid, review: this.props.review})&&
+            {/* {!this.didSendReviewToMovie({uid: this.props.uid, review: this.props.review})&&
             (
                 <button 
                 onClick={this.onShow}
@@ -96,8 +96,8 @@ export class MovieCardCarousel extends React.Component {
                         </strong>
                 </button>
             </form>
-            </div>}
-            <div  className="middle">
+            </div>} */}
+            {/* <div  className="middle">
             <a onClick={this.onAddOrRemoveFromWatchList}>
             {(!isMovieOnWatchList(this.props.watchList, this.props.id)) &&
            
@@ -115,7 +115,7 @@ export class MovieCardCarousel extends React.Component {
              </div>
            }
             </a>
-            </div>
+            </div> */}
             </div> 
             </div>           
             </div>
