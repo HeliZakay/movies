@@ -10,10 +10,12 @@ import {addFriendsToDB} from "../actions/friends.js";
 import ShanaTova from "./ShanaTova";
 import MoviesCarousel from "./MoviesCarousel";
 
+
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
     {/* <Open /> */}
     <ShanaTova />
+   
     <MoviesCarousel />
     <Actions />   
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}

@@ -22,7 +22,7 @@ export class ShanaTova extends React.Component {
         return (
             <div className="shana-tova">
             {this.state.showImages && <div>
-                <h1 className="shana-tova__heading">!בחרו כרטיס שנה טובה ושלחו לחבר/ה אהובים</h1>
+                <h2 className="shana-tova__heading">בחרו כרטיס שנה טובה לשליחה לחברים! </h2>
             <div className="shana-tova__images">
            <div>
            <a onClick={() => this.onCardChoose("1")}>

@@ -1,7 +1,8 @@
 .shana-tova {
-    padding: 50px 100px 100px 100px;
+    padding: 50px 0;
     background: #faf3dd;
     font-family: 'Varela Round', sans-serif;
+   
 }
 .shana-tova__images {
     display:flex;
@@ -10,11 +11,11 @@
    
 }
 .shana-tove__card{
- width: 170px;
+ width: 100px;
 }
 .shana-tova__heading{
-    text-align: right;
-    margin: 40px 50px 70px 40px;
+    text-align: center;
+    margin-bottom: 30px;
     color: $blue;
 }
 .success-message{

@@ -1,16 +1,28 @@
-.colored-section {
-    color: white;
-  }
-  #testimonials {
-    background-color: #337ab7;
-    height: 500px;
+// .colored-section {
+//     color: white;
+//   }
+//   #testimonials {
+//     background-color: #337ab7;
+//     height: 500px;
    
-  }
-  .testemonial-text {
-    font-size: 3rem;
-    line-height: 1.5;
-  }
-  .container-fluid {
-  padding: 7% 25%; 
-  }
+//   }
+//   .testemonial-text {
+//     font-size: 3rem;
+//     line-height: 1.5;
+//   }
+//   .container-fluid {
+//   padding: 7% 25%; 
+//   }
     
+.movie-carousel {
+  background: $nesquik-light-blue;
+  color: white;
+  text-align: center;
+  padding: $l-size;
+ 
+}
+.movie-carousel__item {
+  height: 120px;
+  width: 70%;
+  margin: 0 auto;
+}
