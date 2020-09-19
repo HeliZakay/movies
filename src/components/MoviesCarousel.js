@@ -11,9 +11,9 @@ function MoviesCarousel(props)
     return (
          <Carousel
         className="movie-carousel"
-        animation="slide"
+        animation="fade"
         navButtonsAlwaysVisible={true}
-        timeout={1000} 
+        timeout={500} 
        >
             {
               
