@@ -14,6 +14,8 @@ function MoviesCarousel(props)
         animation="fade"
         navButtonsAlwaysVisible={true}
         timeout={500} 
+        interval={5000}
+        
        >
             {
               
