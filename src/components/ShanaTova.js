@@ -54,7 +54,7 @@ export class ShanaTova extends React.Component {
             </div>}
             {this.state.showFriends && <div>
 
-        <h1 className="shana-tova__heading">בחרו את החבר/ה אליהם תרצו לשלוח</h1>
+        <h2 className="shana-tova__heading">בחרו את החבר/ה אליהם תרצו לשלוח</h2>
         <div className="finish-send">
 <button onClick={this.onFinishSend}
 className="btn button-movie btn-warning btn-lg " 

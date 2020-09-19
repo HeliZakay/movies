@@ -17,6 +17,7 @@ export const WatchList = (props) => {
         </div>
          
         </div>
+        <div className="watchlist">
         <div className="content-container">
         <MoviesListFilters />
             {props.movies.length ===0 ?
@@ -44,6 +45,7 @@ export const WatchList = (props) => {
         
             
            
+        </div>
         </div>
         </div>
     );

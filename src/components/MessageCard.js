@@ -53,7 +53,9 @@ export class MessageCard extends React.Component{
    
     render() {
         return (
+           
             <div className="card card bg-light mb-3 custom-card">
+             <div className="messageCard">
             {/* <i className="fas fa-envelope"></i> */}
             <div className="card-header custom-card-header">
             <div className="custom-card-header__envelop-and-header">
@@ -133,6 +135,7 @@ export class MessageCard extends React.Component{
                          </div>}
             </div>
             </div>
+        </div>
         </div>
         );
     };

@@ -6,10 +6,11 @@
 .custom-card__card-content {
     
     padding: 0 0 8px 0;
+    
 }
 
 .custom-card-header{
-    background: $blue;
+    background: $dark-blue;
     color: white;
     font-family: 'Open Sans', sans-serif;
     display: flex;
@@ -44,3 +45,8 @@
     justify-content: space-between;
 }
 
+.custom-card__footer  {
+    
+    
+    border-top: 1px solid $card-footer;
+}

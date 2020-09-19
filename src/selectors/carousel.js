@@ -10,7 +10,7 @@ export const getCarouselItems = ({friends, movies, watchlist, uid, language}) =>
         });
         if (!watchlist.includes(movie.id)) {
             friendsReviews.forEach((review) => {
-                const header = `${review.personName} ${language==="English"? "reviewd the movie": "הוסיפה ביקורת על הסרט"} ${movie.movieName}`;
+                const header = `${review.personName} ${language==="English"? "reviewed the movie": "הוסיפה ביקורת על הסרט"} ${movie.movieName}`;
                 const score = review.score;
                 const content=review.content;
                 const item = {

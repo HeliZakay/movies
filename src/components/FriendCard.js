@@ -68,6 +68,7 @@ export class FriendCard extends React.Component {
         return (
             <div className="card bg-light mb-3 custom-card--friend">
             <h3 className="card-header custom-card-header"> {this.props.friendObj.username}</h3>
+            <div className="friend-card">
             <div className="card-body">
             <div className="custom-card__card-content">
             <p className="card-title">{this.props.friendObj.email}</p>
@@ -111,6 +112,7 @@ export class FriendCard extends React.Component {
              </button> 
             </div>
             }
+            </div>
             </div>
             </div>
             </div>

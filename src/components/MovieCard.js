@@ -75,6 +75,7 @@ export class MovieCard extends React.Component {
                 ("Movie: " + this.props.movieName ): ( " סרט:    " +this.props.movieName )}
             </h3>
             </div>
+            <div className="movie-card">
             <div className="card-body">
             <div className="custom-card__card-content">
             <MovieData 
@@ -84,7 +85,7 @@ export class MovieCard extends React.Component {
             />
             <ReviewsCarousel reviews={this.props.reviews}/>
             </div>
-            <div className="card-footer text-muted">   
+            <div className="card-footer text-muted custom-card__footer">   
             {this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews})? (
                 <div className="custom-card__edit-section">
                 <p>{this.props.language === "English"? "You reviewd this movie!": "שלחת ביקורת לסרט! "}</p>
@@ -157,6 +158,7 @@ export class MovieCard extends React.Component {
            </div>
             </a>
             </div> 
+            </div>
             </div>
             </div>
         );
