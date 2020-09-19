@@ -68,7 +68,7 @@ export class MovieCard extends React.Component {
     render() {
         return (
             <div 
-            className="card card bg-light mb-3 custom-card">
+            className="card rounded bg-light mb-3 custom-card">
             <div className="card-header custom-card-header">
             <h3 >
                 {this.props.language === "English"?

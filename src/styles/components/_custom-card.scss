@@ -1,6 +1,7 @@
 .custom-card {
     width: 38rem;
     margin: 30px 0;
+ 
 }
 
 .custom-card__card-content {
@@ -11,7 +12,7 @@
 
 .custom-card-header{
     background: $dark-blue;
-    color: white;
+    color: $offwhite;
     font-family: 'Open Sans', sans-serif;
     display: flex;
     justify-content: space-between;
@@ -21,6 +22,7 @@
     @extend .custom-card;
     width: 40rem;
     margin: 50px 0;
+  
 }
 
 .custom-card-header__envelop-and-header{
