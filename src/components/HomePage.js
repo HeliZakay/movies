@@ -9,14 +9,14 @@ import {addFriendsToDB} from "../actions/friends.js";
 // import {unifyReviews} from "../actions/movies";
 import ShanaTova from "./ShanaTova";
 import MoviesCarousel from "./MoviesCarousel";
-
+import {getCarouselItems} from "../selectors/carousel";
 
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
     {/* <Open /> */}
     <ShanaTova />
    
-    <MoviesCarousel />
+    {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
     <Actions />   
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={addMe}>addMe</button> */}
@@ -30,7 +30,14 @@ export const HomePage = (props) => (
 
 const mapStateToProps = (state) => ({
   language: state.auth.language,
-  uid: state.auth.uid
+  uid: state.auth.uid,
+   items: getCarouselItems({
+      friends: state.friends.friends, 
+      movies: state.movies, 
+      watchlist: state.watchList,
+      uid: state.auth.uid,
+      language: state.auth.language
+  })
 });
 
 export default connect(mapStateToProps)(HomePage);

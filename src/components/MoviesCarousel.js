@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import {connect} from "react-redux";
-import {getCarouselItems} from "../selectors/carousel";
+
 
 function MoviesCarousel(props)
 {
@@ -9,7 +9,7 @@ function MoviesCarousel(props)
     
  
     return (
-        <Carousel
+         <Carousel
         className="movie-carousel"
         animation="slide"
         navButtonsAlwaysVisible={true}
@@ -34,17 +34,7 @@ function Item(props)
     )
 }
 
-const mapStateToProps = (state) => ({
-  items: getCarouselItems({
-      friends: state.friends.friends, 
-      movies: state.movies, 
-      watchlist: state.watchList,
-      uid: state.auth.uid,
-      language: state.auth.language
-  })
-})
-export default connect(mapStateToProps)(MoviesCarousel);
-
+export default MoviesCarousel;
 
 
 
