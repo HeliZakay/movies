@@ -45,10 +45,10 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
     <div className="content-container">
    
     <div className="messages__nav">
-    <button className="btn button-movie btn-warning btn-lg" onClick={this.switchToInbox} >
+    <button className="btn button-movie btn-warning btn-lg messages__nav-item" onClick={this.switchToInbox} >
     {this.props.language === "English"? "Inbox": "תיבת דואר נכנס"}
     </button>
-    <button className="btn button-movie btn-warning btn-lg" onClick={this.switchToSent} >
+    <button className="btn button-movie btn-warning btn-lg messages__nav-item" onClick={this.switchToSent} >
     {this.props.language === "English"? "Sent Messages": "הודעות שנשלחו"}
     </button>
     </div>
