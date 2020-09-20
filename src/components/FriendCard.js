@@ -1,9 +1,8 @@
 import React from "react";
 import UserRecommendations from "./UserRecommendations";
-import {startAddMessageToFriend} from "../actions/messages";
 import { connect } from "react-redux";
 import moment from "moment";
-import {startSetMessagesSent} from "../actions/messages"; 
+import {startSetMessagesSent, startAddRecommendation, startAddMessageToFriend} from "../actions/messages"; 
 
 export class FriendCard extends React.Component {
     constructor(props) {
@@ -41,6 +40,10 @@ export class FriendCard extends React.Component {
                 createdAt: moment(),
                 content,
                 cardNum: "-1"
+            });
+            this.props.startAddRecommendation({
+                friendId: this.props.friendObj.userId,
+                movieId: movie.id
             });
         }
     }
@@ -127,7 +130,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     startAddMessageToFriend: (message) => dispatch(startAddMessageToFriend(message)),
-    startSetMessagesSent: () => dispatch(startSetMessagesSent())
+    startSetMessagesSent: () => dispatch(startSetMessagesSent()),
+    startAddRecommendation: (recommendation) => dispatch(startAddRecommendation(recommendation))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendCard);

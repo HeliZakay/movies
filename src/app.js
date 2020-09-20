@@ -13,7 +13,7 @@ import {startLogin, logout} from "./actions/auth";
 import {startSetFriends} from "./actions/friends";
 import {startSetUserDetails} from "./actions/auth";
 import LoadingPage from "./components/LoadingPage";
-import {startSetMessagesRecieved, startSetMessagesSent } from "./actions/messages";
+import {startSetMessagesRecieved, startSetMessagesSent, startSetRecommendations } from "./actions/messages";
 
 const store = configureStore();
 
@@ -43,7 +43,9 @@ firebase.auth().onAuthStateChanged((user) => {
                         return store.dispatch(startSetUserDetails()).then(()=> {
                             return store.dispatch(startSetMessagesRecieved()).then(()=> {
                                 return store.dispatch(startSetMessagesSent()).then(()=> {
-                                renderApp();
+                                    return store.dispatch(startSetRecommendations()).then(() => {
+                                        renderApp();
+                                    });
                                 }); 
                             });                            
                         });  

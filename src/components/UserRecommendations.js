@@ -81,7 +81,7 @@ const mapStateToProps = (state) => ({
     movies: getUserRecommendations(state.movies, state.auth.uid),
     getOptionalMovies: (friend)=> {return filterOnlyMoviesNotRecommendedYet({
         moviesToFilterFrom:   getUserRecommendations(state.movies, state.auth.uid),
-        messagesSent:  state.messages.messagesSent,
+        recommendationsSent:  state.messages.recommendations,
         friend
     })},
     language: state.auth.language

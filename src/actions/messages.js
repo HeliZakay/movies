@@ -31,6 +31,23 @@ export const addMessageToSent = (message) => ({
   message
 });
 
+export const startAddRecommendation = ({friendId, movieId}) => {
+  return(dispatch, getState) => {
+    const recommendation = {friendId, movieId};
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/recommendations`).push(recommendation).then((ref) => {
+      dispatch(addRecommendation({
+        ...recommendation,
+        id: ref.key
+      }));
+    });
+  }
+}
+export const addRecommendation = (recommendation) => ({
+  type: "ADD_RECOMMENDATION",
+  recommendation
+})
+
 export const startDeleteMessageFromSent = (messageId) => {
   
   return (dispatch, getState) => {
@@ -87,6 +104,22 @@ export const startSetMessagesSent = () => {
   };
 };
 
+export const startSetRecommendations = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/recommendations`).once("value").then((snapshot) => {
+      const recommendations = [];
+      snapshot.forEach((childSnapshot) => {
+        recommendations.push({...childSnapshot.val(), id: childSnapshot.key});
+      });
+      dispatch(setRecommendations(recommendations));
+    });
+  }
+}
+export const setRecommendations = (recommendations) => ({
+  type: "SET_RECOMMENDATIONS",
+  recommendations 
+})
 
 export const setMessagesRecieved = (messagesRecieved) => ({
   type: "SET_MESSAGES_RECIEVED",

@@ -1,8 +1,7 @@
-export const getCarouselItems = ({friends, movies, watchlist, uid, language}) => {
+export const getCarouselItems = ({friends, movies, watchlist, language}) => {
     let friendsArray = friends.map((friend) => {
         return friend.userId;
     });
-    friendsArray = [...friendsArray, uid];
     let items = [];
     movies.forEach((movie) => {
         const friendsReviews = movie.reviews.filter((review) => {

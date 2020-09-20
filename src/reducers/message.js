@@ -1,6 +1,7 @@
 const defaultStateOfMessages = {
   messagesRecieved: [],
-  messagesSent: []  
+  messagesSent: [],
+  recommendations: [] 
 };
 export default (state=defaultStateOfMessages, action) => {
     switch(action.type) {
@@ -32,6 +33,16 @@ export default (state=defaultStateOfMessages, action) => {
                 messagesSent: state.messagesSent.filter((message) => {
                     return message.id !== action.messageId;
                 })
+            }
+        case "ADD_RECOMMENDATION":
+            return {
+                ...state,
+                recommendations: [...state.recommendations, action.recommendation]
+            }
+        case "SET_RECOMMENDATIONS":
+            return {
+                ...state,
+                recommendations: action.recommendations
             }
         case "MARK_MESSAGE_AS_READ":
             return {
