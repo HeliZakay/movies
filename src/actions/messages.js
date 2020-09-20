@@ -15,7 +15,8 @@ export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, 
           friend,
           movie,
           createdAt: moment(createdAt).format(),
-          content
+          content,
+          cardNum
         };
         database.ref(`users/${friend.uid}/messagesRecieved`).push(messageRecieved);
         database.ref(`users/${recommender.uid}/messagesSent`).push(messageSent).then((ref) => {
@@ -30,11 +31,27 @@ export const addMessageToSent = (message) => ({
   message
 });
 
+export const startDeleteMessageFromSent = (messageId) => {
+  
+  return (dispatch, getState) => {
+    const uid=getState().auth.uid;
+    return database.ref(`users/${uid}/messagesSent/${messageId}`).remove().then(() => {
+      dispatch(deleteMessageFromSent(messageId));
+    });
+  }
+}
+
+
+export const deleteMessageFromSent = (messageId) => ({
+  type: "DELETE_MESSAGE_FROM_SENT",
+  messageId
+});
+
 export const startDeleteMessage = ({messageId, userId}) => {
     return (dispatch) => {
-      database.ref(`users/${userId}/messagesRecieved/${messageId}`).remove().then(() => {
+      return database.ref(`users/${userId}/messagesRecieved/${messageId}`).remove().then(() => {
         dispatch(deleteMessage(messageId));
-      })
+      });
     }
 }
 

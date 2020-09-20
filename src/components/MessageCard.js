@@ -63,7 +63,13 @@ export class MessageCard extends React.Component{
             mail
             </i>
             <h3 >
-            {this.props.language === "English"? ("Message from " + this.props.username+ "!"): (  "הודעה מ "+this.props.username+"!")}
+            {this.props.type === "recieved"? 
+            (this.props.language === "English" ?
+             ("Message from " + this.props.username+ "!"):
+              (  "הודעה מ "+this.props.username+"!")):
+              this.props.language === "English" ?
+              ("Message to " + this.props.username+ "!"):
+              (  "הודעה ל "+this.props.username+"!")}
             
             </h3>        
             </div>
@@ -79,7 +85,7 @@ export class MessageCard extends React.Component{
                  " נוצר בתאריך "+moment(this.props.createdAt).format("MMMM D, YYYY")
                 }
                 <br/>
-                { typeof this.state.open !== "undefined" && this.state.open === false && <button
+                {this.props.type==="recieved" && typeof this.state.open !== "undefined" && this.state.open === false && <button
                 onClick={this.onOpenClick}
                 className="btn button-movie btn-warning btn-lg"
                 >
@@ -87,18 +93,24 @@ export class MessageCard extends React.Component{
                 </button>}
 
                </p>
-               {(this.state.open===true || typeof this.state.open ==="undefined") && <div>
+               {(this.props.type === "sent" || this.state.open===true || typeof this.state.open ==="undefined") && <div>
                {this.props.cardNum !== "-1" && <div><img className="card-in-message" src={'/images/shana-tova'+this.props.cardNum+'.png'}></img></div>} 
                 {this.props.movieName &&
                 <p className="card-title">
-                {this.props.language === "English"? ("Hi "+ this.props.myName +" ! I think you might like the movie "+ this.props.movieName +"."):
-                ( " נראה לי שהסרט "+this.props.movieName+" יהיה לטעמך! ")
+                {this.props.language === "English"? 
+                this.props.type === "recieved"? "Hi " + this.props.myName +
+                " ! I think you might like the movie "+ this.props.movieName +".":
+                "Hi " + this.props.username +
+                " ! I think you might like the movie "+ this.props.movieName +".":
+                ( " נראה לי שהסרט "+
+                this.props.movieName
+                +" יהיה לטעמך! ")
                   }
                 
                 </p>
                 }
                 { this.props.content && <p className="card-text"> "{this.props.content}"</p> }
-                { this.props.movieName && 
+                { this.props.movieName && this.props.type==="recieved" &&
                     !(isMovieOnWatchList(this.props.watchList, this.props.movieId)) && (
                     <button 
                     className="btn button-movie btn-warning btn-lg"
@@ -107,12 +119,14 @@ export class MessageCard extends React.Component{
                      </button>)
                 }
                  <div>
-                <button
+                 {this.props.type !=="sent" &&
+                 <button
                     onClick={this.showTextare} 
                     className="btn button-friend--message btn-primary btn-lg"
                 >
                     {this.props.language === "English"? " Respond!": "הגב להודעה!"}
-                </button>
+                </button>}
+               
                 </div>
                 {this.state.successMessage && <p className="success-message">
                     {this.props.language === "English"? "Your message was successfully sent!" : "ההודעה נשלחה בהצלחה!"}

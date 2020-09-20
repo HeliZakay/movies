@@ -3,37 +3,65 @@ import {connect} from "react-redux";
 import MessageCard from "./MessageCard";
 import { Link } from 'react-router-dom';
 import {sortByDate} from "../selectors/messages";
-import { startDeleteMessage } from '../actions/messages';
-
+import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messages';
 
   export class Messages extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            messages: "recieved"
+        }
+    }
+    switchToInbox =() => {
+        this.setState({messages: "recieved"})
+    }
+    switchToSent = () => {
+        this.setState({messages: "sent"})
+    }
     onDelete = (messageId, userId) => {
-        this.props.startDeleteMessage({
-            messageId,
-            userId
-        });
+        if (this.state.messages === "recieved") {
+            this.props.startDeleteMessage({
+                messageId,
+                userId
+            });
+        } else {
+            this.props.startDeleteMessageFromSent(messageId);
+        }
     };
+    
     render() {
         return (
           
-            <div className={String(this.props.language !== "English" && "align-right")}>
+    <div className={String(this.props.language !== "English" && "align-right")}>
     
     <div className="page-header">
         <div className="content-container">
             <h2 className="page-header__title">
-            {this.props.language === "English"? "Inbox": "תיבת דואר נכנס"}
+            {this.props.language === "English"? "Messages": "הודעות"}
             </h2>
         </div>
     </div>
     <div className="messages">
     <div className="content-container">
+   
+    <div className="messages__nav">
+    <button className="btn button-movie btn-warning btn-lg" onClick={this.switchToInbox} >
+    {this.props.language === "English"? "Inbox": "תיבת דואר נכנס"}
+    </button>
+    <button className="btn button-movie btn-warning btn-lg" onClick={this.switchToSent} >
+    {this.props.language === "English"? "Sent Messages": "הודעות שנשלחו"}
+    </button>
+    </div>
+ 
     <Link to="/friends">
     <button 
     className="new-message btn btn-primary button--add-friend btn-lg ">
     {this.props.language === "English"? "Send a new message!": "שלח הודעה חדשה!"}
     </button>
     </Link>
-        {this.props.messagesRecieved.length === 0 ?
+   
+            {this.state.messages === "recieved"? (
+                this.props.messagesRecieved.length === 0 ?
             (
                 <p>
                 {this.props.language === "English"? "Inbox is empty":
@@ -59,13 +87,49 @@ import { startDeleteMessage } from '../actions/messages';
                         onDelete={this.onDelete}
                         read={message.read}
                         cardNum= {message.cardNum? message.cardNum : "-1"}
+                        type="recieved"
                      />     
                     </div>
                 );
             })}
             </div>
         )
-        }
+        
+            ):
+            (
+                this.props.messagesSent.length === 0 ?
+            (
+                <p>
+                {this.props.language === "English"? "Sent messages empty":
+                 "אין הודעות"}
+                </p>
+        ) : (
+            <div className="row">
+
+            {this.props.messagesSent.map((message) => {
+                return (
+                    <div 
+                    key={message.id} 
+                    className=" col-sm-12 col-md-6 col-lg-4">
+                     <MessageCard
+                        id={message.id}
+                        createdAt= {message.createdAt}
+                        username={message.friend.username}
+                        movieName={message.movie ? message.movie.movieName: undefined}
+                        movieId={message.movie ? message.movie.id: undefined}
+                        content={message.content}
+                        onDelete={this.onDelete}
+                        cardNum= {message.cardNum? message.cardNum : "-1"}
+                        type="sent"
+                     />     
+                    </div>
+                );
+            })}
+            </div>
+        )
+
+            )}
+
     </div>
 </div>
 
@@ -80,13 +144,16 @@ import { startDeleteMessage } from '../actions/messages';
   const mapStateToProps = (state) => {
     return {
         messagesRecieved: sortByDate(state.messages.messagesRecieved),
-        messagesSent: state.messages.messagesSent,
-        language: state.auth.language           
+        messagesSent: sortByDate(state.messages.messagesSent),
+        language: state.auth.language,
+        username: state.auth.username,
+        uid: state.auth.uid       
     }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    startDeleteMessage: (messageId, userId) => dispatch(startDeleteMessage(messageId, userId))
+    startDeleteMessage: (messageId, userId) => dispatch(startDeleteMessage(messageId, userId)),
+    startDeleteMessageFromSent: (messageId) => dispatch(startDeleteMessageFromSent(messageId))
 })
 export default connect(mapStateToProps, mapDispatchToProps)( Messages);
 

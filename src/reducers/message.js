@@ -26,6 +26,13 @@ export default (state=defaultStateOfMessages, action) => {
                     return message.id !== action.messageId;
                 })  
             }
+        case "DELETE_MESSAGE_FROM_SENT":
+            return {
+                ...state,
+                messagesSent: state.messagesSent.filter((message) => {
+                    return message.id !== action.messageId;
+                })
+            }
         case "MARK_MESSAGE_AS_READ":
             return {
                 ...state,
