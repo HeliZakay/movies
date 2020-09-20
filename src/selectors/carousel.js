@@ -15,7 +15,8 @@ export const getCarouselItems = ({friends, movies, watchlist, language}) => {
                 const item = {
                     header,
                     score,
-                    content
+                    content,
+                    createdAt: review.createdAt
                 };
                 items.push(item);
             });

@@ -1,10 +1,22 @@
 import React from "react";
 import {connect} from "react-redux";
+import {startAddFeedback} from "../actions/feedback";
 
 export class Contact extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            content: "",     
+        }
+    }
     onSubmit = (event) => {
         event.preventDefault();
+        this.props.startAddFeedback(this.state.content);
         this.props.history.push("/homepage");
+    }
+    onContentChange = (event) => {
+        const content = event.target.value;
+        this.setState( () => ({content}));
     }
     render() {
         return (
@@ -38,6 +50,8 @@ export class Contact extends React.Component {
                         "Write your feedback here":
                         " כתבו פה את הפידבק "
                           }
+                          onChange={this.onContentChange}
+                          value={this.state.content}
                         name="feedback" autoFocus>
         </textarea>
         <div>
@@ -61,8 +75,11 @@ export class Contact extends React.Component {
 const mapStateToProps = (state) => ({
     language: state.auth.language
 });
+const mapDispatchToProps = (dispatch) => ({
+    startAddFeedback: (feedback) => dispatch(startAddFeedback(feedback))
+});
 
-export default connect(mapStateToProps)(Contact);
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);
 
 
   
