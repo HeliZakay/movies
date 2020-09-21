@@ -1,7 +1,7 @@
 import database from "../firebase/firebase";
 import moment from "moment";
 
-export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, content, cardNum, prev}) => {
+export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, content, cardNum, prevMessageData}) => {
     return(dispatch) => {
         const messageRecieved={
             recommender,
@@ -10,7 +10,7 @@ export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, 
             content,
             read: false,
             cardNum,
-            prev
+            prevMessageData
         };
         const messageSent ={
           friend,

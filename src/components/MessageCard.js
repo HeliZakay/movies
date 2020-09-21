@@ -7,6 +7,9 @@ import {startDeleteMessage} from "../actions/messages";
 import {startAddMessageToFriend} from "../actions/messages";
 import {startMarkMessageAsRead} from "../actions/messages";
 
+
+
+
 export class MessageCard extends React.Component{
     constructor(props) {
         super(props);
@@ -33,7 +36,6 @@ export class MessageCard extends React.Component{
     onMessageSend = () => {
         if (this.state.content) {
             this.setState({...this.state, showTextare: false, content: "", successMessage: true});
-            const recommendationMessage = this.props.recommendationMessage? this.props.recommendationMessage: "";
             this.props.startAddMessageToFriend({
                 recommender: this.props.user,
                 friend: {
@@ -45,7 +47,13 @@ export class MessageCard extends React.Component{
                 createdAt: moment(),
                 content: this.state.content,
                 cardNum: "-1",
-                prev: recommendationMessage + this.props.content
+                prevMessageData: {
+                    type:this.props.type,
+                    myName:this.props.myName,
+                    movieName:this.props.movieName,
+                    username: this.props.username,
+                    content: this.props.content
+                }
             });
         }
     }; 
@@ -56,7 +64,33 @@ export class MessageCard extends React.Component{
     onPrevOpen =() => {
         this.setState({...this.state, prevOpen: !this.state.prevOpen});
     };
+    prevFunc = (language, prevMessageData) => {
+        const recommendationMessage = this.composeRecommendationMessage({
+            language,
+            type: prevMessageData.type,
+            myName: prevMessageData.myName,
+            movieName: prevMessageData.movieName,
+            username: prevMessageData.username
+        });
+        return recommendationMessage + prevMessageData.content;
+    }
+    composeRecommendationMessage = ({language, type, myName, movieName, username }) => {
+        if (movieName) {
+            if (language === "English") {
+                if (type === "recieved") {
+                    return ("Hi " + myName +  " ! I think you might like the movie "+ movieName +".");
+                } else {
+                    return ("Hi " + username +  " ! I think you might like the movie "+ movieName +".");
+                }
+            } else {
+                return (" נראה לי שהסרט " + movieName + " יהיה לטעמך! " );  
+            }        
+        } else {
+            return ""
+        }
+    }
     render() {       
+       
         return (
             <div className="card card bg-light mb-3 custom-card">
              <div className="messageCard">
@@ -99,9 +133,16 @@ export class MessageCard extends React.Component{
                </p>
                {(this.props.type === "sent" || this.state.open===true || typeof this.state.open ==="undefined") && <div>
                {this.props.cardNum !== "-1" && <div><img className="card-in-message" src={'/images/shana-tova'+this.props.cardNum+'.png'}></img></div>} 
-               {this.props.recommendationMessage !== "undefined" ?
-                 <p className="card-title">{this.props.recommendationMessage} </p>:
-                 <p>good</p>  }
+               {this.props.movieName &&
+                 <p className="card-title">{
+                     this.composeRecommendationMessage({
+                         language: this.props.language,
+                         type:this.props.type ,
+                         myName: this.props.myName,
+                         movieName: this.props.movieName,
+                         username: this.props.username
+                })} </p>
+                }
                 { this.props.content && <p className="card-text"> "{this.props.content}"</p> }
                 { this.props.movieName && this.props.type==="recieved" &&
                     !(isMovieOnWatchList(this.props.watchList, this.props.movieId)) && (
@@ -111,7 +152,7 @@ export class MessageCard extends React.Component{
                     {this.props.language === "English"? "Add to my watch list!": "הוסף לרשימת הצפייה שלי!"}
                      </button>)
                 }
-                {(this.props.type !=="sent" && this.props.prev !== "-1") &&
+                {(this.props.type !=="sent" && this.props.prevMessageData) &&
                (<a 
                onClick={this.onPrevOpen}>
                <p  className="messageCard__see-prev-text">
@@ -119,7 +160,10 @@ export class MessageCard extends React.Component{
                  "ראה את ההודעה שאת/ה שלחת שקדמה להודעה זו"}
                </p>
                  </a>)}
-                {this.state.prevOpen && <p>"{this.props.prev}"</p>}
+                {this.state.prevOpen && this.props.prevMessageData &&
+                 <p>
+                 "{this.prevFunc(this.props.language, this.props.prevMessageData)}"
+                 </p>}
                  <div>
                  {this.props.type !=="sent" &&
                  <button

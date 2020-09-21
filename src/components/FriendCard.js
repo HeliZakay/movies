@@ -40,7 +40,7 @@ export class FriendCard extends React.Component {
                 createdAt: moment(),
                 content,
                 cardNum: "-1",
-                prev: "-1"
+                prevMessageData: {}
             });
             this.props.startAddRecommendation({
                 friendId: this.props.friendObj.userId,
@@ -63,7 +63,7 @@ export class FriendCard extends React.Component {
                 createdAt: moment(),
                 content: this.state.content,
                 cardNum: "-1",
-                prev: "-1"
+                prevMessageData: {}
             });
         }
     };  
