@@ -60,7 +60,7 @@ export class Friends extends React.Component {
                     type="text"
                     placeholder={this.props.language === "English"? "friend's username or email": " הכניסו את שם החבר או האימייל"}
                     autoFocus
-                    value = {this.state.name}
+                    value = {this.props.name}
                     onChange= {this.onNameChange}
                 />
                 </div>            
@@ -94,7 +94,8 @@ const mapDispatchToProps = (dispatch) => ({
  const mapStateToProps = (state) => ({
      friends: getVisibleFriends(state.friends.friends, state.friendsFilter),
      error: state.friends.error,
-     language: state.auth.language
+     language: state.auth.language,
+     name: state.friendsFilter
  });
 
  export default connect(mapStateToProps, mapDispatchToProps)(Friends);
