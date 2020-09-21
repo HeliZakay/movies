@@ -16,20 +16,22 @@ export class AddRecommendation extends React.Component {
    };
    render() {
       return (
+         <div className="page">
          <div className={String(this.props.language !== "English" && "align-right")}>
-         <div className="page-header" >
+         {/* <div className="page-header" >
          <div className="content-container--form">
             <h2 className="page-header__title">
             {this.props.language === "English"? "Add Recommendation" : "הוספת המלצה על סרט"}</h2>
-         </div>
-            
-         </div>
+         </div> */}
+         
+         <div className="add-or-edit">
          <div className="content-container--form">
          <RecommendationForm 
            onSubmit={this.onSubmit}
           />
          </div>
-         
+         </div>
+         </div>
          </div>
       );
    }

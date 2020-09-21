@@ -1,6 +1,7 @@
 .friends {
    background: $light-yellow; 
    padding-bottom:100px;
+   
 }
 .friends__subtitle {
     color: $blue;
@@ -15,4 +16,10 @@
 
 .friends__right-div{
     padding-top: 200px;
+}
+.friends__filters{
+    text-align: center;
+}
+.friends__search-label{
+    color: $nesquik-light-blue;
 }

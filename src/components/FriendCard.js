@@ -39,7 +39,8 @@ export class FriendCard extends React.Component {
                 movie,
                 createdAt: moment(),
                 content,
-                cardNum: "-1"
+                cardNum: "-1",
+                prev: "-1"
             });
             this.props.startAddRecommendation({
                 friendId: this.props.friendObj.userId,
@@ -50,7 +51,6 @@ export class FriendCard extends React.Component {
     onMessageSend = () => {
         
         if (this.state.content) {
-            console.log("here");
             this.setState({...this.state, showTextare: false, content: "", successMessage: true});
             this.props.startAddMessageToFriend({
                 recommender: this.props.user,
@@ -62,7 +62,8 @@ export class FriendCard extends React.Component {
                 movie: {},
                 createdAt: moment(),
                 content: this.state.content,
-                cardNum: "-1"
+                cardNum: "-1",
+                prev: "-1"
             });
         }
     };  

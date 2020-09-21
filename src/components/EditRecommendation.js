@@ -30,16 +30,17 @@ export class EditRecommendation extends React.Component {
     };
     render() {
         return (
+            <div className="page">
             <div className={String(this.props.language !== "English" && "align-right")}>
-            <div className="page-header">
+            {/* <div className="page-header">
                 <div className="content-container--form">
                 <h2 
                 className="page-header__title">
                 {this.props.language === "English"? "Edit Recommendation": "עריכת המלצת סרט"}
                 </h2>
-                </div>
-                
-            </div>
+            </div> */}
+            <div className="add-or-edit">    
+            
             <div className="content-container--form">
             <RecommendationForm
                  movie={this.props.movie}
@@ -54,7 +55,8 @@ export class EditRecommendation extends React.Component {
                     </button>
             </div>
             </div>
-                
+            </div> 
+            </div>             
         );
     }
 };

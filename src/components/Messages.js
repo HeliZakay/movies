@@ -28,19 +28,34 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
             this.props.startDeleteMessageFromSent(messageId);
         }
     };
+    composeRecommendationMessage = ({language, type, myName, movieName, username }) => {
+        if (movieName) {
+            if (language === "English") {
+                if (type === "recieved") {
+                    return ("Hi " + myName +  " ! I think you might like the movie "+ movieName +".");
+                } else {
+                    return ("Hi " + username +  " ! I think you might like the movie "+ movieName +".");
+                }
+            } else {
+                return (" נראה לי שהסרט " + movieName + " יהיה לטעמך! " );  
+            }        
+        } else {
+            return ""
+        }
+    }
     
     render() {
         return (
-          
+    <div className="page">
     <div className={String(this.props.language !== "English" && "align-right")}>
     
-    <div className="page-header">
+    {/* <div className="page-header">
         <div className="content-container">
             <h2 className="page-header__title">
             {this.props.language === "English"? "Messages": "הודעות"}
             </h2>
-        </div>
-    </div>
+        </div> */}
+
     <div className="messages">
     <div className="content-container">
    
@@ -88,6 +103,14 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
                         read={message.read}
                         cardNum= {message.cardNum? message.cardNum : "-1"}
                         type="recieved"
+                        prev={message.prev? message.prev: "-1"}
+                        recommendationMessage={message.movie ? this.composeRecommendationMessage({
+                            language: this.props.language,
+                            type:"recieved",
+                            myName:this.props.myName,
+                            movieName:message.movie.movieName,
+                            username: message.recommender.username
+                        }): undefined}
                      />     
                     </div>
                 );
@@ -121,6 +144,12 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
                         onDelete={this.onDelete}
                         cardNum= {message.cardNum? message.cardNum : "-1"}
                         type="sent"
+                        recommendationMessage={message.movie ? this.composeRecommendationMessage({
+                            language: this.props.language,
+                            type:"sent",
+                            movieName:message.movie.movieName,
+                            username: message.friend.username
+                        }): undefined}
                      />     
                     </div>
                 );
@@ -134,7 +163,7 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
 </div>
 
             </div>
-
+</div>
         );
 
     }
@@ -147,7 +176,8 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
         messagesSent: sortByDate(state.messages.messagesSent),
         language: state.auth.language,
         username: state.auth.username,
-        uid: state.auth.uid       
+        uid: state.auth.uid,
+        myName: state.auth.username      
     }
 };
 

@@ -6,8 +6,7 @@ import {countUnreadMessages} from "../selectors/messages";
 
 export const Header = ({startLogout, username, language, unreadMessagesCount}) => (
   <header className="header">
-    <div className="content-container">
-    <div className="header__content">
+    <nav className="navbar navbar-dark bg-primary fixed-top header__custom-nav">
     {username && <h2 className="header__title greeting"><em>{language === "English"?
     ("Hi " + username.charAt(0).toUpperCase() + username.slice(1) ): (  username.charAt(0).toUpperCase() + username.slice(1)+ " היי" )}  </em></h2>}
     <NavLink activeClassName="header__active-class" className="header__title" to="/homePage">
@@ -28,8 +27,7 @@ export const Header = ({startLogout, username, language, unreadMessagesCount}) =
     <NavLink activeClassName="header__active-class" className="header__title" to="/watchList" > <h2>{language === "English"? "Watchlist" : "רשימת הצפייה שלי"}</h2></NavLink>
     <NavLink activeClassName="header__active-class" className="header__title" to="/friends" ><h2>{language === "English"? "Friends" : "חברים"}</h2> </NavLink>
     <button className="header__title button button--link" onClick={startLogout}>{language === "English"? "Logout" : "התנתק"}</button>
-    </div>
-    </div>
+    </nav>
   </header>
 );
 const mapDispatchToProps = (dispatch) => ({

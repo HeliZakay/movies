@@ -13,7 +13,11 @@ body {
   font-family: 'Sawarabi Gothic', sans-serif;
   font-size: $m-size;
   line-height: 1.6;
-   
+  background: $light-yellow;   
+}
+.page {
+  padding-top: 80px;
+  background: $light-yellow;
 }
 
 button, a {

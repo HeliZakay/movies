@@ -8,15 +8,15 @@ import MoviesListFilters from "./MoviesListFilters";
 
 export const WatchList = (props) => {
     return (
+        <div className="page">
         <div className={String(props.language !== "English" && "align-right")}>
-        <div className="page-header">
+        {/* <div className="page-header">
         <div className="content-container">
         <h2 className="page-header__title">
         {props.language === "English"? "My Watch List": "רשימת הצפייה שלי"}
         </h2>
-        </div>
-         
-        </div>
+        </div> */}
+        
         <div className="watchlist">
         <div className="content-container">
         <MoviesListFilters />
@@ -44,7 +44,7 @@ export const WatchList = (props) => {
             )}
         
             
-           
+        </div>
         </div>
         </div>
         </div>

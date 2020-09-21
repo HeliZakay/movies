@@ -52,8 +52,6 @@ export class RecommendationForm extends React.Component {
 
     render() {
         return (
-            
-                
                 <form className="form" onSubmit={this.onSubmit}>
                     {this.state.error && <p className="form__message"><em>{this.state.error}</em></p>}    
                     <input className="text-input"
@@ -88,7 +86,7 @@ export class RecommendationForm extends React.Component {
                     />
                     
                     <div>
-                        <button className="button button--form">
+                        <button  className="btn button-movie btn-warning btn-lg">
                         <strong>
                         {this.props.language === "English"? " Recommend!" : "!המלץ"}
                        

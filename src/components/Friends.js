@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
 import {startSearchFriendInDB} from "../actions/friends";
+import {setNameFilter} from "../actions/friendsFilter";
 import FriendCard from "./FriendCard";
-
+import {getVisibleFriends} from "../selectors/friends";
 
 export class Friends extends React.Component {
     constructor(props) {
@@ -20,16 +21,20 @@ export class Friends extends React.Component {
         this.props.startSearchFriendInDB(this.state.email.toLowerCase());
         this.props.history.push("/friends");
     };
+    onNameChange = (event) => {
+        this.props.setNameFilter(event.target.value);
+    };
     render() {
         return (
+            <div className="page">
             <div className={String(this.props.language !== "English" ? "align-right friends": "friends")}>
-             <div className="page-header">
+             {/* <div className="page-header">
                 <div className="content-container">
                 <h2 className="page-header__title">
                 {this.props.language === "English"? " My Friends": "חברים"}
                </h2>
                 </div>
-                </div>
+                </div> */}
                 
             <div className="content-container">
             
@@ -38,7 +43,6 @@ export class Friends extends React.Component {
                 <input className="text-input friend-input"
                     type="email"
                     placeholder={this.props.language === "English"? "friend's email": "הכניסו את האימייל של החבר"}
-                    autoFocus
                     value = {this.state.email}
                     onChange= {this.onEmailChange}
                 />
@@ -49,13 +53,17 @@ export class Friends extends React.Component {
                 </button>
                 {this.props.error && <p className="friends__error"><em>{this.props.error}</em></p>}
               </form>
-              
-              <h3 className="friends__subtitle">
-              {this.props.language === "English"? " Your list of friends:": ":רשימת החברים"}
-              
-              </h3>
-              
-              
+              <div className="friends__filters">
+              <label className="friends__search-label">{this.props.language === "English"? "Search a friend by username or email:": "  חיפוש חבר לפי כינוי או אימייל"}</label>
+              <br/>
+              <input className="text-input friend-search-input"
+                    type="text"
+                    placeholder={this.props.language === "English"? "friend's username or email": " הכניסו את שם החבר או האימייל"}
+                    autoFocus
+                    value = {this.state.name}
+                    onChange= {this.onNameChange}
+                />
+                </div>            
               {this.props.friends.length ===0 ? 
               <p className="friends__message">
               {this.props.language === "English"? " Add a friend!": "!הוסיפו חברים"}
@@ -73,16 +81,18 @@ export class Friends extends React.Component {
               }
               </div>  
          </div>
+         </div>
         );
     };
 };
     
 const mapDispatchToProps = (dispatch) => ({
     startSearchFriendInDB: (email) => dispatch(startSearchFriendInDB(email)),
+    setNameFilter: (name) => dispatch(setNameFilter(name))
  });
 
  const mapStateToProps = (state) => ({
-     friends: state.friends.friends,
+     friends: getVisibleFriends(state.friends.friends, state.friendsFilter),
      error: state.friends.error,
      language: state.auth.language
  });
