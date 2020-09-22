@@ -80,37 +80,37 @@ export const  CustomizedMenus = (props) => {
         onClose={handleClose}
       >
        <NavLink  className="styled-menu__item" to="/homePage">
-        <StyledMenuItem>
+        <StyledMenuItem >
           <ListItemIcon>
-            <MovieIcon fontSize="small" />
+            <MovieIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Movies": "דף הבית"} />
+          <ListItemText primary={props.language === "English"? "Movies": "דף הבית"} primaryTypographyProps={{ variant: 'h6' }} />
         </StyledMenuItem>
         </NavLink>
 
         <NavLink  className="styled-menu__item" to="/messages">
         <StyledMenuItem>
           <ListItemIcon>
-            <MessageIcon fontSize="small" />
+            <MessageIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Messages": "הודעות"} />
+          <ListItemText primary={props.language === "English"? "Messages": "הודעות"} primaryTypographyProps={{ variant: 'h6' }} />
         </StyledMenuItem>
         </NavLink>
 
         <NavLink  className="styled-menu__item" to="/friends">
         <StyledMenuItem>
           <ListItemIcon>
-            <GroupIcon fontSize="small" />
+            <GroupIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Friends": "חברים"}  />
+          <ListItemText primary={props.language === "English"? "Friends": "חברים"} primaryTypographyProps={{ variant: 'h6' }}  />
         </StyledMenuItem>
         </NavLink>
         
         <StyledMenuItem onClick={onLogout}>
           <ListItemIcon>
-            <ExitToAppIcon fontSize="small" />
+            <ExitToAppIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Logout": "התנתק"} />
+          <ListItemText primary={props.language === "English"? "Logout": "התנתק"} primaryTypographyProps={{ variant: 'h6' }} />
         </StyledMenuItem>
       </StyledMenu>
     </div>

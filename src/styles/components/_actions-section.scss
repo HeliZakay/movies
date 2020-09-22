@@ -42,6 +42,7 @@
     } 
     @media (max-width: $desktop-breakpoint) {
         padding: 20px;
+        
     }
 }
 .actions-section__link:hover .actions-section__img {
@@ -56,7 +57,7 @@
 .actions-section__text {
     font-family: 'Laila', serif;
     @media (max-width: $desktop-breakpoint) {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
     }
 }
    
