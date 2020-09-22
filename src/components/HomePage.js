@@ -14,10 +14,10 @@ import {getCarouselItems} from "../selectors/carousel";
 export const HomePage = (props) => (
   <div className={String(props.language !== "English" && "align-right")}>
     {/* <Open /> */}
-    <ShanaTova />
-   
+    {/* <ShanaTova /> */}
+    <Actions />  
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
-    <Actions />   
+    
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={addMe}>addMe</button> */}
     {/* <button onClick={unifyReviews}>Unify Reviews</button> */}

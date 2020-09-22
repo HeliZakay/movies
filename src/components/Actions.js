@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 export const Actions = (props) => {
     return (
+        <div className="page">
         <div className="actions-section">
         <div className="content-container">
         <div className="actions-section__wrapper">
@@ -37,6 +38,7 @@ export const Actions = (props) => {
         </div>
         </div>  
         </div>          
+        </div>
         </div>
     );
 };
