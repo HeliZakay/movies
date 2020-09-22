@@ -9,6 +9,7 @@ function MoviesCarousel(props)
     
  
     return (
+        <div className="page">
          <Carousel
         className="movie-carousel"
         animation="fade"
@@ -20,6 +21,7 @@ function MoviesCarousel(props)
                 items.map( (item, i) => <Item key={i} item={item} /> )
             }
         </Carousel>
+        </div>
     )
 }
  

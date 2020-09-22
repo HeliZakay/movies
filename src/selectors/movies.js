@@ -1,8 +1,20 @@
 
   export const sortReviewsByDateAndPerson = (reviews, person) => { 
-    return reviews.sort((a,b) => { 
+    if (!person) {
+      return reviews.sort((a,b) => { 
         return a.createdAt < b.createdAt? 1:-1;
       });
+    } else {
+      const sortedByDate = reviews.sort((a,b) => { 
+        return a.createdAt < b.createdAt? 1:-1;
+      });
+     const personReview =  reviews.filter((review) => {
+        return review.personName.toLowerCase().includes(person.toLowerCase());
+      });
+      return [...personReview, ...sortedByDate.filter((review)=> {
+        return !review.personName.toLowerCase().includes(person.toLowerCase());
+      })];
+    }   
   };
   
 const computeAverageScore = (movie) => {
