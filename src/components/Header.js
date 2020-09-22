@@ -9,10 +9,32 @@ import CustomizedMenus from "./StyledMenu";
 export const Header = ({startLogout, username, language, unreadMessagesCount}) => (
   <header className="header">
     <nav className="navbar navbar-dark bg-primary fixed-top header__custom-nav">
-    
-    {username && <h2 className="header__title greeting"><em>{language === "English"?
-    ("Hi " + username.charAt(0).toUpperCase() + username.slice(1) ): (  username.charAt(0).toUpperCase() + username.slice(1)+ " היי" )}  </em></h2>}
-   
+    <div className="header__wrapper">
+    {username && 
+    <h2 className="header__title greeting"><em>{language === "English"?
+    ("Hi " + username.charAt(0).toUpperCase() + username.slice(1) ):
+     (  username.charAt(0).toUpperCase() + username.slice(1)+ " היי" )}  </em>
+    </h2>}
+   {unreadMessagesCount > 0 && <div className="header__unread-notification">
+   <Link to="./messages">
+   <div className="onHoverBlue">
+   <div className="header__wrapper">
+    <p 
+    className={String(unreadMessagesCount > 0 && "header__unread-messaged-count")}>
+    {unreadMessagesCount > 0 && unreadMessagesCount}
+    </p>
+    <p className="header__notification-text">
+    <strong>
+    <em>
+    {language === "English"? "messages": "הודעות"}
+    </em>
+    </strong> 
+    </p>
+    </div>
+    </div>
+   </Link>
+   </div>}
+   </div>
     <NavLink activeClassName="header__active-class" className="header__title not-visible" to="/homePage">
     <h2>{language === "English"? "Movies" : "דף הבית"}</h2>
     </NavLink>

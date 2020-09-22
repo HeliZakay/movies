@@ -50,9 +50,9 @@ export class MessageCard extends React.Component{
                 prevMessageData: {
                     type:this.props.type,
                     myName:this.props.myName,
-                    movieName:this.props.movieName,
+                    movieName:this.props.movieName? this.props.movieName: "" ,
                     username: this.props.username,
-                    content: this.props.content
+                    content: this.props.content? this.props.content: ""
                 }
             });
         }

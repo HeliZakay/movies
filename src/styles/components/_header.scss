@@ -48,7 +48,7 @@
     text-align: center;
     color: $dark-blue;
     border-radius: 100%;
-    font-weight: 700;   
+    font-weight: 700;  
 }
 .onHoverBlue {
     :hover {
@@ -64,4 +64,18 @@
         display: none;
     }
 
+}
+.header__unread-notification{
+    @media (min-width: $desktop-breakpoint) {
+        display: none;
+    }
+}
+.header__wrapper{
+    @media (max-width: $desktop-breakpoint) {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.header__notification-text{
+    color: $dark-blue;
 }
