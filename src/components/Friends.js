@@ -66,7 +66,7 @@ export class Friends extends React.Component {
                 </div>            
               {this.props.friends.length ===0 ? 
               <p className="friends__message">
-              {this.props.language === "English"? " Add a friend!": "!הוסיפו חברים"}
+              {this.props.language === "English"? " Add a friend!": "הוסיפו חברים!"}
               
               </p>
               : 

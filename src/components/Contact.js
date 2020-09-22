@@ -20,13 +20,14 @@ export class Contact extends React.Component {
     }
     render() {
         return (
+            <div className="contact">
             <div className={String(this.props.language !== "English" && "align-right")}>
             <form 
             encType="text/plain"
             onSubmit={this.onSubmit}
             className="form" >
 
-            <div className="page-header">
+            {/* <div className="page-header">
             <div className="content-container--form">
                  <h2 className="page-header__title">
                  {this.props.language === "English"? 
@@ -34,8 +35,8 @@ export class Contact extends React.Component {
                  }
                  
                  </h2>
-            </div>
-        </div>
+            </div> */}
+      
         <div className="content-container--form">
            <p>
            {this.props.language === "English"? 
@@ -67,6 +68,7 @@ export class Contact extends React.Component {
         </div>
         </div>
         </form>
+        </div>
         </div>
         );
     };

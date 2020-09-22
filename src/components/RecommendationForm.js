@@ -77,7 +77,7 @@ export class RecommendationForm extends React.Component {
                         onChange={this.onContentChange}>
                     </textarea>
                     
-                    <label> {this.props.language === "English"? "Your Name: ": ":השם שלך"} </label>
+                    <label> {this.props.language === "English"? "Your Name: ": "השם שלך:"} </label>
                     <input 
                         type="text"     
                         placeholder={this.props.language === "English"? "Your name (optional)"  : "השם שלך" }                  
@@ -88,7 +88,7 @@ export class RecommendationForm extends React.Component {
                     <div>
                         <button  className="btn button-movie btn-warning btn-lg">
                         <strong>
-                        {this.props.language === "English"? " Recommend!" : "!המלץ"}
+                        {this.props.language === "English"? " Recommend!" : "המלץ!"}
                        
                         </strong>
                         </button>

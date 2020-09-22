@@ -25,7 +25,7 @@ export const WatchList = (props) => {
                 
                 <p className="friends__error"><em>
                 {props.language === "English"? "Add movies to your watch list from homepage!":
-                 ".הוסיפו סרטים לרשימת הצפייה דרך עמוד הבית בכפתור של הוספה לרשימת הצפייה"}
+                 "הוסיפו סרטים לרשימת הצפייה דרך עמוד הבית בכפתור של הוספה לרשימת הצפייה."}
                 </em></p>
                
             ) : (

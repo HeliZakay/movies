@@ -10,7 +10,7 @@ export const MoviesList = (props) => {
          <div className="content-container">
           
         
-        {props.movies.length ===0 ? <p>No movies yet- Add a recommendation</p>
+        {props.movies.length ===0 ?(props.language === "English"? <p>No movies yet that match your search- Add a recommendation</p>: <p>אין סרטים עדיין שעונים להגדרות החיפוש, הוסיפו סרט!</p>)
         :
         <div className="row">
          {props.movies.map((movie) => 
