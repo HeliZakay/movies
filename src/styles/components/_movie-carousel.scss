@@ -28,5 +28,21 @@
   @media (max-width: $desktop-breakpoint) {
     height: 190px;
     font-size: 1.3rem;
+    width: 75%;
+}
+}
+.movie-carousel__header{
+  @media (max-width: $desktop-breakpoint) {
+   font-size: 1.7rem;
+}
+}
+.movie-carousel__score{
+  @media (max-width: $desktop-breakpoint) {
+   font-size: 1.5rem;
+}
+}
+.movie-carousel__content{
+  @media (max-width: $desktop-breakpoint) {
+   font-size: 1.4rem;
 }
 }

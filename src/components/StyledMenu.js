@@ -84,7 +84,7 @@ export const  CustomizedMenus = (props) => {
           <ListItemIcon>
             <MovieIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Movies": "דף הבית"} primaryTypographyProps={{ variant: 'h6' }} />
+          <ListItemText primary={props.language === "English"? "Movies": "דף הבית"} primaryTypographyProps={{ variant: 'h5' }} />
         </StyledMenuItem>
         </NavLink>
 
@@ -93,7 +93,7 @@ export const  CustomizedMenus = (props) => {
           <ListItemIcon>
             <MessageIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Messages": "הודעות"} primaryTypographyProps={{ variant: 'h6' }} />
+          <ListItemText primary={props.language === "English"? "Messages": "הודעות"} primaryTypographyProps={{ variant: 'h5' }} />
         </StyledMenuItem>
         </NavLink>
 
@@ -102,7 +102,7 @@ export const  CustomizedMenus = (props) => {
           <ListItemIcon>
             <GroupIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Friends": "חברים"} primaryTypographyProps={{ variant: 'h6' }}  />
+          <ListItemText primary={props.language === "English"? "Friends": "חברים"} primaryTypographyProps={{ variant: 'h5' }}  />
         </StyledMenuItem>
         </NavLink>
         
@@ -110,7 +110,7 @@ export const  CustomizedMenus = (props) => {
           <ListItemIcon>
             <ExitToAppIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary={props.language === "English"? "Logout": "התנתק"} primaryTypographyProps={{ variant: 'h6' }} />
+          <ListItemText primary={props.language === "English"? "Logout": "התנתק"} primaryTypographyProps={{ variant: 'h5' }} />
         </StyledMenuItem>
       </StyledMenu>
     </div>
