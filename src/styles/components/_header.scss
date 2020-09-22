@@ -1,6 +1,7 @@
 .header {
     background: $dark-blue!important;
     font-family: 'Sawarabi Gothic', sans-serif;
+  
 }
    
 
@@ -16,7 +17,13 @@
     color: white;
     text-decoration: none;  
     font-family: 'Sawarabi Gothic', sans-serif;
-    display:flex;   
+    display:flex;      
+}
+.not-visible {
+    @media (max-width: $desktop-breakpoint) {
+        display: none;
+    }
+   
 }
 
 .header__active-class {
@@ -31,6 +38,7 @@
     :hover {
         color: white;
     }
+    margin-left: 5px;
 } 
 .header__unread-messaged-count {
     margin-left: 7px;
@@ -49,4 +57,11 @@
 }
 .header__custom-nav{
     background: $blue;
+}
+.header__menu {
+    margin-right: 20px;
+    @media (min-width: $desktop-breakpoint) {
+        display: none;
+    }
+
 }

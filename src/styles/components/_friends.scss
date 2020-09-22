@@ -23,3 +23,11 @@
 .friends__search-label{
     color: $nesquik-light-blue;
 }
+.friend__add-friend-section{
+    @media (max-width: $desktop-breakpoint) {
+        text-align: center;
+        display: flex;
+        width: 100%;
+        padding: 40px 0;
+    }
+}

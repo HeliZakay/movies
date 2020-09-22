@@ -10,8 +10,13 @@
 }
 
 .actions-section__wrapper {
-    display: flex;
+    @media (min-width: $desktop-breakpoint) {
+        display: flex;
     justify-content: space-around;
+    }
+    @media (max-width: $desktop-breakpoint) {
+        text-align: center;
+    }
     align-items: center;
     padding: $m-size 0;
 }
@@ -35,6 +40,9 @@
         margin-top: 0;
         
     } 
+    @media (max-width: $desktop-breakpoint) {
+        padding: 20px;
+    }
 }
 .actions-section__link:hover .actions-section__img {
     transform: rotateZ(20deg);

@@ -1,6 +1,9 @@
 .custom-card {
     width: 38rem;
     margin: 30px 0;
+    @media(max-width: $desktop-breakpoint) {
+        width: 35rem;
+    }
  
 }
 
@@ -22,7 +25,9 @@
     @extend .custom-card;
     width: 40rem;
     margin: 50px 0;
-  
+    @media (max-width: $desktop-breakpoint) {
+        width:100%;
+    }
 }
 
 .custom-card-header__envelop-and-header{

@@ -34,7 +34,12 @@
 }
 .friend-input {
     margin-right: 18px;
+    
     margin-top: 25px;
+    @media (max-width: $desktop-breakpoint) {
+        margin-top: 0;
+        margin-left: 5px;
+    }
 }
 .text-input__signup{
     margin: 10px 0 20px 0;

@@ -19,11 +19,14 @@
   color: white;
   text-align: center;
   padding: $l-size;
-  
- 
+   
 }
 .movie-carousel__item {
   height: 120px;
   width: 70%;
   margin: 0 auto;
+  @media (max-width: $desktop-breakpoint) {
+    height: 190px;
+    font-size: 1.3rem;
+}
 }

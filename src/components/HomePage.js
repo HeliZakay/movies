@@ -12,6 +12,7 @@ import MoviesCarousel from "./MoviesCarousel";
 import {getCarouselItems} from "../selectors/carousel";
 
 export const HomePage = (props) => (
+ 
   <div className={String(props.language !== "English" && "align-right")}>
     {/* <Open /> */}
     {/* <ShanaTova /> */}
@@ -26,6 +27,7 @@ export const HomePage = (props) => (
     <MoviesList />
     </div>
   </div>
+ 
 );
 
 const mapStateToProps = (state) => ({

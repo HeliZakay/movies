@@ -7,6 +7,7 @@
     width: 67vw;
     margin: auto;
     position: relative;
+    
 }
 
 .box-layout__bg {
@@ -17,6 +18,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+   
 }
 
 .box-layout__box {
@@ -26,6 +28,9 @@
     text-align: center;
     width: 45rem;
     height: 33rem;
+    @media (max-width: $desktop-breakpoint) {
+        height: 40rem;
+    }
 }
 .box-layout__signup-box{
     @extend .box-layout__box;

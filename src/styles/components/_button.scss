@@ -7,6 +7,9 @@
     font-weight: 300;
     font-size: $font-size-large;
     font-family: 'Sawarabi Gothic', sans-serif;
+    @media (max-width: $desktop-breakpoint) {
+        margin-top:20px;
+    }
 }
 
 .button--link {
@@ -60,6 +63,9 @@
     height: 50px;
     margin-bottom: 5px;
     font-size: 1.7rem;
+    @media (max-width: $desktop-breakpoint) {
+        margin-bottom:0;
+    }
 }
 
 .button--recommend-friend {

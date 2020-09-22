@@ -2,5 +2,6 @@
     margin-bottom: 50px;
     @media(max-width: $desktop-breakpoint) {
         margin-bottom: 0;
+        text-align: center;
     }
 }

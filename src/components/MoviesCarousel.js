@@ -29,10 +29,12 @@ function Item(props)
 {
     return (
        <div className="movie-carousel__item">
+      
             <h2>{props.item.header}</h2>
             <h4>Score: {props.item.score}</h4>
             <p>{props.item.content.length <= 200? props.item.content: props.item.content.slice(0,200)+"..." }</p>
         </div> 
+       
     )
 }
 
