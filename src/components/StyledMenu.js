@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import TvIcon from '@material-ui/icons/Tv';
 import GroupIcon from '@material-ui/icons/Group';
 import MovieIcon from '@material-ui/icons/Movie';
 import MessageIcon from '@material-ui/icons/Message';
@@ -13,6 +14,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Link, NavLink } from 'react-router-dom';
 import {startLogout} from "../actions/auth";
 import {connect} from "react-redux";
+
 
 
 const StyledMenu = withStyles({
@@ -94,6 +96,15 @@ export const  CustomizedMenus = (props) => {
             <MessageIcon fontSize="large" />
           </ListItemIcon>
           <ListItemText primary={props.language === "English"? "Messages": "הודעות"} primaryTypographyProps={{ variant: 'h5' }} />
+        </StyledMenuItem>
+        </NavLink>
+
+        <NavLink  className="styled-menu__item" to="/watchList">
+        <StyledMenuItem>
+          <ListItemIcon>
+            <TvIcon fontSize="large" />
+          </ListItemIcon>
+          <ListItemText primary={props.language === "English"? "Watchlist": "רשימת הצפייה שלי"} primaryTypographyProps={{ variant: 'h5' }} />
         </StyledMenuItem>
         </NavLink>
 

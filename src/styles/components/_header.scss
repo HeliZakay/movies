@@ -1,7 +1,9 @@
 .header {
     background: $dark-blue!important;
     font-family: 'Sawarabi Gothic', sans-serif;
-  
+    @media (max-width: $desktop-breakpoint) {
+        width:100%;
+    }
 }
    
 
