@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import {connect} from "react-redux";
-
+import https from "https";
 
 function MoviesCarousel(props)
 {
@@ -25,17 +25,46 @@ function MoviesCarousel(props)
     )
 }
  
-function Item(props)
+class Item extends React.Component 
 {
-    return (
-       <div className="movie-carousel__item">
-      
-            <h2 className="movie-carousel__header">{props.item.header}</h2>
-            <h4 className="movie-carousel__score">Score: {props.item.score}</h4>
-            <p className="movie-carousel__content">{props.item.content.length <= 200? props.item.content: props.item.content.slice(0,200)+"..." }</p>
-        </div> 
-       
-    )
+    constructor(props) {
+        super(props);
+        this.state = {  
+            movie: {}
+        }
+    }
+    produceImage = () => {
+        const imgName = this.props.item.movieName.split(" ")[0].toLowerCase();  
+        try {
+            require(`../../public/images/${imgName}.jpg`); 
+            return <img className="movie-carousel-item__movie-image" src={`images/${imgName}.jpg`}></img>;
+        }     
+        catch(err) {
+            if (!this.state.movie.Error) {
+                return <img className="movie-carousel-item__movie-image" src={this.state.movie.Poster}></img>;
+            }
+        }
+    }
+    componentDidMount = () => {  
+        const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${this.props.item.movieName}`;
+         https.get(url, (response) => {
+        response.on("data", (data) => {
+            const movieData = JSON.parse(data);
+            this.setState({movie: movieData});
+        });
+        });
+        };
+    render () {
+        return (
+            <div className="movie-carousel__item">
+                 <h2 className="movie-carousel__header">{this.props.item.header}</h2>
+                 <h4 className="movie-carousel__score">Score: {this.props.item.score}</h4>
+                 <p className="movie-carousel__content">{this.props.item.content.length <= 200? this.props.item.content: this.props.item.content.slice(0,200)+"..." }</p>
+                 {this.produceImage()}
+             </div> 
+            
+         );
+    }
 }
 
 export default MoviesCarousel;

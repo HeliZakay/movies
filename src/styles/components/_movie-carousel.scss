@@ -22,11 +22,11 @@
    
 }
 .movie-carousel__item {
-  height: 120px;
+  height: 300px;
   width: 70%;
   margin: 0 auto;
   @media (max-width: $desktop-breakpoint) {
-    height: 190px;
+    height: 280px;
     font-size: 1.3rem;
     width: 75%;
 }
@@ -44,5 +44,12 @@
 .movie-carousel__content{
   @media (max-width: $desktop-breakpoint) {
    font-size: 1.4rem;
+}
+}
+.movie-carousel-item__movie-image{
+  height: 200px;
+  @media (max-width: $desktop-breakpoint) {
+    height: 150px;
+    
 }
 }
