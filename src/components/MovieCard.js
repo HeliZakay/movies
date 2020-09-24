@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import {isMovieOnWatchList} from "../selectors/watchList";
 import ReviewsCarousel from "./ReviewsCarousel";
 import MovieData from "./MovieData";
-const https = require("https");
+const http = require("http");
 
     
 export class MovieCard extends React.Component {
@@ -80,8 +80,8 @@ export class MovieCard extends React.Component {
       }
     
       componentDidMount()  {  
-        const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${this.props.movieName}`;
-         https.get(url, (response) => {
+        const url = `http://www.omdbapi.com/?apikey=d6a02fcc&t=${this.props.movieName}`;
+         http.get(url, (response) => {
         response.on("data", (data) => {
             const movieData = JSON.parse(data);
             this.setState({movie: movieData});
