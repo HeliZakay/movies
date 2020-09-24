@@ -18,45 +18,45 @@ app.get("*", (req, res) => {
 
 
 
-app.post("/", function(req, res) {
+// app.post("/", function(req, res) {
     
-    let data = req.body;
+//     let data = req.body;
 
-    const smtpConfig = {
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-                 user: process.env.EMAIL_ID,
-                 pass: process.env.ALTERNATIVE_PASSWORD
-        }
-      }
-      const transporter = nodemailer.createTransport(smtpConfig);
-      const mailOptions = {
-        from: process.env.EMAIL_ID,
-        to: process.env.EMAIL_ID,
-        subject: 'movies', 
-        html: 'Email Content' 
-      };
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log(error)                          
-        } 
-        else {
-          console.log(`Message sent: ${info.response}`);
-        };
-      });
+//     const smtpConfig = {
+//         host: 'smtp.gmail.com',
+//         port: 465,
+//         secure: true,
+//         auth: {
+//                  user: process.env.EMAIL_ID,
+//                  pass: process.env.ALTERNATIVE_PASSWORD
+//         }
+//       }
+//       const transporter = nodemailer.createTransport(smtpConfig);
+//       const mailOptions = {
+//         from: process.env.EMAIL_ID,
+//         to: process.env.EMAIL_ID,
+//         subject: 'movies', 
+//         html: 'Email Content' 
+//       };
+//       transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//           console.log(error)                          
+//         } 
+//         else {
+//           console.log(`Message sent: ${info.response}`);
+//         };
+//       });
     
 
-    transporter.verify(function(error, success) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Server is ready to take our messages");
-        }
-      });
+//     transporter.verify(function(error, success) {
+//         if (error) {
+//           console.log(error);
+//         } else {
+//           console.log("Server is ready to take our messages");
+//         }
+//       });
 
-});
+// });
 
 app.listen(port, () => {
     console.log("Server is running on port 3000");

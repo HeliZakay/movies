@@ -10,15 +10,19 @@ import {addFriendsToDB} from "../actions/friends.js";
 import ShanaTova from "./ShanaTova";
 import MoviesCarousel from "./MoviesCarousel";
 import {getCarouselItems} from "../selectors/carousel";
+import TestForm from "./TestForm";
+import TestApi from "./TestApi";
 
 export const HomePage = (props) => (
  
   <div className={String(props.language !== "English" && "align-right")}>
     {/* <Open /> */}
     {/* <ShanaTova /> */}
+   {/* <TestForm /> */}
    
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
     <Actions />  
+    {/* <TestApi /> */}
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={addMe}>addMe</button> */}
     {/* <button onClick={unifyReviews}>Unify Reviews</button> */}
