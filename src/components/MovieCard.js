@@ -8,10 +8,7 @@ import {isMovieOnWatchList} from "../selectors/watchList";
 import ReviewsCarousel from "./ReviewsCarousel";
 import MovieData from "./MovieData";
 
-const produceMovieName = (movieNameText) => {
-   
-    return movieNameText;
-}
+
 
 export class MovieCard extends React.Component {
     constructor(props) {
@@ -21,6 +18,18 @@ export class MovieCard extends React.Component {
             score: 7,
             show: false,
             movie: {}
+        }
+    }
+    produceImage = () => {
+        const imgName = this.props.movieName.split(" ")[0].toLowerCase();  
+        try {
+            require(`../../public/images/${imgName}.jpg`); 
+            return <img className="custom-card__movie-image" src={`images/${imgName}.jpg`}></img>;
+        }     
+        catch(err) {
+            if (!this.state.movie.Error) {
+                return <img className="custom-card__movie-image" src={this.state.movie.Poster}></img>;
+            }
         }
     }
     computeAverageScore = (reviews) => {
@@ -70,7 +79,7 @@ export class MovieCard extends React.Component {
         return reviewId;
       }
       componentDidMount()  {
-        fetch(`http://www.omdbapi.com/?apikey=d6a02fcc&t=${produceMovieName(this.props.movieName)}`).then(res => res.json()).then(result => {
+        fetch(`http://www.omdbapi.com/?apikey=d6a02fcc&t=${this.props.movieName}`).then(res => res.json()).then(result => {
             this.setState({movie: result});
         })
     }
@@ -87,7 +96,7 @@ export class MovieCard extends React.Component {
             <div className="movie-card">
             <div className="card-body">
             <div className="custom-card__card-content">
-            <img className="custom-card__movie-image" src={this.state.movie.Poster}></img>
+           {this.produceImage()}
             <MovieData 
             movieId = {this.props.id}
             averageScore= {this.computeAverageScore(this.props.reviews)}
