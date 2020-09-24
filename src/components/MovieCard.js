@@ -163,6 +163,7 @@ export class MovieCard extends React.Component {
                 </button>
             </form>
             </div>}
+            {!this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews}) &&
             <a onClick={this.onAddOrRemoveFromWatchList}>
             <div  >
             {(isMovieOnWatchList(this.props.watchList, this.props.id)) ?
@@ -181,7 +182,7 @@ export class MovieCard extends React.Component {
              </div>
            }
            </div>
-            </a>
+            </a>}
             </div> 
             </div>
             </div>
