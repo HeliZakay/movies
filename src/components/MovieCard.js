@@ -17,7 +17,7 @@ export class MovieCard extends React.Component {
             content: "",
             score: 7,
             show: false,
-            movie: {}
+            movie: undefined
         }
     }
     produceImage = () => {
@@ -27,7 +27,7 @@ export class MovieCard extends React.Component {
             return <img className="custom-card__movie-image" src={`images/${imgName}.jpg`}></img>;
         }     
         catch(err) {
-            if (!this.state.movie.Error) {
+            if (this.state.movie && !this.state.movie.Error) {
                 return <img className="custom-card__movie-image" src={this.state.movie.Poster}></img>;
             }
         }
@@ -104,7 +104,9 @@ export class MovieCard extends React.Component {
             <div className="custom-card__card-content">
            {this.produceImage()}
             <MovieData 
+            movieInfoImdb={this.state.movie}
             movieId = {this.props.id}
+            movieName={this.props.movieName}
             averageScore= {this.computeAverageScore(this.props.reviews)}
             reviewsCount={this.props.reviews.length}
             />

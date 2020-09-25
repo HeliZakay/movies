@@ -1,5 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
+import MovieInfo from "./MovieInfo";
+
 
 export class MovieData extends React.Component {
     render() {
@@ -15,6 +17,11 @@ export class MovieData extends React.Component {
                  ({this.props.reviewsCount}  
                  {this.props.reviewsCount > 1 ? (this.props.language === "English"? " reviews": " ביקורות "): (this.props.language === "English"? " review": " ביקורת ")})
                  </h3>
+                 {this.props.movieInfoImdb && !this.props.movieInfoImdb.Error  && <MovieInfo 
+                 movieInfoImdb={this.props.movieInfoImdb}
+                 movieName={this.props.movieName}
+                 movieId={this.props.movieId}
+                 />}
             </div>
         );
     };
