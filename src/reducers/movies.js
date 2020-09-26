@@ -33,13 +33,17 @@ export default (state = [], action) => {
       case 'REMOVE_MOVIE':
         return state.map((movie) => {
           if (movie.id === action.movieId){
-            return {
+           return {
               ...movie,
               reviews: movie.reviews.filter((review) => review.id !== action.reviewId)
             };
           } else {
             return movie;
           }
+        });
+      case "REMOVE_MOVIE_COMPLETELY":
+        return state.filter((movie) => {
+          return movie.id !== action.movieId;
         });
       case "SET_MOVIES":
         return action.movies;

@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from 'react-router-dom';
 import moment from "moment";
 import {startAddMovieToWatchList, startRemoveMovieFromWatchList} from "../actions/watchList";
-import {startAddReview} from "../actions/movies";
+import {startAddReview, startAddMovieGenre} from "../actions/movies";
 import { connect } from "react-redux";
 import {isMovieOnWatchList} from "../selectors/watchList";
 import ReviewsCarousel from "./ReviewsCarousel";
@@ -197,7 +197,8 @@ export class MovieCard extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
     startAddMovieToWatchList: (id) => dispatch(startAddMovieToWatchList(id)),
     startRemoveMovieFromWatchList: (id) => dispatch(startRemoveMovieFromWatchList(id)),
-    startAddReview: (review) => dispatch(startAddReview(review))
+    startAddReview: (review) => dispatch(startAddReview(review)),
+    startAddMovieGenre: (genre) => dispatch(startAddMovieGenre(genre))
  });
 
  const mapStateToProps = (state) => ({

@@ -8,12 +8,11 @@
     font-weight: 300;
 }
 
-.text-input
 
 .select {
     @extend .text-input;
     // -webkit-appearance: menulist-button;
-   height: 100rem;
+//    height: 5rem;
    
 }
 .textarea {

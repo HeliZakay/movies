@@ -7,11 +7,13 @@ import {connect} from "react-redux";
 import {addFriendsToDB} from "../actions/friends.js";
 // import {addMe} from "../actions/friends.js";
 // import {unifyReviews} from "../actions/movies";
+
 import ShanaTova from "./ShanaTova";
 import MoviesCarousel from "./MoviesCarousel";
 import {getCarouselItems} from "../selectors/carousel";
 import TestForm from "./TestForm";
 import TestApi from "./TestApi";
+
 
 export const HomePage = (props) => (
  
@@ -22,6 +24,7 @@ export const HomePage = (props) => (
    
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
     <Actions />  
+    
     {/* <TestApi /> */}
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={addMe}>addMe</button> */}
@@ -45,5 +48,6 @@ const mapStateToProps = (state) => ({
       language: state.auth.language
   })
 });
+
 
 export default connect(mapStateToProps)(HomePage);

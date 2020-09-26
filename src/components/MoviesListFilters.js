@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import  {setPersonFilter, sortByDate, sortByScore, setTextFilter} from "../actions/filters";
+import  {setPersonFilter, sortByDate, sortByScore, setTextFilter, setGenresFilter} from "../actions/filters";
+import GenresCheckbox from "./GenresCheckbox";
 
 export class MoviesListFilters extends React.Component {
     onMovieChange = (event) => {
@@ -16,9 +17,15 @@ export class MoviesListFilters extends React.Component {
         : (this.props.sortByScore())
         
     };
+    setGenresFilter = (genresArray) => {
+        this.props.setGenresFilter(genresArray);
+    }
     render() {
         return (
             <div className="content-container filters">
+            <div className="genres-checkbox-container">
+             <GenresCheckbox setGenresFilter={(genresArray) => this.setGenresFilter(genresArray)}/>
+             </div>
                 <div className="input-group">
                     <div className="input-group__item">
                     <input className="text-input" 
@@ -37,7 +44,6 @@ export class MoviesListFilters extends React.Component {
                       onChange={this.onPersonChange}    
                      />
                     </div>
-                    
                     <div className="input-group__item">
                     <select className="select"
                     value={this.props.filters.sortBy}
@@ -61,6 +67,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     setTextFilter: (movieName) => dispatch(setTextFilter(movieName)),
     setPersonFilter: (person) => dispatch(setPersonFilter(person)),
+    setGenresFilter: (genres) => dispatch(setGenresFilter(genres)),
     sortByDate: () => dispatch(sortByDate()),
     sortByScore: () => dispatch(sortByScore())
 });

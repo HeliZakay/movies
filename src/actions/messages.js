@@ -1,5 +1,33 @@
 import database from "../firebase/firebase";
 import moment from "moment";
+import {countUnreadMessages} from "../selectors/messages";
+
+
+
+export const startSetEmails = () => {
+  return (dispatch) => {
+  return database.ref("users").once("value").then((snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      const name = childSnapshot.val().username
+      const messagesRecieved = childSnapshot.val().messagesRecieved;
+      const recievedMessages = [];
+      if(messagesRecieved) {
+        for (const [key,value] of Object.entries(childSnapshot.val().messagesRecieved)) {
+          recievedMessages.push(value);
+        }
+      } 
+      if (countUnreadMessages(recievedMessages) >=1) {
+        dispatch(setEmail({
+          to_name: childSnapshot.val().username, 
+          unread_count: countUnreadMessages(recievedMessages),
+          to_email: childSnapshot.val().email,
+          language: childSnapshot.val().language === "English"? 1:0
+        }));
+      }
+    });
+  });
+  }
+}
 
 export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, content, cardNum, prevMessageData}) => {
     console.log(prevMessageData.content);
@@ -32,6 +60,14 @@ export const addMessageToSent = (message) => ({
   type: "ADD_MESSAGE_TO_SENT",
   message
 });
+
+export const setEmail = ({to_name, unread_count, to_email, language}) => ({
+  type: "SET_EMAIL",
+  to_name,
+  unread_count,
+  to_email,
+  language
+})
 
 export const startAddRecommendation = ({friendId, movieId}) => {
   return(dispatch, getState) => {

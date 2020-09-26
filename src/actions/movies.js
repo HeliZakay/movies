@@ -3,6 +3,7 @@ import database from "../firebase/firebase";
 import moment from "moment";
 
 
+
 // ADD_MOVIE
 export const addMovie = (movie) =>  ({
       type: 'ADD_MOVIE',
@@ -16,11 +17,18 @@ export const startAddMovie = (movieData = {}) => {
       personName="",
       score=0,
       content="",
-      createdAt="0",     
+      createdAt="0",
+      genres     
      } = movieData;
-     const movie = {
+     let movie = {
       movieName
     };
+    if (genres) {
+      movie = {
+        ...movie,
+        genres
+      }
+    }
     const review = {
       personName,
       score,
@@ -33,12 +41,30 @@ export const startAddMovie = (movieData = {}) => {
           dispatch(addMovie({
             id: ref.key,
             movieName,
-            reviews: [{...review, id: r.key}]
+            reviews: [{...review, id: r.key}],
+            genres
           }));
         });
      });
   };
 };
+
+
+// export const  = () => {
+//   return (dispatch, getState) => {
+   
+//     return database.ref("movies").once("value").then((snapshot) => {
+//       snapshot.forEach((childSnapshot) => {
+//         const movieName = childSnapshot.val().movieName;
+//         const id = childSnapshot.val().id;
+//         const genres = getMovieGenres(movieName);
+//         if (genres) {
+//           return database.ref(`movies/${id}`).update({genres: genres});
+//         }
+//       });
+//     });
+//   }
+// }
 
 export const startAddReview = ({movieId, score, personName, content, createdAt}) => {
   return (dispatch, getState) => {
@@ -88,10 +114,23 @@ export const startEditMovie = ({movieId, reviewId, updatedReview}) => {
   reviewId
 });
 
+export const removeMovieCompletely = ({movieId}) => ({
+  type: "REMOVE_MOVIE_COMPLETELY",
+  movieId
+});
+
 export const startRemoveMovie = ({movieId, reviewId} = {}) => {
   return (dispatch) => {
      return database.ref(`movies/${movieId}/reviews/${reviewId}`).remove().then( () => {
-        dispatch(removeMovie({movieId, reviewId}));
+        return database.ref(`movies/${movieId}`).once("value").then((snapshot) => {
+          if (!snapshot.val().reviews) {
+            return database.ref(`movies/${movieId}`).remove().then(() => {
+              dispatch(removeMovieCompletely({movieId}));
+            });
+          } else {
+            dispatch(removeMovie({movieId, reviewId}));
+          }
+        });
      });
   };
 };

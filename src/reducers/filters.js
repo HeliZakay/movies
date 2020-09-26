@@ -2,6 +2,7 @@
 const filtersReducerDefaultState = {
     text: '',
     person: '',
+    genres: [],
     sortBy: 'date',
   };
   
@@ -16,6 +17,11 @@ export default (state = filtersReducerDefaultState, action) => {
         return {
           ...state,
           person: action.person
+        }
+      case "SET_GENRES_FILTER":
+        return {
+          ...state,
+          genres: action.genresArray
         }
       case 'SORT_BY_SCORE':
         return {

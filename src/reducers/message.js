@@ -1,7 +1,8 @@
 const defaultStateOfMessages = {
   messagesRecieved: [],
   messagesSent: [],
-  recommendations: [] 
+  recommendations: [],
+  emails: []
 };
 export default (state=defaultStateOfMessages, action) => {
     switch(action.type) {
@@ -58,6 +59,17 @@ export default (state=defaultStateOfMessages, action) => {
                         return message;
                     }
                 })
+            }
+        case "SET_EMAIL":
+            return {
+                ...state,
+                emails: [...state.emails, {
+                    to_name: action.to_name,
+                    unread_count: action.unread_count,
+                    to_email: action.to_email,
+                    language: action.language
+                }
+                ]
             }
         default:
             return state;

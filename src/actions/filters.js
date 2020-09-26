@@ -4,6 +4,11 @@ export const setTextFilter = (text = '') => ({
     text
   });
 
+  export const setGenresFilter = (genresArray) => ({
+    type: "SET_GENRES_FILTER",
+    genresArray
+  });
+
 // SORT_BY_DATE
 export const sortByDate = () => ({
     type: 'SORT_BY_DATE'

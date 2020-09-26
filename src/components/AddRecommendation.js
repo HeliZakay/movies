@@ -3,6 +3,8 @@ import RecommendationForm from "./RecommendationForm";
 import {connect} from "react-redux";
 import {startAddMovie, startAddReview} from "../actions/movies";
 import {isMovieNameExistsAlready} from "../selectors/movies";
+const https = require("https");
+
 
 export class AddRecommendation extends React.Component {
    onSubmit = (movie) => {
@@ -10,7 +12,17 @@ export class AddRecommendation extends React.Component {
       if (movieId) {
          this.props.startAddReview({movieId, ...movie});
       } else {
-         this.props.startAddMovie(movie);
+         const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${movie.movieName}`;
+         https.get(url, (response) => {
+        response.on("data", (data) => {
+            const movieData = JSON.parse(data);
+            let genres;
+            if(!movieData.Error) {
+               genres = movieData.Genre;
+            }
+            this.props.startAddMovie({...movie, genres});
+        });
+        });
       }
       this.props.history.push("/homePage");
    };

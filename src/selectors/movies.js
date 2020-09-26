@@ -1,4 +1,3 @@
-
   export const sortReviewsByDateAndPerson = (reviews, person) => { 
     if (!person) {
       return reviews.sort((a,b) => { 
@@ -16,6 +15,7 @@
       })];
     }   
   };
+
   
 const computeAverageScore = (movie) => {
   let sum = 0;
@@ -27,7 +27,8 @@ const computeAverageScore = (movie) => {
 }
 
 // Get visible movies
-export default (movies, { text, sortBy, person}) => {
+export default (movies, { text, sortBy, person, genres}) => {
+  
     return movies.filter((movie) => {
       const textMatch = movie.movieName.toLowerCase().includes(text.toLowerCase());
       let personMatch = false;
@@ -36,7 +37,22 @@ export default (movies, { text, sortBy, person}) => {
           personMatch = true;
         }
       });
-      return textMatch && personMatch;
+      let genreMatch = false;
+      if (!genres) {
+        genreMatch = true;
+      } else if (genres.length ===0) {
+        genreMatch = true;
+      } else if (!movie.genres) {
+        genreMatch = false;
+      } else {
+        const genresArray = movie.genres.split(", ");
+        genresArray.forEach((genre) => {
+          if (genres.includes(genre)) {
+            genreMatch = true;
+          }
+        });
+      }
+      return genreMatch && textMatch && personMatch;
     }).map((movie) => {
       const sorted = sortReviewsByDateAndPerson(movie.reviews, person);
       return {...movie, reviews: sorted};
