@@ -17,8 +17,6 @@
     margin-bottom: $s-size;
     @media(min-width: $desktop-breakpoint) {
         margin:0 ;
+        width: 31.5%;
     }
-}
-.filter {
-    width: 30%;
 }

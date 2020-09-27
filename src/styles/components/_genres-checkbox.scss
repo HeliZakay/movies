@@ -1,7 +1,7 @@
 .genres-checkbox {
     @media(min-width: $desktop-breakpoint) {
         margin-bottom: 5px;
-        width:60rem;
+        width:100%;
     }
    @media(max-width: $desktop-breakpoint) {
        min-width: 13.625rem;
