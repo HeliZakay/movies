@@ -27,8 +27,8 @@ export class MoviesListFilters extends React.Component {
              <GenresCheckbox setGenresFilter={(genresArray) => this.setGenresFilter(genresArray)}/>
              </div>
                 <div className="input-group">
-                    <div className="input-group__item">
-                    <input className="text-input" 
+                    <div className="input-group__item filter">
+                    <input className="text-input " 
                     type="text" 
                     placeholder={this.props.language === "English"? "filter by movie name": "סנן לפי שם סרט"}
                     value={this.props.filters.text}
@@ -36,8 +36,8 @@ export class MoviesListFilters extends React.Component {
                     />
                     </div>
 
-                    <div className="input-group__item">
-                    <input className="text-input"
+                    <div className="input-group__item filter">
+                    <input className="text-input "
                     type="text" 
                      placeholder={this.props.language === "English"? "filter by recommender": "סנן לפי שם הממליץ"}
                      value={this.props.filters.person}
