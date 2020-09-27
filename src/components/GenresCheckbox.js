@@ -3,33 +3,51 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import {connect} from "react-redux";
 import {setGenresFilter} from "../actions/filters";
-// import { colourOptions } from '../data';
 
-const optionsGenres = [
-    { value: "Action", label: "Action"},
-    { value: "Adventure", label: "Adventure"},
-    { value: "Animation", label: "Animation"},
-    { value: "Biography", label: "Biography"},
-    {value: "Comedy", label: "Comedy"},
-    { value: "Crime", label: "Crime"},
-    { value: "Documentary", label: "Documentary"},
-    { value: "Drama", label: "Drama"},
-    { value: "Family", label: "Family"},
-    { value: "Fantasy", label: "Fantasy"},
-    { value: "History", label: "History"},
-    { value: "Horror", label: "Horror"},
-    { value: "Musical", label: "Musical"},
-    { value: "Mystery", label: "Mystery"},
-    { value: "Romance", label: "Romance"},
-    { value: "Sci-Fi", label: "Sci-Fi"},
-    { value: "Thriller", label: "Thriller"},
-    { value: "War", label: "War"}    
-];
-
+const genreDict = {
+    "Action": "פעולה",
+    "Adventure": "הרפתקאות",
+    "Animation": "אנימציה",
+    "Biography": "ביוגרפי",
+    "Comedy": "קומדיה",
+    "Crime": "פשע",
+    "Documentary": "דוקומנטרי",
+    "Drama": "דרמה",
+    "Family": "המשפחה",
+   "Fantasy": "פנטזיה",
+   "History": "היסטוריה", 
+    "Horror": "אימה", 
+    "Musical": "מוזיקלי",
+    "Mystery": "תעלומה",
+    "Romance":"רומנטיקה", 
+    "Sci-Fi": "מדע בדיוני",
+    "Thriller": "מתח",
+    "War": "מלחמה"
+}
 const animatedComponents = makeAnimated();
 
-export default (props) => {
-    // const [genres, setGenres] = useState([]);
+export const GenresCheckbox =  (props) => {
+    
+const optionsGenres = [
+    { value: "Action", label: props.language === "English"? "Action": genreDict["Action"]},
+    { value: "Adventure", label: props.language === "English"? "Adventure": genreDict["Adventure"] },
+    { value: "Animation", label: props.language === "English"?  "Animation": genreDict["Animation"]},
+    { value: "Biography", label: props.language === "English"?  "Biography": genreDict["Biography"] },
+    {value: "Comedy", label: props.language === "English"?   "Comedy": genreDict["Comedy"]},
+    { value: "Crime", label: props.language === "English"?  "Crime": genreDict["Crime"] },
+    { value: "Documentary", label: props.language === "English"?  "Documentary": genreDict["Documentary"] },
+    { value: "Drama", label: props.language === "English"?  "Drama": genreDict["Drama"] },
+    { value: "Family", label: props.language === "English"?  "Family": genreDict["Family"] },
+    { value: "Fantasy", label: props.language === "English"?  "Fantasy": genreDict["Fantasy"] },
+    { value: "History", label: props.language === "English"?  "History": genreDict["History"] },
+    { value: "Horror", label: props.language === "English"?  "Horror": genreDict["Horror"] },
+    { value: "Musical", label: props.language === "English"?  "Musical": genreDict["Musical"] },
+    { value: "Mystery", label: props.language === "English"?  "Mystery": genreDict["Mystery"] },
+    { value: "Romance", label: props.language === "English"?  "Romance": genreDict["Romance"] },
+    { value: "Sci-Fi", label: props.language === "English"?  "Sci-Fi": genreDict["Sci-Fi"] },
+    { value: "Thriller", label: props.language === "English"?  "Thriller": genreDict["Thriller"] },
+    { value: "War", label: props.language === "English"?  "War": genreDict["War"] }    
+];
     
     const handleChange = (event) => {
         let genresArray = [];
@@ -59,7 +77,7 @@ export default (props) => {
         options={optionsGenres}
         theme={customTheme}
         className="mb-3"
-        placeholder="Select Genres"
+        placeholder={props.language === "English"? "Select Genres" : "סינון לפי ז'אנר"}
         isSearchable
         isMulti
         autoFocus
@@ -73,4 +91,9 @@ export default (props) => {
    
   );
 }
+const mapStateToProps = (state) => ({
+    language: state.auth.language
+});
+
+export default connect(mapStateToProps)(GenresCheckbox);
 
