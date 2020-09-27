@@ -8,6 +8,7 @@
     }
     @media(max-width: $desktop-breakpoint) {
         margin-bottom: $s-size;
+        
     }
     
    
@@ -18,5 +19,11 @@
     @media(min-width: $desktop-breakpoint) {
         margin:0 ;
         width: 31.5%;
+    }
+    @media(max-width: $desktop-breakpoint) {
+        margin-bottom: $s-size ;
+        width: 80%;
+        margin: 0 auto $m-size auto;
+       
     }
 }

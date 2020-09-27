@@ -23,10 +23,11 @@ export class MoviesListFilters extends React.Component {
     render() {
         return (
             <div className="content-container filters">
-            <div className="genres-checkbox-container">
+              <div className="genres-checkbox-container">
              <GenresCheckbox setGenresFilter={(genresArray) => this.setGenresFilter(genresArray)}/>
              </div>
                 <div className="input-group">
+              
                    
                     <input className="text-input input-group__item" 
                     type="text" 
