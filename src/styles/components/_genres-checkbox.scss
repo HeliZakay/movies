@@ -1,11 +1,11 @@
 .genres-checkbox {
     @media(min-width: $desktop-breakpoint) {
-        width:590px;
-        margin-right: $s-size;
         margin-bottom: 5px;
+        width: 100%;
     }
    @media(max-width: $desktop-breakpoint) {
-    width: 220px;
+       min-width: 218px;
+       max-width: 90%;
     margin-bottom: 2px;
 }
 }

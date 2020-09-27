@@ -1,7 +1,11 @@
 .filters {
     margin-bottom: 50px;
+    @media(min-width: $desktop-breakpoint) {
+        width: 42%;
+    }
     @media(max-width: $desktop-breakpoint) {
         margin-bottom: 0;
         text-align: center;
+        
     }
 }
