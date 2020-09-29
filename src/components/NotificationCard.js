@@ -20,14 +20,23 @@ export class NotificationCard extends React.Component{
              <div className="message-card">
             <div className="card-header custom-card-header">
             <div className="custom-card-header__envelop-and-header">
-            <i className="envelop material-icons">
+            {this.props.notification.type === "getStae" && <i className="envelop material-icons">
             star
-            </i>
+            </i>}
+            {this.props.notification.type === "newReview" && <i className="envelop material-icons">
+            movie_filter
+            </i>}
             <h3 >
             {this.props.notification.type === "getStar" &&
             (this.props.language === "English" ?
              "Star from " + this.props.notification.personName+ "!":
                 "כוכב מ "+this.props.notification.personName+"!")}           
+            </h3>     
+            <h3 >
+            {this.props.notification.type === "newReview" &&
+            (this.props.language === "English" ?
+             this.props.notification.personName+ " wrote a new review!":
+                "ביקורת חדשה מאת  "+this.props.notification.personName+"!")}           
             </h3>        
             </div>
             <i onClick={() => this.props.onDelete(this.props.notification.id, this.props.uid)} className="trash delete-icon material-icons">
@@ -56,6 +65,14 @@ export class NotificationCard extends React.Component{
                         <p>{this.props.notification.personName+ " gave you a star on your review for the movie " + this.props.notification.movieName}</p>
                     ) :(
                         <p>{this.props.notification.personName+" נתנו לך כוכב על הביקורת שלך עבור הסרט " + this.props.notification.movieName}</p>
+                    )
+                )        
+                }
+                {this.props.notification.type === "newReview" && (
+                    this.props.language === "English"? (
+                        <p>{this.props.notification.personName+ " wrote a review for the movie " + this.props.notification.movieName}</p>
+                    ) :(
+                        <p>{this.props.notification.personName+" כתבו ביקורת עבור הסרט " + this.props.notification.movieName}</p>
                     )
                 )        
                 }

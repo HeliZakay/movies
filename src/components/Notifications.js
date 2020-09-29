@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import NotificationCard from "./NotificationCard";
 import {startDeleteNotification} from "../actions/notifications";
+import {sortByDate} from "../selectors/notifications";
 
 const Notifications = (props) => {
     const onDelete = (notificationId, userId) => {
@@ -31,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
     startDeleteNotification: (data)=> dispatch(startDeleteNotification(data))
 })
 const mapStateToProps = (state) => ({
-    notifications: state.notifications,
+    notifications: sortByDate(state.notifications),
     language: state.auth.language
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

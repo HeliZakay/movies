@@ -87,7 +87,8 @@ export const startAddReview = ({movieId, score, personName, content, createdAt})
       score,
       content,
       createdAt: moment(createdAt).format(), 
-      userUid: getState().auth.uid
+      userUid: getState().auth.uid,
+      stars:[]
     };
      return database.ref(`movies/${movieId}/reviews`).push(reviewItem).then( (ref) => {
         return dispatch(addReview(movieId, {

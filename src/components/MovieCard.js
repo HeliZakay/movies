@@ -5,6 +5,8 @@ import {startAddMovieToWatchList, startRemoveMovieFromWatchList} from "../action
 import {startAddReview, startAddMovieGenre} from "../actions/movies";
 import { connect } from "react-redux";
 import {isMovieOnWatchList} from "../selectors/watchList";
+import {startSendNotification} from "../actions/notifications";
+import {getFriendsArray} from "../selectors/friends";
 import ReviewsCarousel from "./ReviewsCarousel";
 import MovieData from "./MovieData";
 const https = require("https");
@@ -59,6 +61,7 @@ export class MovieCard extends React.Component {
     onQuickReviewSend = (event) => {
         event.preventDefault();
             this.setState({...this.state, show: false, content: ""});
+
             const review = {
                 movieId: this.props.id,
                 score: this.state.score,
@@ -66,8 +69,20 @@ export class MovieCard extends React.Component {
                 content: this.state.content,
                 createdAt: moment() 
             };
+
             this.props.startAddReview(review);
             
+            if (this.state.content) {
+                this.props.myFriendsArr.forEach((friendId) => {
+                    this.props.startSendNotification({
+                        type: "newReview",
+                        createdAt: moment(),
+                        userId: friendId,
+                        movieName: this.props.movieName,
+                        personName: this.props.username
+                    });
+                });
+            } 
     };
     didSendReviewToMovie = ({reviews, uid}) => {
         let reviewId;
@@ -199,7 +214,8 @@ const mapDispatchToProps = (dispatch) => ({
     startAddMovieToWatchList: (id) => dispatch(startAddMovieToWatchList(id)),
     startRemoveMovieFromWatchList: (id) => dispatch(startRemoveMovieFromWatchList(id)),
     startAddReview: (review) => dispatch(startAddReview(review)),
-    startAddMovieGenre: (genre) => dispatch(startAddMovieGenre(genre))
+    startAddMovieGenre: (genre) => dispatch(startAddMovieGenre(genre)),
+    startSendNotification: (data)=> dispatch(startSendNotification(data))
  });
 
  const mapStateToProps = (state) => ({
@@ -207,7 +223,8 @@ const mapDispatchToProps = (dispatch) => ({
      watchList: state.watchList,
      language: state.auth.language,
      username: state.auth.username,
-     uid: state.auth.uid
+     uid: state.auth.uid,
+     myFriendsArr: getFriendsArray(state.friends.friends)
  });
 
  export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

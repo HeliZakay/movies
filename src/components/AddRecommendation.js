@@ -3,6 +3,8 @@ import RecommendationForm from "./RecommendationForm";
 import {connect} from "react-redux";
 import {startAddMovie, startAddReview} from "../actions/movies";
 import {isMovieNameExistsAlready} from "../selectors/movies";
+import {startSendNotification} from "../actions/notifications";
+import {getFriendsArray} from "../selectors/friends";
 const https = require("https");
 
 
@@ -24,6 +26,17 @@ export class AddRecommendation extends React.Component {
         });
         });
       }
+      if (movie.content) {
+         this.props.myFriendsArr.forEach((friendId) => {
+             this.props.startSendNotification({
+                 type: "newReview",
+                 createdAt: movie.createdAt,
+                 userId: friendId,
+                 movieName: movie.movieName,
+                 personName: movie.personName
+             });
+         });
+     } 
       this.props.history.push("/homePage");
    };
    render() {
@@ -52,12 +65,14 @@ export class AddRecommendation extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
    startAddMovie: (movie) => dispatch(startAddMovie(movie)),
-   startAddReview: (review) => dispatch(startAddReview(review))
+   startAddReview: (review) => dispatch(startAddReview(review)),
+   startSendNotification: (data) => dispatch(startSendNotification(data))
 });
 
 const mapStateToProps = (state) => ({
    language: state.auth.language,
-   movies: state.movies
+   movies: state.movies,
+   myFriendsArr: getFriendsArray(state.friends.friends)
 });
    
 export default connect(mapStateToProps, mapDispatchToProps)(AddRecommendation);

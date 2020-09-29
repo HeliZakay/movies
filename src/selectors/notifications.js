@@ -7,3 +7,9 @@ export const countUnreadNotifications = (notifications) => {
     });
     return count;
   }
+
+  export const sortByDate = (notifications) => {
+    return notifications.sort((a, b) => {
+        return a.createdAt < b.createdAt ? 1 : -1;
+  });
+}

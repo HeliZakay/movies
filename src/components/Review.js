@@ -7,18 +7,21 @@ import IconButton from '@material-ui/core/IconButton';
 import {startGiveStarToReview} from "../actions/movies";
 import {didIGaveStarToReview} from "../selectors/movies";
 import {startSendNotification} from "../actions/notifications";
-
+import {getFriendsArray} from "../selectors/friends"
 
 export class Review extends React.Component {
     onStar = () => {
         this.props.startGiveStarToReview(this.props.id, this.props.movieId);
-        this.props.startSendNotification({
-            type: "getStar",
-            personName: this.props.user.username,
-            movieName: this.props.movieName,
-            userId : this.props.userUid,
-            createdAt: moment()
-        });
+        if (this.props.myFriends.includes(this.props.userUid)) {
+            
+            this.props.startSendNotification({
+                type: "getStar",
+                personName: this.props.user.username,
+                movieName: this.props.movieName,
+                userId : this.props.userUid,
+                createdAt: moment()
+            });
+        }
     }
     render() {
         return (
@@ -26,14 +29,23 @@ export class Review extends React.Component {
             <p className="card-title">{this.props.language === "English"?("Recommender: "+ this.props.personName): ( this.props.personName +" ממליץ: ")}</p>
             <p className="card-title"> {this.props.language === "English"?("Score: "+ this.props.score): ("ציון: "+ this.props.score)}</p>
             <Content content={this.props.content}/> 
-            {/* {this.props.stars.length > 0 && 
-            <div className="review__stars-count-wrapper">
-            <div className="review__count-div"> Review got {this.props.stars.length} </div>
-            <div className="review__star-div"><span className="filled-star-icon material-icons">
-            star
-            </span></div>
-            </div>} */}
-            {/* {this.props.userUid !== this.props.uid && */}
+            {   this.props.language === "English" &&
+                this.props.stars.length > 0 &&
+                <p>
+                <span>({this.props.stars.length}</span>
+                <span>{this.props.stars.length === 1? " person ": " people "}</span> 
+                <span>gave a star to the review)</span>
+                </p>
+            } 
+            {   this.props.language !== "English" &&
+                this.props.stars.length > 0 &&
+                <p>
+                <span>({this.props.stars.length}</span>
+                <span>{this.props.stars.length === 1? " אדם ": " אנשים "}</span> 
+                <span>{this.props.stars.length === 1? " נתן ": " נתנו "}</span> 
+                <span> כוכב לביקורת)</span>
+                </p>
+            } 
             {!didIGaveStarToReview(this.props.stars, this.props.uid)&&
             <a onClick={this.onStar}>
             <div className="review__star-section">
@@ -59,7 +71,8 @@ export class Review extends React.Component {
 const mapStateToProps = (state) => ({
     language: state.auth.language,
     uid: state.auth.uid,
-    user: state.auth
+    user: state.auth,
+    myFriends: getFriendsArray(state.friends.friends)
     
 });
 const mapDispatchToProps = (dispatch) => ({

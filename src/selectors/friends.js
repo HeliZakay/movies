@@ -7,4 +7,8 @@ export const getVisibleFriends =  (friends, name) => {
   };
 
 
- 
+ export const getFriendsArray = (friends) => {
+   return friends.map((friend) => {
+    return friend.userId;
+   })
+ };

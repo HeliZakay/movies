@@ -50,7 +50,7 @@ export class EditRecommendation extends React.Component {
                  <button className="button button--secondary" 
                     onClick={this.onRemove}
                     >
-                    {this.props.language === "English"? "Remove": "הסר את הסרט"}
+                    {this.props.language === "English"? "Remove": "הסר את הביקורת"}
                     
                     </button>
             </div>
