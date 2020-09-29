@@ -167,8 +167,8 @@ export const startRemoveMovie = ({movieId, reviewId} = {}) => {
             const reviews = [];
             if (movieSnapshot.val().reviews){
               const reviewsObj = movieSnapshot.val().reviews;
-              const stars = [];
               for (const [key, value] of Object.entries(reviewsObj)) {
+                const stars = [];
                 if (value.stars) {
                   for (const[k,v] of Object.entries(value.stars)) {
                     stars.push(v);
