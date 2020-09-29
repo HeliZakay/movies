@@ -20,7 +20,7 @@ export class NotificationCard extends React.Component{
              <div className="message-card">
             <div className="card-header custom-card-header">
             <div className="custom-card-header__envelop-and-header">
-            {this.props.notification.type === "getStae" && <i className="envelop material-icons">
+            {this.props.notification.type === "getStar" && <i className="envelop material-icons">
             star
             </i>}
             {this.props.notification.type === "newReview" && <i className="envelop material-icons">
