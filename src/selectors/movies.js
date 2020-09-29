@@ -1,3 +1,13 @@
+  export const didIGaveStarToReview = (stars, uid) => {
+    let result = false;
+    stars.forEach((star) => {
+      if (star.uid === uid) {
+        result = true;
+      }
+    });
+    return result;
+  }
+  
   export const sortReviewsByDateAndPerson = (reviews, person) => { 
     if (!person) {
       return reviews.sort((a,b) => { 
@@ -58,7 +68,7 @@ export default (movies, { text, sortBy, person, genres}) => {
       return {...movie, reviews: sorted};
     }).sort((a, b) => {
       if (sortBy === 'date') {
-        return a.reviews[a.reviews.length-1].createdAt < b.reviews[b.reviews.length-1].createdAt ? 1 : -1;
+        return a.reviews[0].createdAt < b.reviews[0].createdAt ? 1 : -1;
       } else if (sortBy === 'score') {
         return computeAverageScore(a) < computeAverageScore(b) ? 1 : -1;
       }

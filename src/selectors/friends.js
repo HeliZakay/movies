@@ -5,3 +5,6 @@ export const getVisibleFriends =  (friends, name) => {
       return emailMatch || usernameMatch;
     });   
   };
+
+
+ 

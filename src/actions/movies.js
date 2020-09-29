@@ -2,7 +2,20 @@ import uuid from "uuid";
 import database from "../firebase/firebase";
 import moment from "moment";
 
-
+export const startGiveStarToReview = (reviewId, movieId) => {
+  return (dispatch, getState) => {
+    const user = getState().auth;
+    return database.ref(`movies/${movieId}/reviews/${reviewId}/stars/${user.uid}`).update({...user}).then(() => {
+      dispatch(giveStarToReview(reviewId, movieId, user));
+    });
+  }
+}
+export const giveStarToReview = (reviewId, movieId, user) => ({
+  type: "GIVE_STAR_TO_REVIEW",
+  reviewId,
+  movieId,
+  user
+})
 
 // ADD_MOVIE
 export const addMovie = (movie) =>  ({
@@ -34,7 +47,8 @@ export const startAddMovie = (movieData = {}) => {
       score,
       content,
       createdAt: moment(createdAt).format(), 
-      userUid: getState().auth.uid
+      userUid: getState().auth.uid,
+      stars: []
     }
      return database.ref("movies").push(movie).then( (ref) => {
         return database.ref(`movies/${ref.key}/reviews`).push(review).then((r) => {
@@ -152,10 +166,17 @@ export const startRemoveMovie = ({movieId, reviewId} = {}) => {
             const reviews = [];
             if (movieSnapshot.val().reviews){
               const reviewsObj = movieSnapshot.val().reviews;
+              const stars = [];
               for (const [key, value] of Object.entries(reviewsObj)) {
+                if (value.stars) {
+                  for (const[k,v] of Object.entries(value.stars)) {
+                    stars.push(v);
+                  }
+                }
                 reviews.push({
                   id: key,
-                  ...value
+                  ...value,
+                  stars
                 });
               }
             }

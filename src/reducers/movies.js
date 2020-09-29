@@ -57,7 +57,34 @@ export default (state = [], action) => {
               }
             }
             else {return movie};
-          });   
+          });
+      case "GIVE_STAR_TO_REVIEW":
+        return state.map((movie) => {
+          if(movie.id === action.movieId) {
+            const updtaedReviews = movie.reviews.map((review) => {
+              if (review.id === action.reviewId) {
+                let updatedStarsArray;
+                if (review.stars) {
+                  updatedStarsArray = [...review.stars, action.user];
+                } else {
+                  updatedStarsArray = [action.user];
+                }
+                return {
+                  ...review,
+                  stars: updatedStarsArray
+                }
+              } else {
+                return review;
+              }
+            });
+            return {
+              ...movie,
+              reviews: updtaedReviews
+            }
+          } else {
+            return movie;
+          }
+        })
       default:
         return state;
     }

@@ -42,10 +42,16 @@ export class ReviewsCarousel extends React.Component {
             </div>} 
            <div className= {this.props.reviews.length === 1? "review--one-review" : "review"}>
            <Review 
+                movieId={this.props.movieId}
+                id= {this.props.reviews[this.state.currentReview].id}
+                movieName={this.props.movieName}
+                stars = {this.props.reviews[this.state.currentReview].stars}
                 content= {this.props.reviews[this.state.currentReview].content}
                 createdAt= {this.props.reviews[this.state.currentReview].createdAt}
                 personName= {this.props.reviews[this.state.currentReview].personName}
                 score= {this.props.reviews[this.state.currentReview].score}
+                userUid= {this.props.reviews[this.state.currentReview].userUid}
+                username={this.props.reviews[this.state.currentReview].personName}
             /> 
            </div>
            

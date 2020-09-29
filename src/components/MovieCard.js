@@ -110,7 +110,7 @@ export class MovieCard extends React.Component {
             averageScore= {this.computeAverageScore(this.props.reviews)}
             reviewsCount={this.props.reviews.length}
             />
-            <ReviewsCarousel reviews={this.props.reviews}/>
+            <ReviewsCarousel reviews={this.props.reviews} movieId={this.props.id} movieName={this.props.movieName}/>
             </div>
             <div className="card-footer text-muted custom-card__footer">   
             {this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews})? (
@@ -165,7 +165,7 @@ export class MovieCard extends React.Component {
                 </button>
             </form>
             </div>}
-            {!this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews}) &&
+            {/* {!this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews}) && */}
             <a onClick={this.onAddOrRemoveFromWatchList}>
             <div  >
             {(isMovieOnWatchList(this.props.watchList, this.props.id)) ?
@@ -184,7 +184,8 @@ export class MovieCard extends React.Component {
              </div>
            }
            </div>
-            </a>}
+            </a>
+            {/* } */}
             </div> 
             </div>
             </div>

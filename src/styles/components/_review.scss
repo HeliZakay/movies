@@ -8,3 +8,18 @@
     padding-bottom: 10px;
     padding-top: 5px;
 }
+.review__star-text {
+    font-size: 1.6rem;
+    // font-family: 'Caveat', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
+.review__wrapper {
+    display: flex;
+    color: wheat;
+}
+
+.review__stars-count-wrapper{
+    display: flex;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}

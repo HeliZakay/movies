@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 
+
 export  class Content extends React.Component {
     constructor(props) {
         super(props);
@@ -31,13 +32,15 @@ export  class Content extends React.Component {
             </a>
             </p>
             }
+           
             </div>;
         }
     }
     render() {
         return (
             <div className="content">
-             {this.props.content && <div className="card-text"> {this.shortenContent(this.props.content)}</div>}           
+             {this.props.content && <div className="card-text"> {this.shortenContent(this.props.content)}</div>}
+                 
             </div>
         );
     }

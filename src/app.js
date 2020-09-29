@@ -14,6 +14,7 @@ import {startSetFriends} from "./actions/friends";
 import {startSetUserDetails} from "./actions/auth";
 import LoadingPage from "./components/LoadingPage";
 import {startSetMessagesRecieved, startSetMessagesSent, startSetRecommendations } from "./actions/messages";
+import {startSetNotifications} from "./actions/notifications";
 
 const store = configureStore();
 
@@ -44,7 +45,9 @@ firebase.auth().onAuthStateChanged((user) => {
                             return store.dispatch(startSetMessagesRecieved()).then(()=> {
                                 return store.dispatch(startSetMessagesSent()).then(()=> {
                                     return store.dispatch(startSetRecommendations()).then(() => {
-                                        renderApp();
+                                        return store.dispatch(startSetNotifications()).then(() => {
+                                            renderApp();
+                                        });
                                     });
                                 }); 
                             });                            

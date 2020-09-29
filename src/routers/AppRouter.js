@@ -16,7 +16,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import SignupRoute from "./SignupRoute";
 import LanguageRoute from "./LanguageRoute";
-
+import Notifications from "../components/Notifications";
 
 export let history = createBrowserHistory();
 
@@ -34,6 +34,7 @@ const AppRouter = () => (
         <PrivateRoute  path="/friends" component={Friends} />
         <PrivateRoute  path="/contact" component={Contact} />
         <PrivateRoute  path="/messages" component={Messages} />
+        <PrivateRoute  path="/notifications" component={Notifications} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
