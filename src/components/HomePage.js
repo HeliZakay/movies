@@ -5,6 +5,7 @@ import Open from "./Open";
 import MoviesListFilters from "./MoviesListFilters";
 import {connect} from "react-redux";
 import {addFriendsToDB} from "../actions/friends.js";
+
 // import {addMe} from "../actions/friends.js";
 // import {unifyReviews} from "../actions/movies";
 
@@ -21,10 +22,10 @@ export const HomePage = (props) => (
     {/* <Open /> */}
     {/* <ShanaTova /> */}
    {/* <TestForm /> */}
-   
+  
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
     <Actions />  
-    
+
     {/* <TestApi /> */}
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={addMe}>addMe</button> */}

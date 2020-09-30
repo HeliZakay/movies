@@ -104,3 +104,36 @@ export default (movies, { text, sortBy, person, genres}) => {
     });
     return result;
   }
+export const findMovie = (movies, movieName, personName, uid, type) => {
+  const movieArr =  movies.filter((movie) => {
+    return movie.movieName === movieName;
+  });  
+  if(movieArr && movieArr[0]) {
+    const movie = movieArr[0];
+    const oldReviews = movie.reviews;
+    const filteredReviews = oldReviews.filter((review) => {
+      if(type==="newReview") {
+        return review.personName !== personName;
+      }
+      else {
+        return review.userUid !== uid;
+      }
+    });
+    const firstReview = oldReviews.filter((review) => {
+      if(type==="newReview") {
+        return review.personName === personName;
+      }
+      else {
+        return review.userUid === uid;
+      }
+    });
+    const sortedReviews= [...firstReview, ...filteredReviews];
+    return {
+      ...movie,
+      reviews: sortedReviews
+    };
+  } else {
+    return undefined;
+  }
+  
+}

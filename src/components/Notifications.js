@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import NotificationCard from "./NotificationCard";
 import {startDeleteNotification} from "../actions/notifications";
 import {sortByDate} from "../selectors/notifications";
+import Dialog from "./Dialog";
+import {findMovie} from "../selectors/movies";
 
 const Notifications = (props) => {
     const onDelete = (notificationId, userId) => {
@@ -11,6 +13,9 @@ const Notifications = (props) => {
                 userId
             });
     };
+    const showDialog = () => {
+        setDialog(true);
+    }
     return (
         <div className={String(props.language !== "English" && "align-right")}>
         <div className="content-container margin">
@@ -20,7 +25,12 @@ const Notifications = (props) => {
         <div className="row">
         {props.notifications.map((notification) => {
             return <div key={notification.id} className=" col-sm-12 col-md-6 col-lg-4">
-            <NotificationCard  onDelete={onDelete} notification={notification} />
+            <NotificationCard 
+            showDialog={showDialog} 
+            onDelete={onDelete} 
+            notification={notification}
+            movie={findMovie(props.movies, notification.movieName, notification.personName, props.uid, notification.type)}
+            />
             </div>
         })} 
         </div>
@@ -33,7 +43,9 @@ const mapDispatchToProps = (dispatch) => ({
 })
 const mapStateToProps = (state) => ({
     notifications: sortByDate(state.notifications),
-    language: state.auth.language
+    language: state.auth.language,
+    movies: state.movies,
+    uid: state.auth.uid
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
 

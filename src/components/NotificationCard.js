@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import moment from "moment";
 import {startMarkNotificationAsRead} from "../actions/notifications";
+import Dialog from "./Dialog";
+
 
 export class NotificationCard extends React.Component{
     constructor(props) {
@@ -59,7 +61,8 @@ export class NotificationCard extends React.Component{
                 {this.props.language === "English"? "Open!" : "פתח!"}
                 </button>}
 
-               {this.state.open && <div> 
+               {this.state.open && 
+               <div> 
                 {this.props.notification.type === "getStar" && (
                     this.props.language === "English"? (
                         <p>{this.props.notification.personName+ " gave you a star on your review for the movie " + this.props.notification.movieName}</p>
@@ -76,6 +79,7 @@ export class NotificationCard extends React.Component{
                     )
                 )        
                 }
+                 {this.props.movie && <Dialog movie={this.props.movie}/>}
                </div>
                }
             </div>
@@ -88,7 +92,7 @@ export class NotificationCard extends React.Component{
 
 const mapStateToProps = (state) => ({
     uid: state.auth.uid,
-    language: state.auth.language
+    language: state.auth.language,
 });
 
 
