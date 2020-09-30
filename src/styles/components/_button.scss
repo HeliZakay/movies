@@ -89,3 +89,11 @@
     text-align: center;
     margin: 60px 0;
 }
+.button-open-review{
+    background: $card-data;
+}
+.button-watchlist{
+    border-radius: 7px;
+    background: $card-data;
+    border: $card-data;
+}

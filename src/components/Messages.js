@@ -77,6 +77,7 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
                     className=" col-sm-12 col-md-6 col-lg-4">
                      <MessageCard
                         id={message.id}
+                        movie={message.movie? message.movie : undefined}
                         createdAt= {message.createdAt}
                         username={message.recommender.username}
                         email={message.recommender.email}

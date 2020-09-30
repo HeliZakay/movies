@@ -6,7 +6,7 @@ import {startAddMovieToWatchList, startRemoveMovieFromWatchList} from "../action
 import {startDeleteMessage} from "../actions/messages";
 import {startAddMessageToFriend} from "../actions/messages";
 import {startMarkMessageAsRead} from "../actions/messages";
-
+import Dialog from "./Dialog";
 
 
 
@@ -145,12 +145,7 @@ export class MessageCard extends React.Component{
                 }
                 { this.props.content && <p className="card-text"> "{this.props.content}"</p> }
                 { this.props.movieName && this.props.type==="recieved" &&
-                    !(isMovieOnWatchList(this.props.watchList, this.props.movieId)) && (
-                    <button 
-                    className="btn button-movie btn-warning btn-lg"
-                    onClick={this.onAddOrRemoveFromWatchList}>
-                    {this.props.language === "English"? "Add to my watch list!": "הוסף לרשימת הצפייה שלי!"}
-                     </button>)
+                    <Dialog movie={this.props.movie}/>
                 }
                 {(this.props.type !=="sent" && this.props.prevMessageData) &&
                (<a 
@@ -165,6 +160,7 @@ export class MessageCard extends React.Component{
                  "{this.prevFunc(this.props.language, this.props.prevMessageData)}"
                  </p>}
                  <div>
+                 <div className="message-card__buttons-wrapper">
                  {this.props.type !=="sent" &&
                  <button
                     onClick={this.showTextare} 
@@ -172,15 +168,21 @@ export class MessageCard extends React.Component{
                 >
                     {this.props.language === "English"? " Respond!": "הגב להודעה!"}
                 </button>}
-               
+                { this.props.movieName && this.props.type==="recieved" &&
+                    !(isMovieOnWatchList(this.props.watchList, this.props.movieId)) && (
+                    <button 
+                    className="btn button-movie btn-warning btn-lg button-watchlist"
+                    onClick={this.onAddOrRemoveFromWatchList}>
+                    {this.props.language === "English"? "Add to my watch list!": "הוסף לרשימת הצפייה שלי!"}
+                     </button>)
+                }
+                </div>
                 </div>
                 {this.state.successMessage && <p className="success-message">
                     {this.props.language === "English"? "Your message was successfully sent!" : "ההודעה נשלחה בהצלחה!"}
                 </p>}
-
                </div>
                }
-
                      {this.state.showTextare && <div><textarea className="textarea--message-only-friend"
                         placeholder={this.props.language === "English"? "write a personal message": "כתבו הודעה אישית"}
                         value={this.state.content}

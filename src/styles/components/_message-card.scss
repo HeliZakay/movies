@@ -5,3 +5,7 @@
 .messageCard__see-prev-text {
     color: lightblue;
 }
+.message-card__buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+}

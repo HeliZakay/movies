@@ -56,10 +56,12 @@ export function CustomizedDialogs(props) {
   };
 
   return (
-    <div>
-      <Button variant="contained" color="primary" onClick={handleClickOpen}>
+    <div >
+    <div className="dialog__button-div">
+      <button className="btn button-friend--message btn-lg button-open-review" onClick={handleClickOpen}>
        {props.language === "English"? "Open review": "פתח ביקורת"}
-      </Button>
+      </button>
+      </div>
       <Dialog 
       onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
