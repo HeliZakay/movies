@@ -64,3 +64,8 @@
     background:$dark-mode;
     color: $offwhite;
 }
+.custom-card--dialog{
+    @media (max-width: $desktop-breakpoint) {
+        width: 23rem;
+    }    
+}

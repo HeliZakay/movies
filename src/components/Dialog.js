@@ -63,6 +63,7 @@ export function CustomizedDialogs(props) {
       </button>
       </div>
       <Dialog 
+      className={String(props.language !== "English" && "align-right")}
       onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {props.movie.movieName}
@@ -70,10 +71,11 @@ export function CustomizedDialogs(props) {
         <DialogContent dividers>
          
            <MovieCard 
-                        className={props.language !== "English" && "align-right"}
+                        className={String(props.language !== "English" && "align-right")}
                         reviews = {props.movie.reviews}
                         id={props.movie.id}
                         movieName={props.movie.movieName}
+                        dialog={true}
                      />
         </DialogContent> 
       </Dialog>

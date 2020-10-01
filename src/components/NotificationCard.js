@@ -79,7 +79,7 @@ export class NotificationCard extends React.Component{
                     )
                 )        
                 }
-                 {this.props.movie && <Dialog movie={this.props.movie}/>}
+                 {this.props.movie && <Dialog  movie={this.props.movie}/>}
                </div>
                }
             </div>
