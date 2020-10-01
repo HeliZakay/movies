@@ -179,7 +179,7 @@ export class MovieCard extends React.Component {
                         </strong>
                 </button>
             </form>
-            </div>}
+            </div>} 
             {/* {!this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews}) && */}
             <a onClick={this.onAddOrRemoveFromWatchList}>
             <div  >
@@ -189,13 +189,13 @@ export class MovieCard extends React.Component {
             remove_circle
             </i>
              {this.props.language === "English"?
-             "Remove from my watch list": "הסר מרשימת הצפייה שלי"}
+             "Remove from my watchlist": "הסר מרשימת הצפייה שלי"}
              </div>:
              <div className="custom-card__add-to-watch-list">
              <i className="material-icons">
             add_circle
             </i>
-              {this.props.language === "English"?"Add to my watch list!": "הוסף לרשימת הצפייה שלי"}
+              {this.props.language === "English"?"Add to my watchlist!": "הוסף לרשימת הצפייה שלי"}
              </div>
            }
            </div>

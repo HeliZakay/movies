@@ -173,7 +173,7 @@ export class MessageCard extends React.Component{
                     <button 
                     className="btn button-movie btn-warning btn-lg button-watchlist"
                     onClick={this.onAddOrRemoveFromWatchList}>
-                    {this.props.language === "English"? "Add to my watch list!": "הוסף לרשימת הצפייה שלי!"}
+                    {this.props.language === "English"? "Add to my watchlist!": "הוסף לרשימת הצפייה שלי!"}
                      </button>)
                 }
                 </div>

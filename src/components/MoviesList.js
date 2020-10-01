@@ -36,7 +36,9 @@ export const MoviesList = (props) => {
         {moviesNum < props.movies.length && 
         <button
         className="btn btn-primary button--add-friend btn-lg button-more-movies" 
-        onClick={onMoreMovies}>More Movies</button>}
+        onClick={onMoreMovies}>
+        {props.language === "English"? "More Movies": "עוד סרטים"}
+        </button>}
         </div>
         
     </div>
