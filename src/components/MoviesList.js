@@ -1,19 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import { connect } from "react-redux";
 import MovieCard from "./MovieCard";
-import getVisibleMovies from "../selectors/movies";
+import getVisibleMovies, {takeTop} from "../selectors/movies";
 
 
 export const MoviesList = (props) => {
+    const [moviesNum, setMoviesNum] = useState(21);
+    const onMoreMovies = () => {
+        setMoviesNum((prevVal) => prevVal + 18);
+    }
     return (
        
-         <div className="content-container">
-          
-        
+         <div className="content-container">        
         {props.movies.length ===0 ?(props.language === "English"? <p>No movies yet that match your search- Add a recommendation</p>: <p>אין סרטים עדיין שעונים להגדרות החיפוש, הוסיפו סרט!</p>)
         :
         <div className="row">
-         {props.movies.map((movie) => 
+         {takeTop(props.movies, moviesNum).map((movie) => 
          {
              return (
                     <div 
@@ -30,6 +32,13 @@ export const MoviesList = (props) => {
          })}
         </div>
         }
+        <div className="more-movies-button-div">
+        {moviesNum < props.movies.length && 
+        <button
+        className="btn btn-primary button--add-friend btn-lg button-more-movies" 
+        onClick={onMoreMovies}>More Movies</button>}
+        </div>
+        
     </div>
       
        

@@ -17,3 +17,10 @@
      font-size: 1.45rem;
      font-family: 'Open Sans', sans-serif;
 }
+.movie-data__wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.movie-data__imdb-text{
+    font-size: 1.4rem;
+}

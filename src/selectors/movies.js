@@ -137,3 +137,12 @@ export const findMovie = (movies, movieName, personName, uid, type) => {
   }
   
 }
+
+export const takeTop = (array, num) => {
+  if (array.length <=num) {
+    return array;
+  }
+  else {
+    return array.slice(0,num);
+  }
+}
