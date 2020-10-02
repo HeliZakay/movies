@@ -37,10 +37,16 @@ const computeAverageScore = (movie) => {
 }
 
 // Get visible movies
-export default (movies, { text, sortBy, person, genres}) => {
-  
+export default (movies, { text, sortBy, person, genres}, language) => {
     return movies.filter((movie) => {
-      const textMatch = movie.movieName.toLowerCase().includes(text.toLowerCase());
+      console.log(movie.hname);
+      console.log(movie.movieName);
+      let textMatch;
+      if (language === "English") {
+        textMatch = movie.movieName.toLowerCase().includes(text.toLowerCase());
+      } else {
+        textMatch = String(movie.hname).includes(text);
+      }
       let personMatch = false;
       movie.reviews.forEach((review) => {
         if (review.personName.toLowerCase().includes(person.toLowerCase())) {

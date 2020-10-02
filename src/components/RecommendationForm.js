@@ -72,6 +72,7 @@ export class RecommendationForm extends React.Component {
                 createdAt: this.state.createdAt,
                 personName: this.state.personName,
                 content: this.state.content,
+                imdbMovie: this.state.imdbMovie
             });
         }
     };

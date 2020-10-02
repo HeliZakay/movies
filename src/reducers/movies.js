@@ -26,6 +26,7 @@ export default (state = [], action) => {
                 ...movie,
                 hname: action.hname,
                 movieName: action.movieName,
+                imdbMovie: action.imdbMovie,
                 reviews: updatedReviewsArray
               }
             } else {

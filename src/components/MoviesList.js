@@ -50,7 +50,7 @@ export const MoviesList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        movies: getVisibleMovies(state.movies, state.filters),
+        movies: getVisibleMovies(state.movies, state.filters, state.auth.language),
         language: state.auth.language
     };
 };

@@ -13,12 +13,14 @@ export class EditRecommendation extends React.Component {
         } 
         const hname = movie.hname;
         const movieName = movie.movieName;
+        const imdbMovie = movie.imdbMovie;
         
         const oldReview = this.props.movie.reviews.find((review) => review.userUid === this.props.uid);
         this.props.startEditMovie({
             movieId: this.props.movie.id,
             reviewId: oldReview.id,
             updatedReview,
+            imdbMovie,
             hname,
             movieName
         });
