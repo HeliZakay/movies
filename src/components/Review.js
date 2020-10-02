@@ -38,7 +38,7 @@ export class Review extends React.Component {
                 </p>
             } 
             {   this.props.language !== "English" &&
-                this.props.stars.length > 0 &&
+                this.props.stars && this.props.stars.length > 0 &&
                 <p>
                 <span>({this.props.stars.length}</span>
                 <span>{this.props.stars.length === 1? " אדם ": " אנשים "}</span> 

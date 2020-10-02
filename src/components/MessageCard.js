@@ -7,7 +7,7 @@ import {startDeleteMessage} from "../actions/messages";
 import {startAddMessageToFriend} from "../actions/messages";
 import {startMarkMessageAsRead} from "../actions/messages";
 import Dialog from "./Dialog";
-
+import {getHname} from "../selectors/movies";
 
 
 export class MessageCard extends React.Component{
@@ -69,12 +69,13 @@ export class MessageCard extends React.Component{
             language,
             type: prevMessageData.type,
             myName: prevMessageData.myName,
+            hname: getHname(this.props.movies, prevMessageData.movieName),
             movieName: prevMessageData.movieName,
             username: prevMessageData.username
         });
         return recommendationMessage + prevMessageData.content;
     }
-    composeRecommendationMessage = ({language, type, myName, movieName, username }) => {
+    composeRecommendationMessage = ({language, type, myName, movieName, username, hname }) => {
         if (movieName) {
             if (language === "English") {
                 if (type === "recieved") {
@@ -83,7 +84,7 @@ export class MessageCard extends React.Component{
                     return ("Hi " + username +  " ! I think you might like the movie "+ movieName +".");
                 }
             } else {
-                return (" נראה לי שהסרט " + movieName + " יהיה לטעמך! " );  
+                return (" נראה לי שהסרט " + (hname? hname: movieName) + " יהיה לטעמך! " );  
             }        
         } else {
             return ""
@@ -140,7 +141,8 @@ export class MessageCard extends React.Component{
                          type:this.props.type ,
                          myName: this.props.myName,
                          movieName: this.props.movieName,
-                         username: this.props.username
+                         username: this.props.username,
+                         hname:this.props.movie.hname? this.props.movie.hname : undefined
                 })} </p>
                 }
                 { this.props.content && <p className="card-text"> "{this.props.content}"</p> }
@@ -210,7 +212,8 @@ const mapStateToProps = (state) => ({
     userId: state.auth.uid,
     messages: state.messages.messagesRecieved,
     user: state.auth,
-    language: state.auth.language
+    language: state.auth.language,
+    movies: state.movies
 });
 
 

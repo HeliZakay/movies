@@ -119,11 +119,11 @@ export const editMovie = ({movieId, reviewId, updatedReview, hname, movieName}) 
   movieName
 });
 
-export const startEditMovie = ({movieId, reviewId, updatedReview, hname, movieName, imdbMovie}) => {
+export const startEditMovie = ({movieId, reviewId, updatedReview, hname, movieName}) => {
   return (dispatch) => {
      return database.ref(`movies/${movieId}/reviews/${reviewId}`).update(updatedReview).then(() => {
        return database.ref(`movies/${movieId}`).update({hname, movieName}).then(() => {
-        dispatch(editMovie({movieId, reviewId, updatedReview, hname, movieName, imdbMovie}));
+        dispatch(editMovie({movieId, reviewId, updatedReview, hname, movieName}));
        });        
      });
   };

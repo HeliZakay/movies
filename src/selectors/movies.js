@@ -1,10 +1,25 @@
+  export const getHname = (movies, movieName) => {
+    const movie = movies.filter((movie) => {
+      return movie.movieName === movieName;
+    });
+    if (movie && movie[0] && movie[0].hname) {
+      return movie[0].hname;
+    }
+    else {
+      return undefined;
+    }
+  }
+  
+  
   export const didIGaveStarToReview = (stars, uid) => {
     let result = false;
-    stars.forEach((star) => {
-      if (star.uid === uid) {
-        result = true;
-      }
-    });
+    if (stars) {
+      stars.forEach((star) => {
+        if (star.uid === uid) {
+          result = true;
+        }
+      });
+    }
     return result;
   }
   
@@ -39,8 +54,6 @@ const computeAverageScore = (movie) => {
 // Get visible movies
 export default (movies, { text, sortBy, person, genres}, language) => {
     return movies.filter((movie) => {
-      console.log(movie.hname);
-      console.log(movie.movieName);
       let textMatch;
       if (language === "English") {
         textMatch = movie.movieName.toLowerCase().includes(text.toLowerCase());

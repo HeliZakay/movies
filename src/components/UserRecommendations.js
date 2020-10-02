@@ -35,7 +35,7 @@ export class UserRecommendations extends React.Component {
         (<div>
         <h3>
         {this.props.language === "English"?
-         "Which of your recommendations do you think "+this.props.friend.username+ " would like?":"איזה מבין הסרטים הבאים  " +this.props.friend.username+" יאהב?  "
+         "Which of your recommendations do you think "+this.props.friend.username+ " would like?":"איזה מבין הסרטים הבאים  " +this.props.friend.username+" יאהבו?  "
          
          }
         
@@ -50,7 +50,7 @@ export class UserRecommendations extends React.Component {
                  value={movie.id} 
                  type="radio">
                   </input>
-                  <label htmlFor={movie.id}>{movie.movieName}</label>
+                  <label htmlFor={movie.id}>{this.props.language === "English" || ! movie.hname? movie.movieName: movie.hname}</label>
                  </div>
                  
              ); 

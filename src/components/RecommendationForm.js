@@ -62,7 +62,7 @@ export class RecommendationForm extends React.Component {
 
         event.preventDefault();
         if (!this.state.movieName || !this.state.score) {
-            this.setState( () => ({error: "Please fill in movie name and a movie rating" }));
+            this.setState( () => ({error: this.props.language === "English"? "Please fill in movie name and a movie rating": "נא להכניס שם סרט" }));
         } else {
             this.setState( () => ({error: ""}));
             this.props.onSubmit({

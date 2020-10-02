@@ -38,7 +38,6 @@ export const startSetEmails = () => {
 }
 
 export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, content, cardNum, prevMessageData}) => {
-    console.log(prevMessageData.content);
   return(dispatch) => {
         const messageRecieved={
             recommender,

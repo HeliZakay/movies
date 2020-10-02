@@ -3,13 +3,14 @@ import {connect} from "react-redux";
 import moment from "moment";
 import {startMarkNotificationAsRead} from "../actions/notifications";
 import Dialog from "./Dialog";
-
+import {getHname} from "../selectors/movies";
 
 export class NotificationCard extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             open: props.notification.read,
+            hname: getHname(this.props.movies, props.notification.movieName)
         }
     }   
     onOpenClick = () => {
@@ -67,7 +68,7 @@ export class NotificationCard extends React.Component{
                     this.props.language === "English"? (
                         <p>{this.props.notification.personName+ " gave you a star on your review for the movie " + this.props.notification.movieName}</p>
                     ) :(
-                        <p>{this.props.notification.personName+" נתנו לך כוכב על הביקורת שלך עבור הסרט " + this.props.notification.movieName}</p>
+                        <p>{this.props.notification.personName+" נתנו לך כוכב על הביקורת שלך עבור הסרט " + (this.state.hname? this.state.hname: this.props.notification.movieName) }</p>
                     )
                 )        
                 }
@@ -75,7 +76,7 @@ export class NotificationCard extends React.Component{
                     this.props.language === "English"? (
                         <p>{this.props.notification.personName+ " wrote a review for the movie " + this.props.notification.movieName}</p>
                     ) :(
-                        <p>{this.props.notification.personName+" כתבו ביקורת עבור הסרט " + this.props.notification.movieName}</p>
+                        <p>{this.props.notification.personName+" כתבו ביקורת עבור הסרט " +(this.state.hname? this.state.hname: this.props.notification.movieName)}</p>
                     )
                 )        
                 }
@@ -93,6 +94,7 @@ export class NotificationCard extends React.Component{
 const mapStateToProps = (state) => ({
     uid: state.auth.uid,
     language: state.auth.language,
+    movies: state.movies
 });
 
 
