@@ -14,22 +14,31 @@ export class RecommendationForm extends React.Component {
             score: props.review? props.review.score: 7,
             error:"",
             createdAt: moment(),
-            posterUrl: "",
             imdbMovie: {}      
         }
     }
+    
+    componentDidMount()  {  
+        const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${this.state.movieName}`;
+         https.get(url, (response) => {
+        response.on("data", (data) => {
+            const movieData = JSON.parse(data);
+            this.setState({imdbMovie: movieData});
+        });
+        });
+        };
+
     onMovieNameChange =(event) => {
-        if (!this.props.review) {
             const movieName = event.target.value;
             this.setState( () => ({movieName}));
             const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${movieName}`;
             https.get(url, (response) => {
-           response.on("data", (data) => {
-               const movieData = JSON.parse(data);
-               this.setState({...this.state, posterUrl: movieData.Poster, imdbMovie: movieData});
-           });
-           });
-        }
+            response.on("data", (data) => {
+            const movieData = JSON.parse(data);
+            this.setState({imdbMovie: movieData});
+        });
+        });
+            
     };
     onhnameChange =(event) => {
             const hname = event.target.value;
@@ -50,13 +59,14 @@ export class RecommendationForm extends React.Component {
         this.setState( () => ({score}));
     }
     onSubmit = (event) => {
+
         event.preventDefault();
         if (!this.state.movieName || !this.state.score) {
             this.setState( () => ({error: "Please fill in movie name and a movie rating" }));
         } else {
             this.setState( () => ({error: ""}));
             this.props.onSubmit({
-                movieName: this.state.imdbMovie? this.state.imdbMovie.Title: this.state.movieName ,
+                movieName: (!this.props.movie && this.state.imdbMovie)? this.state.imdbMovie.Title: this.state.movieName ,
                 hname: this.state.hname,
                 score: parseInt(this.state.score),
                 createdAt: this.state.createdAt,
@@ -84,7 +94,7 @@ export class RecommendationForm extends React.Component {
                         value = {this.state.hname}
                         onChange= {this.onhnameChange}/>
                     }
-                    {this.state.posterUrl && <img className= "form__image" src={this.state.posterUrl}></img>}
+                    {this.state.imdbMovie && <img className= "form__image" src={this.state.imdbMovie.Poster}></img>}
                     <label> {this.props.language === "English"? "Movie Rating:": "ציון הסרט" } </label>
                      <input 
                         type="number"                        

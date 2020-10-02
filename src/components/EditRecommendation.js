@@ -10,14 +10,17 @@ export class EditRecommendation extends React.Component {
             content: movie.content,
             score: movie.score,
             createdAt: movie.createdAt.format(),
-            hname: movie.hname
         } 
+        const hname = movie.hname;
+        const movieName = movie.movieName;
         
         const oldReview = this.props.movie.reviews.find((review) => review.userUid === this.props.uid);
         this.props.startEditMovie({
             movieId: this.props.movie.id,
             reviewId: oldReview.id,
-            updatedReview
+            updatedReview,
+            hname,
+            movieName
         });
         this.props.history.push("/homePage");
     };

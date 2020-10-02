@@ -57,6 +57,7 @@ export const startAddMovie = (movieData = {}) => {
           dispatch(addMovie({
             id: ref.key,
             movieName,
+            hname,
             reviews: [{...review, id: r.key}],
             genres
           }));
@@ -109,17 +110,21 @@ export const addReview = (movieId, review) => ({
 
 
 // EDIT_MOVIE
-export const editMovie = ({movieId, reviewId, updatedReview}) => ({
+export const editMovie = ({movieId, reviewId, updatedReview, hname, movieName}) => ({
   type: 'EDIT_MOVIE',
   movieId,
   reviewId,
-  updatedReview
+  updatedReview,
+  hname,
+  movieName
 });
 
-export const startEditMovie = ({movieId, reviewId, updatedReview}) => {
+export const startEditMovie = ({movieId, reviewId, updatedReview, hname, movieName}) => {
   return (dispatch) => {
      return database.ref(`movies/${movieId}/reviews/${reviewId}`).update(updatedReview).then(() => {
-        dispatch(editMovie({movieId, reviewId, updatedReview}));
+       return database.ref(`movies/${movieId}`).update({hname, movieName}).then(() => {
+        dispatch(editMovie({movieId, reviewId, updatedReview, hname, movieName}));
+       });        
      });
   };
 };
