@@ -111,7 +111,7 @@ export class MovieCard extends React.Component {
             <div className="card-header custom-card-header">
             <h3 >
                 {this.props.language === "English"?
-                ("Movie: " + this.props.movieName ): ( " סרט:    " +this.props.movieName )}
+                ("Movie: " + this.props.movieName ): ( " סרט:    " +this.props.hname )}
             </h3>
             </div>
             <div className="movie-card">

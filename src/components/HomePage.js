@@ -14,7 +14,7 @@ import MoviesCarousel from "./MoviesCarousel";
 import {getCarouselItems} from "../selectors/carousel";
 import TestForm from "./TestForm";
 import TestApi from "./TestApi";
-
+import {moveMichalsReview} from "../actions/movies";
 
 export const HomePage = (props) => (
  
@@ -25,7 +25,7 @@ export const HomePage = (props) => (
   
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
     <Actions />  
-
+  {/* <button onClick={moveMichalsReview}>moveMichalsReview</button> */}
     {/* <TestApi /> */}
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={addMe}>addMe</button> */}

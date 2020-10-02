@@ -66,6 +66,7 @@ export default (state=defaultStateOfMessages, action) => {
                 emails: [...state.emails, {
                     to_name: action.to_name,
                     unread_count: action.unread_count,
+                    notification_count: action.notification_count,
                     to_email: action.to_email,
                     language: action.language
                 }

@@ -31,10 +31,12 @@ export const startAddMovie = (movieData = {}) => {
       score=0,
       content="",
       createdAt="0",
-      genres     
+      genres,
+      hname=""     
      } = movieData;
      let movie = {
-      movieName
+      movieName,
+      hname
     };
     if (genres) {
       movie = {
@@ -157,6 +159,15 @@ export const startRemoveMovie = ({movieId, reviewId} = {}) => {
     type: "SET_MOVIES",
     movies
   });
+
+export const moveMichalsReview = () => {
+    database.ref("movies/-MIYyT2uhM2ke3PzuB8t/reviews/-MIYyT6B6X1bNLWmAKo1").once("value").then((snapshot) => {
+      const michalsReview = snapshot.val();
+      const michalsReviewKey = snapshot.key;
+      database.ref(`movies/-MHMCL4nTZFDZ7DzHWb4/reviews/${michalsReviewKey}`).update(michalsReview);
+    })
+}
+
 
 
   export const startSetMovies = () => {

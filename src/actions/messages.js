@@ -16,10 +16,18 @@ export const startSetEmails = () => {
           recievedMessages.push(value);
         }
       } 
-      if (countUnreadMessages(recievedMessages) >=1) {
+       const notifications = childSnapshot.val().notifications;
+      const notificationsArr = [];
+      if(notifications) {
+        for (const [key,value] of Object.entries(childSnapshot.val().notifications)) {
+          notificationsArr.push(value);
+        }
+      } 
+      if (countUnreadMessages(recievedMessages) >=1 && countUnreadMessages(notificationsArr) >=1) {
         dispatch(setEmail({
           to_name: childSnapshot.val().username, 
           unread_count: countUnreadMessages(recievedMessages),
+          notification_count: countUnreadMessages(notificationsArr),
           to_email: childSnapshot.val().email,
           language: childSnapshot.val().language === "English"? 1:0
         }));
@@ -61,10 +69,11 @@ export const addMessageToSent = (message) => ({
   message
 });
 
-export const setEmail = ({to_name, unread_count, to_email, language}) => ({
+export const setEmail = ({to_name, unread_count, to_email, language, notification_count}) => ({
   type: "SET_EMAIL",
   to_name,
   unread_count,
+  notification_count,
   to_email,
   language
 })

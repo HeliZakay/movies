@@ -9,7 +9,8 @@ export class EditRecommendation extends React.Component {
         const updatedReview = {
             content: movie.content,
             score: movie.score,
-            createdAt: movie.createdAt.format()
+            createdAt: movie.createdAt.format(),
+            hname: movie.hname
         } 
         
         const oldReview = this.props.movie.reviews.find((review) => review.userUid === this.props.uid);

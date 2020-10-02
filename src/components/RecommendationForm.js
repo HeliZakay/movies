@@ -1,24 +1,39 @@
 import React from "react";
 import moment from "moment";
 import {connect} from "react-redux";
+const https = require("https");
 
 export class RecommendationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             movieName: props.movie ? props.movie.movieName : "",
+            hname: props.movie ? props.movie.hname : "",
             personName:props.review ? props.review.personName : props.username,
             content: props.review? props.review.content: "",
             score: props.review? props.review.score: 7,
             error:"",
-            createdAt: moment()         
+            createdAt: moment(),
+            posterUrl: "",
+            imdbMovie: {}      
         }
     }
     onMovieNameChange =(event) => {
         if (!this.props.review) {
             const movieName = event.target.value;
             this.setState( () => ({movieName}));
+            const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${movieName}`;
+            https.get(url, (response) => {
+           response.on("data", (data) => {
+               const movieData = JSON.parse(data);
+               this.setState({...this.state, posterUrl: movieData.Poster, imdbMovie: movieData});
+           });
+           });
         }
+    };
+    onhnameChange =(event) => {
+            const hname = event.target.value;
+            this.setState( () => ({hname}));
     };
     onPersonNameChange =(event) => {
         if (!this.props.review) {
@@ -41,7 +56,8 @@ export class RecommendationForm extends React.Component {
         } else {
             this.setState( () => ({error: ""}));
             this.props.onSubmit({
-                movieName: this.state.movieName,
+                movieName: this.state.imdbMovie? this.state.imdbMovie.Title: this.state.movieName ,
+                hname: this.state.hname,
                 score: parseInt(this.state.score),
                 createdAt: this.state.createdAt,
                 personName: this.state.personName,
@@ -56,12 +72,19 @@ export class RecommendationForm extends React.Component {
                     {this.state.error && <p className="form__message"><em>{this.state.error}</em></p>}    
                     <input className="text-input"
                         type="text"
-                        placeholder={this.props.language === "English"? "Movie Name": "שם הסרט" }
+                        placeholder={this.props.language === "English"? "Movie Name": "שם הסרט באנגלית" }
                         autoFocus
                         value = {this.state.movieName}
                         onChange= {this.onMovieNameChange}
                     />
-                    
+                    {this.props.language !== "English" && <input
+                        className="text-input"
+                        type="text"
+                        placeholder="שם הסרט בעברית"
+                        value = {this.state.hname}
+                        onChange= {this.onhnameChange}/>
+                    }
+                    {this.state.posterUrl && <img className= "form__image" src={this.state.posterUrl}></img>}
                     <label> {this.props.language === "English"? "Movie Rating:": "ציון הסרט" } </label>
                      <input 
                         type="number"                        

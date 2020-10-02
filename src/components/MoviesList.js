@@ -26,6 +26,7 @@ export const MoviesList = (props) => {
                         reviews = {movie.reviews}
                         id={movie.id}
                         movieName={movie.movieName}
+                        hname={movie.hname}
                      />
                     </div>
              );
