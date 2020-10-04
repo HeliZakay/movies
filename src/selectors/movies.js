@@ -157,6 +157,15 @@ export const findMovie = (movies, movieName, personName, uid, type) => {
   
 }
 
+export const getUnseenMovies = (movies, uid, watchlist) => {
+  return movies.filter((movie)=> {
+    const reviewsUids = movie.reviews.map((review)=> {
+      return review.userUid;
+    });
+    return (!reviewsUids.includes(uid) && !watchlist.includes(movie.id) && computeAverageScore(movie) >=7);
+  });
+}
+
 export const takeTop = (array, num) => {
   if (array.length <=num) {
     return array;

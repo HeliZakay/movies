@@ -80,7 +80,6 @@ const optionsGenres = [
         placeholder={props.language === "English"? "Select Genres" : "סינון לפי ז'אנר"}
         isSearchable
         isMulti
-        autoFocus
         onChange={handleChange}
     //   closeMenuOnSelect={false}
       components={animatedComponents}

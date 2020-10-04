@@ -55,6 +55,9 @@ export class MovieCard extends React.Component {
         (isMovieOnWatchList(this.props.watchList, this.props.id))? 
         this.props.startRemoveMovieFromWatchList(this.props.id):
         this.props.startAddMovieToWatchList(this.props.id);
+        if (this.props.onAction) {
+            this.props.onAction();
+        }
     };
     onQuickReviewSend = (event) => {
         event.preventDefault();
@@ -81,6 +84,9 @@ export class MovieCard extends React.Component {
                     });
                 });
             } 
+            if (this.props.onAction) {
+                this.props.onAction();
+            }
     };
     didSendReviewToMovie = ({reviews, uid}) => {
         let reviewId;

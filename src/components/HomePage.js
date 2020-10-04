@@ -5,16 +5,13 @@ import Open from "./Open";
 import MoviesListFilters from "./MoviesListFilters";
 import {connect} from "react-redux";
 import {addFriendsToDB} from "../actions/friends.js";
-
-// import {addMe} from "../actions/friends.js";
-// import {unifyReviews} from "../actions/movies";
-
 import ShanaTova from "./ShanaTova";
 import MoviesCarousel from "./MoviesCarousel";
 import {getCarouselItems} from "../selectors/carousel";
 import TestForm from "./TestForm";
 import TestApi from "./TestApi";
 import {moveMichalsReview} from "../actions/movies";
+import UnseenMovies from "./UnseenMovies";
 
 export const HomePage = (props) => (
  
@@ -22,9 +19,11 @@ export const HomePage = (props) => (
     {/* <Open /> */}
     {/* <ShanaTova /> */}
    {/* <TestForm /> */}
-  
+   <UnseenMovies />
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
+   
     <Actions />  
+   
   {/* <button onClick={moveMichalsReview}>moveMichalsReview</button> */}
     {/* <TestApi /> */}
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
