@@ -71,10 +71,10 @@ export default (movies, { text, sortBy, person, genres}, language) => {
         genreMatch = true;
       } else if (genres.length ===0) {
         genreMatch = true;
-      } else if (!movie.genres) {
+      } else if (!movie.imdbData.Genre) {
         genreMatch = false;
       } else {
-        const genresArray = movie.genres.split(", ");
+        const genresArray = movie.imdbData.Genre.split(", ");
         genresArray.forEach((genre) => {
           if (genres.includes(genre)) {
             genreMatch = true;

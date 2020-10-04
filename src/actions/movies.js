@@ -2,6 +2,7 @@ import uuid from "uuid";
 import database from "../firebase/firebase";
 import moment from "moment";
 
+
 export const startGiveStarToReview = (reviewId, movieId) => {
   return (dispatch, getState) => {
     const user = getState().auth;
@@ -31,19 +32,14 @@ export const startAddMovie = (movieData = {}) => {
       score=0,
       content="",
       createdAt="0",
-      genres,
-      hname=""     
+      hname="",
+      imdbData={}     
      } = movieData;
      let movie = {
       movieName,
-      hname
+      hname,
+      imdbData
     };
-    if (genres) {
-      movie = {
-        ...movie,
-        genres
-      }
-    }
     const review = {
       personName,
       score,
@@ -59,29 +55,13 @@ export const startAddMovie = (movieData = {}) => {
             movieName,
             hname,
             reviews: [{...review, id: r.key}],
-            genres
+            imdbData
           }));
         });
      });
   };
 };
 
-
-// export const  = () => {
-//   return (dispatch, getState) => {
-   
-//     return database.ref("movies").once("value").then((snapshot) => {
-//       snapshot.forEach((childSnapshot) => {
-//         const movieName = childSnapshot.val().movieName;
-//         const id = childSnapshot.val().id;
-//         const genres = getMovieGenres(movieName);
-//         if (genres) {
-//           return database.ref(`movies/${id}`).update({genres: genres});
-//         }
-//       });
-//     });
-//   }
-// }
 
 export const startAddReview = ({movieId, score, personName, content, createdAt}) => {
   return (dispatch, getState) => {
@@ -110,20 +90,21 @@ export const addReview = (movieId, review) => ({
 
 
 // EDIT_MOVIE
-export const editMovie = ({movieId, reviewId, updatedReview, hname, movieName}) => ({
+export const editMovie = ({movieId, reviewId, updatedReview, hname, movieName, imdbData}) => ({
   type: 'EDIT_MOVIE',
   movieId,
   reviewId,
   updatedReview,
   hname,
-  movieName
+  movieName,
+  imdbData
 });
 
-export const startEditMovie = ({movieId, reviewId, updatedReview, hname, movieName}) => {
+export const startEditMovie = ({movieId, reviewId, updatedReview, hname, movieName, imdbData}) => {
   return (dispatch) => {
      return database.ref(`movies/${movieId}/reviews/${reviewId}`).update(updatedReview).then(() => {
-       return database.ref(`movies/${movieId}`).update({hname, movieName}).then(() => {
-        dispatch(editMovie({movieId, reviewId, updatedReview, hname, movieName}));
+       return database.ref(`movies/${movieId}`).update({hname, movieName, imdbData}).then(() => {
+        dispatch(editMovie({movieId, reviewId, updatedReview, hname, movieName, imdbData}));
        });        
      });
   };
@@ -208,7 +189,3 @@ export const moveMichalsReview = () => {
     };
   };
 
-export const unifyReviews = () => {
-  database.ref("movies/-MGnz68SXXFy0sVqeoP3").remove();
-    
-}

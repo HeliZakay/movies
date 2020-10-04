@@ -9,8 +9,6 @@ import {startSendNotification} from "../actions/notifications";
 import {getFriendsArray} from "../selectors/friends";
 import ReviewsCarousel from "./ReviewsCarousel";
 import MovieData from "./MovieData";
-const https = require("https");
-
     
 export class MovieCard extends React.Component {
     constructor(props) {
@@ -29,8 +27,8 @@ export class MovieCard extends React.Component {
             return <img className="custom-card__movie-image" src={`images/${imgName}.jpg`}></img>;
         }     
         catch(err) {
-            if (this.state.movie && !this.state.movie.Error) {
-                return <img className="custom-card__movie-image" src={this.state.movie.Poster}></img>;
+            if (this.props.imdbData && !this.props.imdbData.Error) {
+                return <img className="custom-card__movie-image" src={this.props.imdbData.Poster}></img>;
             }
         }
     }
@@ -94,16 +92,6 @@ export class MovieCard extends React.Component {
         return reviewId;
       }
     
-      componentDidMount()  {  
-        const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${this.props.movieName}`;
-         https.get(url, (response) => {
-        response.on("data", (data) => {
-            const movieData = JSON.parse(data);
-            this.setState({movie: movieData});
-        });
-        });
-        };
-
     render() {
         return (
             <div 
@@ -119,7 +107,7 @@ export class MovieCard extends React.Component {
             <div className="custom-card__card-content">
            {this.produceImage()}
             <MovieData 
-            movieInfoImdb={this.state.movie}
+            movieInfoImdb={this.props.imdbData}
             movieId = {this.props.id}
             movieName={this.props.movieName}
             averageScore= {this.computeAverageScore(this.props.reviews)}

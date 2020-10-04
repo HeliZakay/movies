@@ -15,7 +15,7 @@ export class MovieData extends React.Component {
                  {this.props.averageScore}
                  </strong></h3>
                  <div className="movie-data__text">
-                 {this.props.movieInfoImdb && <h3 className="movie-data__imdb-text">
+                 {this.props.movieInfoImdb && !this.props.movieInfoImdb.Error && <h3 className="movie-data__imdb-text">
                  {this.props.language === "English"? " Imdb Rating: ": " imdb: "}
                  {this.props.movieInfoImdb.imdbRating}
                  </h3>}

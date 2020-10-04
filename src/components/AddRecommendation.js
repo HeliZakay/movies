@@ -14,19 +14,9 @@ export class AddRecommendation extends React.Component {
       if (movieId) {
          this.props.startAddReview({movieId, ...movie});
       } else {
-         const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${movie.movieName}`;
-         https.get(url, (response) => {
-        response.on("data", (data) => {
-            const movieData = JSON.parse(data);
-            let genres;
-            if(!movieData.Error) {
-               genres = movieData.Genre;
-            }
-            this.props.startAddMovie({...movie, genres});
-        });
-        });
+            this.props.startAddMovie(movie);
       }
-      if (movie.content) {
+      if (movie.content && movie.movieName) {
          this.props.myFriendsArr.forEach((friendId) => {
              this.props.startSendNotification({
                  type: "newReview",

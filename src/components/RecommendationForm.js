@@ -14,19 +14,10 @@ export class RecommendationForm extends React.Component {
             score: props.review? props.review.score: 7,
             error:"",
             createdAt: moment(),
-            imdbMovie: {}      
+            imdbMovie: props.movie ? props.movie.imdbData : {}      
         }
     }
     
-    componentDidMount()  {  
-        const url = `https://www.omdbapi.com/?apikey=d6a02fcc&t=${this.state.movieName}`;
-         https.get(url, (response) => {
-        response.on("data", (data) => {
-            const movieData = JSON.parse(data);
-            this.setState({imdbMovie: movieData});
-        });
-        });
-        };
 
     onMovieNameChange =(event) => {
             const movieName = event.target.value;
@@ -66,13 +57,14 @@ export class RecommendationForm extends React.Component {
         } else {
             this.setState( () => ({error: ""}));
             this.props.onSubmit({
-                movieName: (!this.props.movie && this.state.imdbMovie)? this.state.imdbMovie.Title: this.state.movieName ,
+                movieName: (this.state.imdbMovie && !this.state.imdbMovie.Error)?
+                this.state.imdbMovie.Title: this.state.movieName ,
                 hname: this.state.hname,
                 score: parseInt(this.state.score),
                 createdAt: this.state.createdAt,
                 personName: this.state.personName,
                 content: this.state.content,
-                imdbMovie: this.state.imdbMovie
+                imdbData: this.state.imdbMovie
             });
         }
     };

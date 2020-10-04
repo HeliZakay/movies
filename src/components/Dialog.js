@@ -66,7 +66,8 @@ export function CustomizedDialogs(props) {
       className={String(props.language !== "English" && "align-right")}
       onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          {props.movie.movieName}
+          {props.language === "English" || !props.movie.hname?
+          (props.movie.movieName ): (props.movie.hname)}
         </DialogTitle>
         <DialogContent dividers>
          
@@ -75,6 +76,8 @@ export function CustomizedDialogs(props) {
                         reviews = {props.movie.reviews}
                         id={props.movie.id}
                         movieName={props.movie.movieName}
+                        hname={props.movie.hname}
+                        imdbData={props.movie.imdbData}
                         dialog={true}
                      />
         </DialogContent> 

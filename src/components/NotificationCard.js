@@ -17,7 +17,7 @@ export class NotificationCard extends React.Component{
         this.setState({open: true});
         this.props.startMarkNotificationAsRead(this.props.uid, this.props.notification.id);
     };
-    render() {    
+    render() {  
         return (
             <div className="card card bg-light mb-3 custom-card">
              <div className="message-card">

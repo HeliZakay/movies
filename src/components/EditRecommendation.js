@@ -13,14 +13,14 @@ export class EditRecommendation extends React.Component {
         } 
         const hname = movie.hname;
         const movieName = movie.movieName;
-        const imdbMovie = movie.imdbMovie;
+        const imdbData = movie.imdbData;
         
         const oldReview = this.props.movie.reviews.find((review) => review.userUid === this.props.uid);
         this.props.startEditMovie({
             movieId: this.props.movie.id,
             reviewId: oldReview.id,
             updatedReview,
-            imdbMovie,
+            imdbData,
             hname,
             movieName
         });
@@ -38,13 +38,6 @@ export class EditRecommendation extends React.Component {
         return (
             <div className="page">
             <div className={String(this.props.language !== "English" && "align-right")}>
-            {/* <div className="page-header">
-                <div className="content-container--form">
-                <h2 
-                className="page-header__title">
-                {this.props.language === "English"? "Edit Recommendation": "עריכת המלצת סרט"}
-                </h2>
-            </div> */}
             <div className="add-or-edit">    
             
             <div className="content-container--form">
