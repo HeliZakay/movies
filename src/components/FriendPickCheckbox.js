@@ -42,7 +42,8 @@ export const FriendPickCheckbox =  (props) => {
           placeholder={props.language === "English"? "Select friends" : "למי תרצה להמליץ"}
           isSearchable
           isMulti
-          onChange={handleChange}    
+          onChange={handleChange}  
+          closeMenuOnSelect={false}  
           components={animatedComponents}
       />
         </div>
