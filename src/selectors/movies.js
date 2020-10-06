@@ -1,3 +1,5 @@
+import FriendDialog from "../components/FriendDialog";
+
   export const getHname = (movies, movieName) => {
     const movie = movies.filter((movie) => {
       return movie.movieName === movieName;
@@ -173,4 +175,13 @@ export const takeTop = (array, num) => {
   else {
     return array.slice(0,num);
   }
+}
+
+export const didFriendReviewedMovie = (reviews, friendId) => {
+  
+  const result = reviews.filter((review) => {
+    return review.userUid === friendId;
+  });
+  return result.length > 0;
+
 }

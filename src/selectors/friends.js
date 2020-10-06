@@ -12,3 +12,13 @@ export const getVisibleFriends =  (friends, name) => {
     return friend.userId;
    })
  };
+ export const getFriendById = (friends, friendId) => {
+   const result = friends.filter((friend) => {
+     return friend.userId === friendId;
+   });
+   if (result) {
+     return result[0];
+   } else {
+     return undefined;
+   }
+ }

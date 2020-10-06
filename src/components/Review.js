@@ -30,7 +30,7 @@ export class Review extends React.Component {
             <p className="card-title"> {this.props.language === "English"?("Score: "+ this.props.score): ("ציון: "+ this.props.score)}</p>
             <Content content={this.props.content}/> 
             {   this.props.language === "English" &&
-                this.props.stars.length > 0 &&
+                this.props.stars && this.props.stars.length > 0 &&
                 <p>
                 <span>({this.props.stars.length}</span>
                 <span>{this.props.stars.length === 1? " person ": " people "}</span> 

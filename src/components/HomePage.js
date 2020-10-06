@@ -13,20 +13,24 @@ import TestApi from "./TestApi";
 import {moveMichalsReview} from "../actions/movies";
 import UnseenMovies from "./UnseenMovies";
 
+
 export const HomePage = (props) => (
  
   <div className={String(props.language !== "English" && "align-right")}>
+ 
+   <Actions />
     {/* <Open /> */}
     {/* <ShanaTova /> */}
    {/* <TestForm /> */}
+    {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
    <UnseenMovies />
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
    
-    <Actions />  
+     
    
   {/* <button onClick={moveMichalsReview}>moveMichalsReview</button> */}
     {/* <TestApi /> */}
-    {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
+   
     {/* <button onClick={addMe}>addMe</button> */}
     {/* <button onClick={unifyReviews}>Unify Reviews</button> */}
     <div className="movie-list-section">

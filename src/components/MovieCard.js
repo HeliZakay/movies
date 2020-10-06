@@ -9,7 +9,8 @@ import {startSendNotification} from "../actions/notifications";
 import {getFriendsArray} from "../selectors/friends";
 import ReviewsCarousel from "./ReviewsCarousel";
 import MovieData from "./MovieData";
-    
+import FriendDialog from "./FriendDialog";
+
 export class MovieCard extends React.Component {
     constructor(props) {
         super(props);
@@ -105,8 +106,15 @@ export class MovieCard extends React.Component {
             <div className="card-header custom-card-header">
             <h3 >
                 {this.props.language === "English" || !this.props.hname?
-                ("Movie: " + this.props.movieName ): ( " סרט:  " +this.props.hname)}
+                (this.props.movieName ): ( this.props.hname)}
             </h3>
+            {this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews}) &&
+            <FriendDialog 
+            movieName={this.props.movie.movieName} 
+            poster={this.props.movie.imdbData.Poster}
+            movie={this.props.movie}
+            />
+            }
             </div>
             <div className="movie-card">
             <div className="card-body">

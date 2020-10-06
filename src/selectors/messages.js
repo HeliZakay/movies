@@ -14,3 +14,10 @@
     });
     return count;
   }
+
+  export const didIRecommendMovieToFriend = (recommendations, movieId, friendId) => {
+    const result = recommendations.filter((recommendation) => {
+      return (recommendation.movieId === movieId && recommendation.friendId === friendId);
+    });
+    return result.length > 0 ;
+  }

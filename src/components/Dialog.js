@@ -46,6 +46,7 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 export function CustomizedDialogs(props) {
+  
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -79,6 +80,7 @@ export function CustomizedDialogs(props) {
                         hname={props.movie.hname}
                         imdbData={props.movie.imdbData}
                         dialog={true}
+                        movie={props.movie}
                      />
         </DialogContent> 
       </Dialog>

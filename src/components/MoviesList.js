@@ -28,6 +28,7 @@ export const MoviesList = (props) => {
                         movieName={movie.movieName}
                         hname={movie.hname}
                         imdbData={movie.imdbData}
+                        movie={movie}
                      />
                     </div>
              );

@@ -71,6 +71,7 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
             <div className="row">
 
             {this.props.messagesRecieved.map((message) => {
+               
                 return (
                     <div 
                     key={message.id} 
@@ -109,6 +110,7 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
             <div className="row">
 
             {this.props.messagesSent.map((message) => {
+
                 return (
                     <div 
                     key={message.id} 
