@@ -68,6 +68,9 @@ export class RecommendationForm extends React.Component {
             });
         }
     };
+    onImgClick = () => {
+        this.setState({movieName: this.state.imdbMovie.Title || this.state.movieName});
+    }
 
     render() {
         return (
@@ -87,7 +90,10 @@ export class RecommendationForm extends React.Component {
                         value = {this.state.hname}
                         onChange= {this.onhnameChange}/>
                     }
-                    {this.state.imdbMovie && <img className= "form__image" src={this.state.imdbMovie.Poster}></img>}
+                    {this.state.imdbMovie && 
+                    <a onClick={this.onImgClick}>
+                    <div className="form__img-div"><img className= "form__image" src={this.state.imdbMovie.Poster}></img></div>
+                    </a>}
                     <label> {this.props.language === "English"? "Movie Rating:": "ציון הסרט" } </label>
                      <input 
                         type="number"                        

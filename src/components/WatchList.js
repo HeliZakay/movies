@@ -36,7 +36,7 @@ export const WatchList = (props) => {
                         <div 
                         key={movie.id} 
                         className=" col-sm-12 col-md-6 col-lg-4">
-                        <MovieCard  {...movie} /> 
+                        <MovieCard  movie={movie} {...movie} /> 
                         </div>
                     );
                 })}
