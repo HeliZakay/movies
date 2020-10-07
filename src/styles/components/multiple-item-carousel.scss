@@ -1,0 +1,34 @@
+.multiple-item-carousel {
+    padding: 50px 35px;
+    background: $dark-mode;
+}
+.multiple-item-carousel--second {
+    @extend .multiple-item-carousel;
+    background: $nesquik-light-blue;
+}
+
+.unseen__button-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.multiple-item-carousel__header {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 70px;
+    color: $offwhite;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 2.4rem;
+    @media(max-width: $desktop-breakpoint) {
+        margin-bottom:30px ;
+    }
+}
+.multiple-item-carousel__header--second {
+    @extend .multiple-item-carousel__header;
+}
+.multuple-carousel-hr{
+    margin: 0;
+    border-top: gray solid 0.3px;
+    border-bottom: none;
+}
+

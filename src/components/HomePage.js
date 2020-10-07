@@ -11,26 +11,33 @@ import {getCarouselItems} from "../selectors/carousel";
 import TestForm from "./TestForm";
 import TestApi from "./TestApi";
 import {moveMichalsReview} from "../actions/movies";
-import UnseenMovies from "./UnseenMovies";
-
+import MultipleItemCarousel from "./MultipleItemCarousel";
+import {getUnseenMovies, getMyMovies} from "../selectors/movies";
 
 export const HomePage = (props) => (
  
   <div className={String(props.language !== "English" && "align-right")}>
- 
    <Actions />
     {/* <Open /> */}
     {/* <ShanaTova /> */}
    {/* <TestForm /> */}
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
-   <UnseenMovies />
+   <MultipleItemCarousel 
+   movies={props.unseenMovies} 
+   header={props.language=="English"?
+    "Add to your watchlist or give rating":
+     "אולי תרצו להוסיף לרשימת הצפייה. אם ראיתם, כתבו ביקורת"}/>
+    <hr className="multuple-carousel-hr"/>
+   {props.myMovies.length > 0 && <MultipleItemCarousel 
+   second={true}
+   movies={props.myMovies}
+   header={props.language=="English"?
+    "Recommend movies you like to friends":
+     "המליצו לחברים על סרטים שראיתם ואהבתם"}
+   />}
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}
-   
-     
-   
   {/* <button onClick={moveMichalsReview}>moveMichalsReview</button> */}
     {/* <TestApi /> */}
-   
     {/* <button onClick={addMe}>addMe</button> */}
     {/* <button onClick={unifyReviews}>Unify Reviews</button> */}
     <div className="movie-list-section">
@@ -50,7 +57,9 @@ const mapStateToProps = (state) => ({
       watchlist: state.watchList,
       uid: state.auth.uid,
       language: state.auth.language
-  })
+  }),
+  unseenMovies: getUnseenMovies(state.movies, state.auth.uid, state.watchList),
+  myMovies: getMyMovies(state.movies, state.auth.uid)
 });
 
 

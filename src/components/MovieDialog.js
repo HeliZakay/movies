@@ -58,7 +58,7 @@ export function CustomizedDialogs(props) {
   return (
     <div >
      <a onClick={handleClickOpen}>
-    <img className="unseen__img" src={props.movie.imdbData.Poster}></img>
+    <img className="movie-dialog__img" src={props.movie.imdbData.Poster}></img>
     </a>
       <Dialog 
       className={String(props.language !== "English" && "align-right")}
@@ -78,6 +78,7 @@ export function CustomizedDialogs(props) {
                         imdbData={props.movie.imdbData}
                         dialog={true}
                         onAction={handleClose}
+                        movie={props.movie}
                      />
         </DialogContent> 
       </Dialog>

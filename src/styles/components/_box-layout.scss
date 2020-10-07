@@ -39,8 +39,9 @@
 .box-layout__title {
     margin: 10px $m-size 20px $m-size;
     line-height: 1;
-    font-family: 'Actor', sans-serif;
-    font-size: 4rem;
+    font-family: 'Lobster', cursive;
+    font-size: 7rem;
+    color: $nesquik-light-blue;
 }
 .box-layout__title__with {
     font-size: 3.9rem;
@@ -48,7 +49,7 @@
 
 
 .box-layout__text {
-    font-family: 'Sawarabi Gothic', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-size: 2rem;
 }
 

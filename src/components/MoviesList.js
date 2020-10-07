@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 import MovieCard from "./MovieCard";
 import getVisibleMovies, {takeTop} from "../selectors/movies";
-
+import InfiniteScroll from 'react-infinite-scroller';
 
 export const MoviesList = (props) => {
     const [moviesNum, setMoviesNum] = useState(21);
@@ -10,12 +10,17 @@ export const MoviesList = (props) => {
         setMoviesNum((prevVal) => prevVal + 18);
     }
     return (
-       
+        <div className="movies-list">
+       {/* <InfiniteScroll
+    pageStart={0}
+    hasMore={true}
+> */}
          <div className="content-container">        
         {props.movies.length ===0 ?(props.language === "English"? <p>No movies yet that match your search- Add a recommendation</p>: <p>אין סרטים עדיין שעונים להגדרות החיפוש, הוסיפו סרט!</p>)
         :
         <div className="row">
-         {takeTop(props.movies, moviesNum).map((movie) => 
+        
+         {takeTop(props.movies,moviesNum).map((movie) => 
          {
              return (
                     <div 
@@ -45,8 +50,8 @@ export const MoviesList = (props) => {
         </div>
         
     </div>
-      
-       
+    {/* </InfiniteScroll> */}
+    </div>
     );
 };
 

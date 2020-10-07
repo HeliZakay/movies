@@ -1,10 +1,9 @@
 import React, { Component, useState } from "react";
 import Slider from "react-slick";
 import {connect} from "react-redux";
-import {getUnseenMovies} from "../selectors/movies";
 import MovieDialog from "./MovieDialog";
 
-export const UnseenMovies = (props) => {
+const MultipleItemCarousel = (props) => {
   
   const settings = {
     centerMode: true,
@@ -32,7 +31,8 @@ export const UnseenMovies = (props) => {
     ]};
   
     return (
-      <div className="unseen">
+      <div className={props.second? "multiple-item-carousel--second": "multiple-item-carousel"}>
+      <h1 className={props.second? "multiple-item-carousel__header--second": "multiple-item-carousel__header"}>{props.header}</h1>
         <Slider {...settings}>
         {props.movies.map((movie) => {
           if(movie.imdbData && !movie.imdbData.Error)
@@ -44,9 +44,4 @@ export const UnseenMovies = (props) => {
       </div>
     );
 }
-
-
-const mapStateToProps = (state) => ({
-    movies: getUnseenMovies(state.movies, state.auth.uid, state.watchList)
-});
-export default connect(mapStateToProps)(UnseenMovies);
+export default MultipleItemCarousel;

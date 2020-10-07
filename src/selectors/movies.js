@@ -185,3 +185,30 @@ export const didFriendReviewedMovie = (reviews, friendId) => {
   return result.length > 0;
 
 }
+
+const didSendReviewToMovie = ({reviews, uid}) => {
+  let reviewId;
+  reviews.forEach((review) => {
+    if (review.userUid === uid) {
+      reviewId = review.id;
+    }
+  });
+  return reviewId;
+}
+
+export const getMyMovies = (movies, uid) => {
+  return movies.filter((movie) => {
+    const myReviewId = didSendReviewToMovie({reviews: movie.reviews, uid});
+    if (myReviewId) {
+      let hightRatedByMe = false;
+      movie.reviews.forEach((review) => {
+        if(review.id === myReviewId && review.score >=8){
+          hightRatedByMe = true;
+        }
+      });
+      return hightRatedByMe;
+    } else {
+      return false;
+    }
+  });
+} 
