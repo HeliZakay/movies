@@ -47,12 +47,16 @@ export class Review extends React.Component {
                 </p>
             }  */}
            <div className="review__flex-div">
-            <p className="card-subtitle mb-2 text-muted">
+           
+           <div className="review__paragraph-div">
+           <p className="card-subtitle mb-2 text-muted">
             {this.props.language === "English"? ("Created At: " + moment(this.props.createdAt).format("MMMM D, YYYY")) : (" נוצר בתאריך: " +moment(this.props.createdAt).format("MMMM D, YYYY"))  }
             </p>
+           </div>
             <div className="review__flex-div">
             {this.props.stars && this.props.stars.length > 0 && 
-            <p>{this.props.stars.length}</p>}
+            <p>{this.props.stars.length}</p>
+           }
             {!didIGaveStarToReview(this.props.stars, this.props.uid) ? 
             <a onClick={this.onStar}>
             <span className="star-icon material-icons">
@@ -62,9 +66,10 @@ export class Review extends React.Component {
             :
             <span className="material-icons">
             star
-            </span>}
+            </span>
+            }
             </div>
-            </div>
+           </div>
             </div>
         );
     }
