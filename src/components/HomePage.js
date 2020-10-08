@@ -25,14 +25,14 @@ export const HomePage = (props) => (
    <MultipleItemCarousel 
    movies={props.unseenMovies} 
    header={props.language=="English"?
-    "Add to your watchlist or give rating":
-     "אולי תרצו להוסיף לרשימת הצפייה. אם ראיתם, כתבו ביקורת"}/>
+    "Did You See Any of These? Time to Rate!":
+     "כבר ראיתם? זה הזמן לתת ציון"}/>
     <hr className="multuple-carousel-hr"/>
    {props.myMovies.length > 0 && <MultipleItemCarousel 
    second={true}
    movies={props.myMovies}
    header={props.language=="English"?
-    "Recommend movies you like to friends":
+    "Recommend Movies You Like to Friends":
      "המליצו לחברים על סרטים שראיתם ואהבתם"}
    />}
     {props.items.length > 0 && <MoviesCarousel items={props.items}/>}

@@ -46,23 +46,25 @@ export class Review extends React.Component {
                 <span> כוכב לביקורת)</span>
                 </p>
             } 
-            {!didIGaveStarToReview(this.props.stars, this.props.uid)&&
-            <a onClick={this.onStar}>
-            <div className="review__star-section">
-            <div className="review__wrapper">
-            <p className="review__star-text">      
-            {this.props.language === "English"? "Give "+this.props.personName+" a star on their review":
-            "תן ל"+ this.props.personName+ " כוכב על הביקורת "}
-            </p>
-            <span className="star-icon material-icons">
-            star_border
-            </span>   
-            </div>
-            </div>
-           </a>}
+           <div className="review__flex-div">
             <p className="card-subtitle mb-2 text-muted">
             {this.props.language === "English"? ("Created At: " + moment(this.props.createdAt).format("MMMM D, YYYY")) : (" נוצר בתאריך: " +moment(this.props.createdAt).format("MMMM D, YYYY"))  }
             </p>
+            <div className="review__flex-div">
+            {this.props.stars && this.props.stars.length > 0 && 
+            <p>{this.props.stars.length}</p>}
+            {!didIGaveStarToReview(this.props.stars, this.props.uid) ? 
+            <a onClick={this.onStar}>
+            <span className="star-icon material-icons">
+            star_border
+            </span>
+            </a>
+            :
+            <span className="material-icons">
+            star
+            </span>}
+            </div>
+            </div>
             </div>
         );
     }

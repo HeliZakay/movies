@@ -11,6 +11,7 @@ import ReviewsCarousel from "./ReviewsCarousel";
 import MovieData from "./MovieData";
 import FriendDialog from "./FriendDialog";
 
+
 export class MovieCard extends React.Component {
     constructor(props) {
         super(props);
@@ -108,6 +109,25 @@ export class MovieCard extends React.Component {
                 {this.props.language === "English" || !this.props.hname?
                 (this.props.movieName ): ( this.props.hname)}
             </h3>
+            <div className="custom-card-header__icons-div">
+            <a onClick={this.onAddOrRemoveFromWatchList}>
+            {!isMovieOnWatchList(this.props.watchList, this.props.id) ? 
+            <span 
+            className="material-icons watchlist-icon"
+            data-toggle="tooltip" 
+            data-placement="top" 
+            title={this.props.language === "English"? "Add to Watchlist!": "הוסף לרשימת הצפייה!"}>
+            add_to_queue
+            </span>:
+            <span 
+            className="material-icons watchlist-icon"
+            data-toggle="tooltip" 
+            data-placement="top" 
+            title={this.props.language === "English"? "Remove from Watchlist": "הסר מרשימת הצפייה"}>
+            tv_off
+            </span> 
+            }
+            </a>
             {this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews}) &&
             <FriendDialog 
             movieName={this.props.movie.movieName} 
@@ -116,10 +136,13 @@ export class MovieCard extends React.Component {
             />
             }
             </div>
+            </div>
             <div className="movie-card">
-            <div className="card-body">
+            <div className="card-body custom-card-body">
             <div className="custom-card__card-content">
-           {this.produceImage()}
+            <div className="custom-card__img-div">
+            {this.produceImage()}
+            </div>
             <MovieData 
             movieInfoImdb={this.props.imdbData}
             movieId = {this.props.id}
@@ -129,7 +152,7 @@ export class MovieCard extends React.Component {
             />
             <ReviewsCarousel reviews={this.props.reviews} movieId={this.props.id} movieName={this.props.movieName}/>
             </div>
-            <div className="card-footer text-muted custom-card__footer">   
+            <div className="card-footer custom-card-footer text-muted custom-card__footer">   
             {this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews})? (
                 <div className="custom-card__edit-section">
                 <p>{this.props.language === "English"? "You reviewd this movie!": "שלחת ביקורת לסרט! "}</p>
@@ -183,7 +206,7 @@ export class MovieCard extends React.Component {
             </form>
             </div>} 
             {/* {!this.didSendReviewToMovie({uid: this.props.uid, reviews: this.props.reviews}) && */}
-            <a onClick={this.onAddOrRemoveFromWatchList}>
+            {/* <a onClick={this.onAddOrRemoveFromWatchList}>
             <div  >
             {(isMovieOnWatchList(this.props.watchList, this.props.id)) ?
             <div className="custom-card__add-to-watch-list">
@@ -201,7 +224,7 @@ export class MovieCard extends React.Component {
              </div>
            }
            </div>
-            </a>
+            </a> */}
             {/* } */}
             </div> 
             </div>

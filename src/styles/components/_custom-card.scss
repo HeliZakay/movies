@@ -3,8 +3,7 @@
     margin: 30px 0;
     @media(max-width: $desktop-breakpoint) {
         width: 36rem;
-    }
- 
+    } 
 }
 
 .custom-card__card-content {
@@ -58,7 +57,7 @@
     border-top: 1px solid $card-footer;
 }
 .custom-card__movie-image{
-    width: 100%;
+    width: 70%;
 }
 .custom-card-body {
     background:$dark-mode;
@@ -68,4 +67,18 @@
     @media (max-width: $desktop-breakpoint) {
         width: 23rem;
     }    
+}
+.custom-card__img-div{
+    text-align: center;
+}
+.custom-card-header__icons-div{
+    display: flex;
+    justify-content: space-between;
+}
+.custom-card-body {
+    padding-bottom: 0;
+}
+.custom-card-footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }

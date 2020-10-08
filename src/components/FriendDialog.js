@@ -106,8 +106,13 @@ const sendRecommendation =() => {
   return (
     <div>
       <a onClick={handleClickOpen}>
-      <span className="material-icons">
-            face
+      <span 
+      className="material-icons"
+      data-toggle="tooltip" 
+      data-placement="top" 
+      title={props.language === "English"? "Send Movie To Friend!": "המליצו על הסרט לחברים!"}
+      >
+      face
       </span>
       </a>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>

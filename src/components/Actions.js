@@ -14,7 +14,7 @@ export const Actions = (props) => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/popcorn.png"></img> 
             </div>
-            <h3 className="actions-section__text">{props.language === "English" ? "Add a movie": "המלץ על סרט"}</h3>
+            <h3 className="actions-section__text">{props.language === "English" ? "Add a Movie": "המלץ על סרט"}</h3>
             
             </Link>
         </div>
@@ -23,7 +23,7 @@ export const Actions = (props) => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/familyguy.png"></img>  
             </div>
-            <h3 className="actions-section__text">{props.language === "English" ? "Message a friend": "שלח הודעה לחבר"}</h3>
+            <h3 className="actions-section__text">{props.language === "English" ? "Message a Friend": "שלח הודעה לחבר"}</h3>
            
             </Link>
         </div>
@@ -32,7 +32,7 @@ export const Actions = (props) => {
             <div className="actions-section__background">
             <img className="actions-section__img" src="images/envelop.png"></img>  
             </div>
-            <h3 className="actions-section__text">{props.language === "English" ? "Send feedback": "שלח פידבק על האפליקציה"}</h3>
+            <h3 className="actions-section__text">{props.language === "English" ? "Send Feedback": "שלח פידבק על האפליקציה"}</h3>
             
             </Link>
         </div>
