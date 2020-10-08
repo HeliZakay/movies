@@ -29,7 +29,7 @@ export class Review extends React.Component {
             <p className="card-title">{this.props.language === "English"?("Recommender: "+ this.props.personName): ( this.props.personName +" ממליץ: ")}</p>
             <p className="card-title"> {this.props.language === "English"?("Score: "+ this.props.score): ("ציון: "+ this.props.score)}</p>
             <Content content={this.props.content}/> 
-            {   this.props.language === "English" &&
+            {/* {   this.props.language === "English" &&
                 this.props.stars && this.props.stars.length > 0 &&
                 <p>
                 <span>({this.props.stars.length}</span>
@@ -45,7 +45,7 @@ export class Review extends React.Component {
                 <span>{this.props.stars.length === 1? " נתן ": " נתנו "}</span> 
                 <span> כוכב לביקורת)</span>
                 </p>
-            } 
+            }  */}
            <div className="review__flex-div">
             <p className="card-subtitle mb-2 text-muted">
             {this.props.language === "English"? ("Created At: " + moment(this.props.createdAt).format("MMMM D, YYYY")) : (" נוצר בתאריך: " +moment(this.props.createdAt).format("MMMM D, YYYY"))  }
