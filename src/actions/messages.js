@@ -37,7 +37,7 @@ export const startSetEmails = () => {
   }
 }
 
-export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, content, cardNum, prevMessageData}) => {
+export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, content, cardNum, prevMessageData, watchlist}) => {
   return(dispatch) => {
         const messageRecieved={
             recommender,
@@ -46,14 +46,16 @@ export const startAddMessageToFriend = ({recommender, friend, movie, createdAt, 
             content,
             read: false,
             cardNum,
-            prevMessageData
+            prevMessageData,
+            watchlist: watchlist? watchlist: []
         };
         const messageSent ={
           friend,
           movie,
           createdAt: moment(createdAt).format(),
           content,
-          cardNum
+          cardNum,
+          watchlist: watchlist? watchlist: []
         };
         database.ref(`users/${friend.uid}/messagesRecieved`).push(messageRecieved);
         database.ref(`users/${recommender.uid}/messagesSent`).push(messageSent).then((ref) => {

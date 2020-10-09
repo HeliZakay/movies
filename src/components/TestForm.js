@@ -11,7 +11,7 @@ export class TestForm extends React.Component {
         }
     }
     onSendEmails = () => {
-            let num = 39;
+            let num = 32;
             let template = this.props.emails[num].language === 1? 'template_gbh6uqj': 'template_edjw6nw'
             emailjs.send(
                 'gmail',
@@ -23,7 +23,7 @@ export class TestForm extends React.Component {
                      to_email: this.props.emails[num].to_email,
                      reply_to: "helizakay2@gmail.com"
                 },
-                'user_bWdbYEhvHn6yEnNskX3WS' 
+                process.env._KEY 
                  
             ).then((result) => {
                 console.log(result.text);
@@ -31,7 +31,7 @@ export class TestForm extends React.Component {
                 console.log(error.text);
             });
 
-            num = 40;
+            num = 33;
             template = this.props.emails[num].language === 1? 'template_gbh6uqj': 'template_edjw6nw'
             emailjs.send(
                 'gmail',
@@ -43,13 +43,14 @@ export class TestForm extends React.Component {
                      to_email: this.props.emails[num].to_email,
                      reply_to: "helizakay2@gmail.com"
                 },
-                process.env.EMAIL_JS_API_KEY 
+                process.env._KEY 
                  
             ).then((result) => {
                 console.log(result.text);
             }, (error) => {
                 console.log(error.text);
             });
+           
 //another Email
            
             //another Email

@@ -91,6 +91,7 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
                         cardNum= {message.cardNum? message.cardNum : "-1"}
                         type="recieved"
                         prevMessageData={message.prevMessageData? message.prevMessageData: undefined}
+                        watchlist={message.watchlist? message.watchlist: undefined}
                      />     
                     </div>
                 );
@@ -125,6 +126,7 @@ import { startDeleteMessage, startDeleteMessageFromSent } from '../actions/messa
                         onDelete={this.onDelete}
                         cardNum= {message.cardNum? message.cardNum : "-1"}
                         type="sent"
+                        watchlist={message.watchlist? message.watchlist: undefined}
                      />     
                     </div>
                 );

@@ -9,11 +9,10 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import {connect} from "react-redux";
-import FriendPickCheckbox from "./FriendPickCheckbox";
-import {startAddMessageToFriend, startAddRecommendation} from "../actions/messages";
-import moment from "moment";
+import FriendPickCheckboxWatchlist from "./FriendPickCheckboxWatchlist";
+import {startAddMessageToFriend} from "../actions/messages";
 import {getFriendById} from "../selectors/friends";
-
+import moment from "moment";
 
 const styles = (theme) => ({
   root: {
@@ -69,31 +68,6 @@ export function CustomizedDialogs(props) {
     const content = event.target.value;
     setContent(content);
 }
-const sendRecommendation =() => {
-  if(friendsChosen.length > 0) {
-    friendsChosen.forEach((friendId) => {
-      const friend = getFriendById(props.friends, friendId);
-      props.startAddMessageToFriend({
-        recommender: props.user,
-        friend :{
-            username: friend.username,
-            email: friend.email,
-            uid: friendId
-        },
-        movie: props.movie,
-        createdAt: moment(),
-        content: content,
-        cardNum: "-1",
-        prevMessageData: {}
-    });
-    props.startAddRecommendation({
-        friendId: friend.userId,
-        movieId: props.movie.id
-    });  
-    });
-    handleClose();
-    } 
-}
 
   const handleClose = () => {
       setOpen(false);
@@ -102,41 +76,57 @@ const sendRecommendation =() => {
   const handleChange = (friendsChosen) => {
     setFriendsChosen(friendsChosen)
   }
+  const sendWatchlist = () => {
+      friendsChosen.forEach((friendId) => {
+        const friend = getFriendById(props.friends, friendId);
+        props.startAddMessageToFriend({
+            recommender: props.user,
+            friend: {
+                username: friend.username,
+                email: friend.email,
+                uid: friendId
+            },
+            movie: {},
+            createdAt: moment(),
+            content: content,
+            cardNum: "-1",
+            prevMessageData: {},
+            watchlist: props.watchlist
+        });
+      });
+      handleClose();
+  }
 
   return (
     <div>
-      <a onClick={handleClickOpen}>
-      <span 
-      className="material-icons"
-      data-toggle="tooltip" 
-      data-placement="top" 
-      title={props.language === "English"? "Send Movie To Friend!": "המליצו על הסרט לחברים!"}
-      >
-      face
-      </span>
-      </a>
+     <Button onClick={handleClickOpen} variant="outlined" size="medium" color="primary">
+        <span 
+        className="material-icons share-watchlist-icon">
+        face
+        </span>
+        {props.language === "English"? "Share My Watchlist": "שתף את רשימת הצפייה שלי"}
+        </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {props.language === "English"?
-           "Which friends do you recommend the movie "+props.movieName +"?":
-            "לאילו חברים תרצה להמליץ על הסרט "+ props.movieName+ "?"}
+           "Which friends do you like to share your watchlist with?":
+            "עם אילו חברים תרצו לשתף את רשימת הצפייה?"}
         </DialogTitle>
         <DialogContent dividers>
+
             <div className="friend-dialog__content">
-            <FriendPickCheckbox 
+            <FriendPickCheckboxWatchlist 
             handleChange={handleChange} 
-            movie={props.movie}/>
+            />
+
             <textarea className="textarea recommendation"
             placeholder={props.language === "English"? "Write a private message (optional)": " (כתבו הודעה אישית (אופציונאלי" }    
             onChange={onContentChange}>
             </textarea>  
-            <div className="friend-dialog__img-div">
-            <img src={props.poster}></img>
-        </div>
         </div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={sendRecommendation} color="primary">
+          <Button autoFocus onClick={sendWatchlist} color="primary">
             {props.language === "English"? "Send": "שלח"}
           </Button>
         </DialogActions>
@@ -147,11 +137,12 @@ const sendRecommendation =() => {
 const mapStateToProps = (state) => ({
   language: state.auth.language,
   user: state.auth,
-  friends: state.friends.friends
+  friends: state.friends.friends,
+  watchlist: state.watchList
 });
 const mapDispatchToProps = (dispatch) => ({
   startAddMessageToFriend: (data) => dispatch(startAddMessageToFriend(data)),
-  startAddRecommendation: (data) => dispatch(startAddRecommendation(data)),
+ 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomizedDialogs);

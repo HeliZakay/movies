@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,8 +9,10 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import {connect} from "react-redux";
-import MovieCard from "./MovieCard";
-
+import FriendPickCheckboxWatchlist from "./FriendPickCheckboxWatchlist";
+import {startAddMessageToFriend} from "../actions/messages";
+import {getMovieById} from "../selectors/movies";
+import MovieDialog from "./MovieDialog";
 
 const styles = (theme) => ({
   root: {
@@ -22,7 +24,7 @@ const styles = (theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
-  }
+  },
 });
 
 const DialogTitle = withStyles(styles)((props) => {
@@ -46,46 +48,52 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 export function CustomizedDialogs(props) {
+  const watchlist = props.watchlist.map((movieId)=> {
+    return getMovieById(props.movies, movieId);
+  })
   const [open, setOpen] = React.useState(false);
-
+ 
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
-    setOpen(false);
+      setOpen(false);
   };
 
+
   return (
-    <div >
-     <a onClick={handleClickOpen}>
-    <img className={String(!props.isInMessage && "movie-dialog__img")} src={props.movie.imdbData.Poster}></img>
-    </a>
-      <Dialog 
-      className={String(props.language !== "English" && "align-right")}
+    
+    <div>
+     <button 
+    onClick={handleClickOpen}
+    className="btn button-friend--message btn-lg button-open-review">
+    {props.language === "English"? "See Watchlist": "ראה את רשימת הצפיה"}
+    </button>
+      <Dialog
+      className={String(props.language !== "English" && "align-right")} 
       onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          {props.language === "English" || !props.movie.hname?
-          (props.movie.movieName ): (props.movie.hname)}
+          {props.language === "English"?
+           props.username+ " Watchlist":
+           props.username+" רשימת הצפייה של "}
         </DialogTitle>
         <DialogContent dividers>
-         
-           <MovieCard 
-                        className={String(props.language !== "English" && "align-right")}
-                        reviews = {props.movie.reviews}
-                        id={props.movie.id}
-                        movieName={props.movie.movieName}
-                        hname={props.movie.hname}
-                        imdbData={props.movie.imdbData}
-                        dialog={true}
-                        onAction={handleClose}
-                        movie={props.movie}
-                     />
-        </DialogContent> 
+
+            <div className="friend-dialog__content">
+           {watchlist.map((movie) => {
+             if (movie) {
+               return <div key={movie.id}>
+               <p>{props.language === "English" || !movie.hname? movie.movieName: movie.hname}</p>
+               {movie.imdbData && !movie.imdbData.Error && <MovieDialog isInMessage={true} movie={movie}/>}
+               </div>
+             }
+           })}
+        </div>
+        </DialogContent>
       </Dialog>
     </div>
   );
 }
-
 const mapStateToProps = (state) => ({
   language: state.auth.language,
   movies: state.movies

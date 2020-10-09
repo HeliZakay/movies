@@ -8,7 +8,7 @@ import {startAddMessageToFriend} from "../actions/messages";
 import {startMarkMessageAsRead} from "../actions/messages";
 import Dialog from "./Dialog";
 import {getHname} from "../selectors/movies";
-
+import SeeWatchlistDialog from "./SeeWatchlistDialog";
 
 export class MessageCard extends React.Component{
     constructor(props) {
@@ -90,8 +90,22 @@ export class MessageCard extends React.Component{
             return ""
         }
     }
+    composeWatchlistMessage = ({language, type, myName, username}) => {
+        if (language === "English") {
+            if(type === "recieved") {
+                return ("Hi " + myName + ", I'm sending you my watchlist.");
+            } else {
+                return ("Hi " + username+ ", I'm sending you my watchlist.")
+            }
+        } else{
+            if(type === "recieved") {
+                return (" היי " + myName + ", הנה רשימת הצפייה שלי.");
+            } else {
+                return (" היי " + username + ", הנה רשימת הצפייה שלי.");
+            }
+        }
+    }
     render() {       
-       
         return (
             <div className="card card bg-light mb-3 custom-card">
              <div className="messageCard">
@@ -145,7 +159,19 @@ export class MessageCard extends React.Component{
                          hname:this.props.movie && this.props.movie.hname? this.props.movie.hname : undefined
                 })} </p>
                 }
+                {this.props.watchlist && <p className="card-title">{
+                    this.composeWatchlistMessage({
+                        language: this.props.language,
+                        type: this.props.type,
+                        myName: this.props.myName,
+                        username: this.props.username
+                    })
+                }</p>}
                 { this.props.content && <p className="card-text"> "{this.props.content}"</p> }
+                {this.props.watchlist && this.props.type === "recieved" &&
+                <SeeWatchlistDialog 
+                username={this.props.username} watchlist={this.props.watchlist}/>
+                }
                 { this.props.movieName && this.props.type==="recieved" &&
                     <Dialog movie={this.props.movie}/>
                 }

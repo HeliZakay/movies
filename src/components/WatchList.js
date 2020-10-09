@@ -4,7 +4,8 @@ import MovieCard from "./MovieCard";
 import getVisibleMovies from "../selectors/movies";
 import {getWatchListMovies} from "../selectors/watchList";
 import MoviesListFilters from "./MoviesListFilters";
-
+import Button from '@material-ui/core/Button';
+import WatchlistDialog from "./WatchlistDialog";
 
 export const WatchList = (props) => {
     return (
@@ -16,9 +17,12 @@ export const WatchList = (props) => {
         {props.language === "English"? "My Watch List": "רשימת הצפייה שלי"}
         </h2>
         </div> */}
-        
+       
         <div className="watchlist">
         <div className="content-container">
+        <div className="watchlist__share">
+        <WatchlistDialog />
+        </div>
         <MoviesListFilters />
             {props.movies.length ===0 ?
             (
