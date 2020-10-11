@@ -17,6 +17,7 @@ import PublicRoute from "./PublicRoute";
 import SignupRoute from "./SignupRoute";
 import LanguageRoute from "./LanguageRoute";
 import Notifications from "../components/Notifications";
+import EmailLogin from "../components/EmailLogin";
 
 export let history = createBrowserHistory();
 
@@ -25,6 +26,7 @@ const AppRouter = () => (
     <div>
       <Switch>
         <PublicRoute path="/" component={Login} exact={true} />
+        <PublicRoute path="/email-login" component={EmailLogin}/>
         <SignupRoute path="/signup" component={Signup} />
         <LanguageRoute path="/language" component={Language} />
         <PrivateRoute  path="/homePage" component={HomePage} />

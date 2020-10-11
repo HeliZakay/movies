@@ -29,19 +29,24 @@
     width: 45rem;
     height: 33rem;
     @media (max-width: $desktop-breakpoint) {
-        height: 40rem;
+        height: 60rem;
     }
 }
 .box-layout__signup-box{
     @extend .box-layout__box;
     height: 38rem;
 }
+.box-layout__login-with-email-box{
+    @extend .box-layout__box;
+    height: 45rem;
+
+}
 .box-layout__title {
     margin: 10px $m-size 20px $m-size;
     line-height: 1;
     font-family: 'Lobster', cursive;
     font-size: 7rem;
-    color: $nesquik-light-blue;
+    color: $blue;
 }
 .box-layout__title__with {
     font-size: 3.9rem;
@@ -51,5 +56,12 @@
 .box-layout__text {
     font-family: 'Quicksand', sans-serif;
     font-size: 2rem;
+}
+
+.text-input--sign-in-with-email{
+    margin-bottom: 20px;
+}
+.box-layout__error-div{
+    height: 120px;
 }
 

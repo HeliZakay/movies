@@ -100,3 +100,18 @@ export const startLogout = () => {
     };
 };
 
+export const startEmailLogin = ({email, password, setError}) => {
+    return () => {
+        setError("");
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+            if (String(error.code) === "auth/email-already-in-use") {
+                firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                            setError(error.message);        
+                });
+            } else {
+                setError(error.message);
+            }
+        });
+}
+}
+
