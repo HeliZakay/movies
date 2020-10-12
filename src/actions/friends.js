@@ -136,4 +136,29 @@ export const addFriendsToDB = () =>{
     };
   };
 
+  export const findNewUsers = () => {
+      return database.ref(`users`).once("value").then((snapshot) => {
+        let newUsers = [];
+        snapshot.forEach((childSnapshot) => {
+          if (!childSnapshot.val().old) {
+            newUsers.push({id: childSnapshot.key, ...childSnapshot.val()});
+          }
+        });
+        console.log(newUsers);
+        newUsers.forEach((user) => {
+          database.ref(`users/${user.id}`).update({old:"yes"});
+        });
+      });
+  }
+
+  export const deleteUsers = () => {
+    return database.ref(`users`).once("value").then((snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        if (childSnapshot.val().email === "lhdlskjsdfds@gmail.com" || childSnapshot.val().email === "helizakay10@gmail.com" || childSnapshot.val().email === "jibrishemail587@gibrish.com") {
+          database.ref(`users/${childSnapshot.key}`).remove();
+        }
+       });
+    });
+  }
+
   

@@ -41,18 +41,18 @@ export class Friends extends React.Component {
             
             <form onSubmit={this.onSubmit}>
             <div className="friend__add-friend-section">
-                <input className="text-input friend-input"
+           
+            <input className="text-input friend-input"
                     type="email"
                     placeholder={this.props.language === "English"? "friend's email": "הכניסו את האימייל של החבר"}
                     value = {this.state.email}
                     onChange= {this.onEmailChange}
-                />
-                
-                <button className="btn btn-primary button--add-friend btn-lg" type="submit">
-                {this.props.language === "English"? " Add friend": "הוסיפו"}
-               
-                </button>
-                </div>
+            />
+            <button className="btn btn-primary button--add-friend btn-lg" type="submit">
+             {this.props.language === "English"? " Add friend": "הוסיפו"}
+             </button>
+            
+            </div>
                 {this.props.error && <p className="friends__error"><em>{this.props.error}</em></p>}
               </form>
               <div className="friends__filters">

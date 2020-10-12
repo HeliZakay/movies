@@ -1,6 +1,7 @@
 import React from 'react';
 import MoviesList from "./MoviesList";
 import Actions from "./Actions";
+import PrettyAction from "./PrettyAction";
 import Open from "./Open";
 import MoviesListFilters from "./MoviesListFilters";
 import {connect} from "react-redux";
@@ -13,15 +14,19 @@ import TestApi from "./TestApi";
 import {moveMichalsReview} from "../actions/movies";
 import MultipleItemCarousel from "./MultipleItemCarousel";
 import {getUnseenMovies, getMyMovies} from "../selectors/movies";
+import {deleteUsers} from "../actions/friends";
+import {findNewUsers} from "../actions/friends";
 
 export const HomePage = (props) => (
- 
   <div className={String(props.language !== "English" && "align-right")}>
-   <Actions />
+  <PrettyAction />
+   {/* <Actions /> */}
     {/* <Open /> */}
     {/* <ShanaTova /> */}
    {/* <TestForm /> */}
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
+    {/* <button onClick={findNewUsers}>Find New Users</button> */}
+    {/* <button onClick={deleteUsers}>Delete Users</button> */}
    <MultipleItemCarousel 
    movies={props.unseenMovies} 
    header={props.language=="English"?
@@ -61,6 +66,7 @@ const mapStateToProps = (state) => ({
   unseenMovies: getUnseenMovies(state.movies, state.auth.uid, state.watchList),
   myMovies: getMyMovies(state.movies, state.auth.uid)
 });
+
 
 
 export default connect(mapStateToProps)(HomePage);

@@ -35,7 +35,7 @@ export class EmailLogin extends React.Component {
            <div className="box-layout__bg"></div>
            <div className="box-layout__login-with-email-box">
            <form onSubmit={this.onSubmit}>
-            <h2 className="signup__subtitle">Please insert email and password:</h2>
+            <h2 className="signup__subtitle">Please insert email and password - If it's your first time simply choose a password: נא להכניס אימייל וסיסמא, אם זו הפעם הראשונה ניתן לבחור סיסמא</h2>
             
             <input className="text-input text-input--sign-in-with-email"
                 type="email"
