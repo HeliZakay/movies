@@ -9,6 +9,7 @@ import {startMarkMessageAsRead} from "../actions/messages";
 import Dialog from "./Dialog";
 import {getHname} from "../selectors/movies";
 import SeeWatchlistDialog from "./SeeWatchlistDialog";
+import {getMovieById} from "../selectors/movies";
 
 export class MessageCard extends React.Component{
     constructor(props) {
@@ -18,7 +19,8 @@ export class MessageCard extends React.Component{
             content: "",
             open: props.read,
             successMessage: false,
-            prevOpen: false
+            prevOpen: false,
+            
         }
     }
     showTextare = () => {
@@ -105,7 +107,8 @@ export class MessageCard extends React.Component{
             }
         }
     }
-    render() {       
+    render() {  
+  
         return (
             <div className="card card bg-light mb-3 custom-card">
              <div className="messageCard">
@@ -172,8 +175,8 @@ export class MessageCard extends React.Component{
                 <SeeWatchlistDialog 
                 username={this.props.username} watchlist={this.props.watchlist}/>
                 }
-                { this.props.movieName && this.props.type==="recieved" &&
-                    <Dialog movie={this.props.movie}/>
+                { this.props.movieName && getMovieById(this.props.movies, this.props.movie.id) && this.props.type==="recieved" &&
+                    <Dialog movie={getMovieById(this.props.movies, this.props.movie.id)}/>
                 }
                 {(this.props.type !=="sent" && this.props.prevMessageData) &&
                (<a 

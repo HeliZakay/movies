@@ -53,7 +53,7 @@ export class Review extends React.Component {
             {this.props.language === "English"? ("Created At: " + moment(this.props.createdAt).format("MMMM D, YYYY")) : (" נוצר בתאריך: " +moment(this.props.createdAt).format("MMMM D, YYYY"))  }
             </p>
            </div>
-            {/* <div className="review__flex-div">
+            <div className="review__flex-div">
             {this.props.stars && this.props.stars.length > 0 && 
             <p>{this.props.stars.length}</p>
            }
@@ -68,7 +68,7 @@ export class Review extends React.Component {
             star
             </span>
             }
-            </div> */}
+            </div>
            </div>
             </div>
         );

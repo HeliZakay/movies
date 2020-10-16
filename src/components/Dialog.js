@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import {connect} from "react-redux";
 import MovieCard from "./MovieCard";
-
+import {getMovieById} from "../selectors/movies";
 
 const styles = (theme) => ({
   root: {
@@ -57,7 +57,9 @@ export function CustomizedDialogs(props) {
   };
 
   return (
+    
     <div >
+   
     <div className="dialog__button-div">
       <button className="btn button-friend--message btn-lg button-open-review" onClick={handleClickOpen}>
        {props.language === "English"? "Open review": "פתח ביקורת"}
