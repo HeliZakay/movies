@@ -64,6 +64,9 @@ export default (movies, { text, sortBy, person, genres}, language) => {
       }
       let personMatch = false;
       movie.reviews.forEach((review) => {
+        if (!review.personName) {
+          console.log(movie);
+        }
         if (review.personName.toLowerCase().includes(person.toLowerCase())) {
           personMatch = true;
         }
