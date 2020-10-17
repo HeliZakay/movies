@@ -100,18 +100,35 @@ export const startLogout = () => {
     };
 };
 
-export const startEmailLogin = ({email, password, setError}) => {
+export const startEmailLogin = ({email, password, setError, setForgotPassword, setEmailSent}) => {
     return () => {
         setError("");
+        setForgotPassword(false);
+        setEmailSent(false);
         firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+            setError("");
+            setForgotPassword(false);
+            setEmailSent(false);
             if (String(error.code) === "auth/email-already-in-use") {
                 firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-                            setError(error.message);        
+                            setError(error.message);
+                            setForgotPassword(true);        
                 });
             } else {
                 setError(error.message);
             }
         });
 }
+}
+
+export const sendAuthenticationEmail = (emailAddress) => {
+    return () => {
+    var auth = firebase.auth();
+    auth.sendPasswordResetEmail(String(emailAddress)).then(function() {
+       console.log("success");
+    }).catch(function(error) {
+        console.log(error);
+    });
+    } 
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {startEmailLogin} from "../actions/auth";
+import {startEmailLogin, sendAuthenticationEmail} from "../actions/auth";
 
 
 export class EmailLogin extends React.Component {
@@ -9,17 +9,27 @@ export class EmailLogin extends React.Component {
         this.state = {
             email: "",
             password:"",
-            error:""
+            error:"",
+            forgotPassword: false,
+            emailSent: false
         }
     }
+
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.startEmailLogin({email:this.state.email, password: this.state.password, setError: this.setError});
-       
+        this.props.startEmailLogin(
+            {
+                email:this.state.email, 
+                password: this.state.password, 
+                setError: this.setError, 
+                setForgotPassword:this.setForgotPassword,
+                setEmailSent: this.setEmailSent
+            });
     };
+
     onEmailChange = (event) => {
         const email = event.target.value;
-        this.setState({...this.state, email});
+        this.setState({...this.state,forgotPassword:false, error:"", emailSent:false, email});
     };
     onPasswordChange = (event) => {
         const password = event.target.value;
@@ -27,6 +37,17 @@ export class EmailLogin extends React.Component {
     };
     setError = (error) => {
         this.setState({...this.state, error});
+    }
+    setForgotPassword = (bool) => {
+        this.setState({...this.state, forgotPassword: bool});
+    }
+    setEmailSent = (bool) => {
+        this.setState({...this.state, emailSent: bool})
+    }
+
+    onForgotPassword = () => {
+        this.props.sendAuthenticationEmail(this.state.email);
+        this.setState({...this.state, forgotPassword:false, error: "", emailSent: true});    
     }
    
     render() {
@@ -53,12 +74,13 @@ export class EmailLogin extends React.Component {
                 required
             />
                <div className="box-layout__error-div">{this.state.error && <p>{this.state.error}</p>}</div>
+               {this.state.forgotPassword && <a onClick={this.onForgotPassword}>
+               <p className="email-login__forgot-password">Forgot Password שכחתי סיסמא</p>
+               </a>}
+               {this.state.emailSent && <p>Email was sent to {this.state.email}</p>}
                 <button className="button button--signup" type="submit" >Let's Go</button>
-                
-                
             </form> 
            </div>
-           
         </div>
         );     
     };
@@ -66,7 +88,8 @@ export class EmailLogin extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    startEmailLogin: (data) => dispatch(startEmailLogin(data))
+    startEmailLogin: (data) => dispatch(startEmailLogin(data)),
+    sendAuthenticationEmail: (email) => dispatch(sendAuthenticationEmail(email))
 });
 
 export default connect(undefined, mapDispatchToProps)(EmailLogin);
