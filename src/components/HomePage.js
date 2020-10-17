@@ -27,11 +27,11 @@ export const HomePage = (props) => (
     {/* <button onClick={addFriendsToDB}>addFriendsToDB</button> */}
     {/* <button onClick={findNewUsers}>Find New Users</button> */}
     {/* <button onClick={deleteUsers}>Delete Users</button> */}
-   <MultipleItemCarousel 
+   {props.unseenMovies.length > 0 && <MultipleItemCarousel 
    movies={props.unseenMovies} 
    header={props.language=="English"?
     "Did You See Any of These? Time to Rate!":
-     "כבר ראיתם? זה הזמן לתת ציון"}/>
+     "כבר ראיתם? זה הזמן לתת ציון"}/>}
     <hr className="multuple-carousel-hr"/>
    {props.myMovies.length > 0 && <MultipleItemCarousel 
    second={true}

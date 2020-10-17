@@ -32,7 +32,7 @@ const DialogTitle = withStyles(styles)((props) => {
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
+          <CloseIcon/>
         </IconButton>
       ) : null}
     </MuiDialogTitle>
@@ -69,8 +69,8 @@ export function CustomizedDialogs(props) {
       className={String(props.language !== "English" && "align-right")}
       onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          {props.language === "English" || !props.movie.hname?
-          (props.movie.movieName ): (props.movie.hname)}
+       {props.language === "English" || !props.movie.hname?
+        (props.movie.movieName ): (props.movie.hname)}
         </DialogTitle>
         <DialogContent dividers>
          

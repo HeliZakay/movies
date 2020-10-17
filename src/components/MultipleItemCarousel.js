@@ -5,27 +5,25 @@ import MovieDialog from "./MovieDialog";
 
 const MultipleItemCarousel = (props) => {
   
-  const settings = {
-    centerMode: true,
-    className: "center",
-    centerPadding: "10px",
-    infinite: true,
-    speed: 1200,
+  const settings = {    
+    infinite: props.movies.length > 5,
+    speed: 1000,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 5,
     responsive: [
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          speed: 300
         }
       }
     ]};
