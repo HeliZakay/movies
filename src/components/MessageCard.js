@@ -162,7 +162,7 @@ export class MessageCard extends React.Component{
                          hname:this.props.movie && this.props.movie.hname? this.props.movie.hname : undefined
                 })} </p>
                 }
-                {this.props.watchlist && <p className="card-title">{
+                {this.props.watchlist && this.props.watchlist.length > 0 && <p className="card-title">{
                     this.composeWatchlistMessage({
                         language: this.props.language,
                         type: this.props.type,
