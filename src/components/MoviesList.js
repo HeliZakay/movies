@@ -20,7 +20,7 @@ export const MoviesList = (props) => {
         :
         <div className="row">
         
-         {takeTop(props.movies,moviesNum).map((movie) => 
+         {props.movies.map((movie) => 
          {
              return (
                     <div 
@@ -40,14 +40,14 @@ export const MoviesList = (props) => {
          })}
         </div>
         }
-        <div className="more-movies-button-div">
+        {/* <div className="more-movies-button-div">
         {moviesNum < props.movies.length && 
         <button
         className="btn btn-primary button--add-friend btn-lg button-more-movies" 
         onClick={onMoreMovies}>
         {props.language === "English"? "More Movies": "עוד סרטים"}
         </button>}
-        </div>
+        </div> */}
         
     </div>
     {/* </InfiniteScroll> */}
